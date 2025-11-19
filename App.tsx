@@ -49,17 +49,17 @@ const AdobeScanLogo = () => (
   />
 );
 
-// --- LOGO DATABASE (External CDN URLs for Accuracy) ---
+// --- LOGO DATABASE (Stable Wikimedia URLs) ---
 const BrandList = [
-  { name: 'Hero', url: 'https://cdn.worldvectorlogo.com/logos/hero-motocorp.svg' },
-  { name: 'TVS', url: 'https://cdn.worldvectorlogo.com/logos/tvs-motor-company.svg' },
-  { name: 'Honda', url: 'https://cdn.worldvectorlogo.com/logos/honda-3.svg' },
-  { name: 'Bajaj', url: 'https://cdn.worldvectorlogo.com/logos/bajaj-auto.svg' },
-  { name: 'Yamaha', url: 'https://cdn.worldvectorlogo.com/logos/yamaha-2.svg' },
-  { name: 'Suzuki', url: 'https://cdn.worldvectorlogo.com/logos/suzuki-1.svg' },
-  { name: 'Hyundai', url: 'https://cdn.worldvectorlogo.com/logos/hyundai-motor-company-2.svg' },
-  { name: 'Kia', url: 'https://cdn.worldvectorlogo.com/logos/kia-1.svg' },
-  { name: 'Mahindra', url: 'https://cdn.worldvectorlogo.com/logos/mahindra-2.svg' }
+  { name: 'Hero', url: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Hero_MotoCorp_Logo.svg' },
+  { name: 'TVS', url: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/TVS_Motor_Company_Logo.svg' },
+  { name: 'Honda', url: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg' },
+  { name: 'Bajaj', url: 'https://upload.wikimedia.org/wikipedia/commons/e/ee/Bajaj_Auto_Logo.svg' },
+  { name: 'Yamaha', url: 'https://upload.wikimedia.org/wikipedia/commons/8/8b/Yamaha_Motor_Logo_2020.svg' },
+  { name: 'Suzuki', url: 'https://upload.wikimedia.org/wikipedia/commons/1/12/Suzuki_logo_2.svg' },
+  { name: 'Hyundai', url: 'https://upload.wikimedia.org/wikipedia/commons/4/41/Hyundai_Motor_Company_logo.svg' },
+  { name: 'Kia', url: 'https://upload.wikimedia.org/wikipedia/commons/4/47/Kia_logo.svg' },
+  { name: 'Mahindra', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Mahindra_Rise.svg/2560px-Mahindra_Rise.svg.png' }
 ];
 
 const Header = ({ currentPage, onNavigate }: { currentPage: string, onNavigate: (page: string, section?: string) => void }) => {
@@ -222,8 +222,13 @@ const InteractiveErrorCard = () => {
                         <p className="font-mono font-bold text-red-600 text-sm">400 KB</p>
                       </div>
                     </div>
-                    <div className="mt-3 inline-flex items-center px-2 py-1 rounded bg-red-100 text-red-600 text-[10px] font-bold uppercase tracking-wide">
-                      Status: Reverted
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      <div className="inline-flex items-center px-2 py-1 rounded bg-red-100 text-red-600 text-[10px] font-bold uppercase tracking-wide">
+                        Status: Reverted
+                      </div>
+                      <div className="inline-flex items-center px-2 py-1 rounded bg-orange-100 text-orange-700 text-[10px] font-bold uppercase tracking-wide">
+                        Penalty Charged
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -272,11 +277,8 @@ const InteractiveErrorCard = () => {
                 </div>
               </div>
 
-              <div className="w-full grid grid-cols-2 gap-3">
-                <button className="bg-slate-900 text-white py-3 px-4 rounded-lg font-semibold shadow-lg text-sm flex items-center justify-center">
-                  <Upload size={16} className="mr-2" /> Upload Now
-                </button>
-                <button className="bg-white border border-slate-200 text-slate-700 py-3 px-4 rounded-lg font-semibold hover:bg-slate-50 transition-colors text-sm">
+              <div className="w-full">
+                <button className="w-full bg-slate-900 text-white py-3 px-4 rounded-lg font-semibold shadow-lg text-sm hover:bg-slate-800 transition-colors">
                   Process Next
                 </button>
               </div>
@@ -342,100 +344,99 @@ const BrandLogos = () => {
 };
 
 const TimeSavingsCalculator = () => {
-  const [annualSales, setAnnualSales] = useState(1500); // Default based on beta stats
+  const [monthlySales, setMonthlySales] = useState(100);
 
-  const manualTimePerFile = 22.5; // minutes (avg between 20-25)
-  const autoTimePerFile = 1.75; // minutes (avg between 1.5-2)
+  const annualFiles = monthlySales * 12;
+  
+  // Constants based on the design/metrics provided
+  const manualTimePerFile = 22; // minutes
+  const autoTimePerFile = 2; // minutes
 
-  // Calculate Total Time in Minutes
-  const manualTotalMins = annualSales * manualTimePerFile;
-  const autoTotalMins = annualSales * autoTimePerFile;
+  // Calculate Total Hours
+  const manualTotalHours = Math.round((annualFiles * manualTimePerFile) / 60);
+  const autoTotalHours = Math.round((annualFiles * autoTimePerFile) / 60);
 
   // Savings
-  const savedMinutes = manualTotalMins - autoTotalMins;
-  const savedHours = Math.round(savedMinutes / 60);
-  const savedDays = (savedHours / 8).toFixed(1); // 8-hour work days
+  const savedHours = manualTotalHours - autoTotalHours;
+  const savedDays = Math.round(savedHours / 8); // 8-hour work days
 
   return (
-    <section id="calculator" className="py-24 bg-slate-50 border-b border-slate-200">
-      <div className="container mx-auto px-4 max-w-5xl">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-slate-900">See Your ROI in Seconds</h2>
-          <p className="text-slate-500 mt-2">Enter your annual vehicle sales to see how much time you save.</p>
-        </div>
-        
-        <div className="bg-slate-900 rounded-3xl p-8 md:p-12 text-white shadow-2xl relative overflow-hidden ring-4 ring-slate-200">
-          {/* Background decoration */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/4 pointer-events-none"></div>
+    <section id="calculator" className="py-12 bg-white">
+      <div className="container mx-auto px-4 max-w-3xl">
+        <div className="bg-[#0B1120] rounded-2xl p-5 md:p-6 text-white shadow-2xl ring-1 ring-slate-800 flex flex-col md:flex-row gap-6 items-center relative overflow-hidden">
           
-          <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
-            <div>
-              <div className="inline-flex items-center space-x-2 bg-brand-900/50 border border-brand-500/30 rounded-full px-3 py-1 mb-6">
-                <Calculator size={14} className="text-brand-400" />
-                <span className="text-xs font-bold text-brand-300 uppercase tracking-wider">Interactive Calculator</span>
+          {/* Left Content */}
+          <div className="flex-1 relative z-10 w-full">
+            <div className="inline-flex items-center space-x-2 bg-brand-900/40 border border-brand-500/30 rounded-full px-2.5 py-0.5 mb-3">
+              <Calculator size={12} className="text-brand-400" />
+              <span className="text-[9px] font-bold text-brand-300 uppercase tracking-widest">ROI Calculator</span>
+            </div>
+            
+            <h2 className="text-xl md:text-2xl font-bold mb-2">Calculate your time savings.</h2>
+            <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+              Manual RTO work kills productivity. Move the slider to see how much time RTO Buddy can give back.
+            </p>
+            
+            <div className="mb-6">
+              <div className="flex justify-between items-end mb-3">
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Monthly Vehicle Sales</label>
+                <span className="text-3xl font-bold text-white tracking-tight">{monthlySales}</span>
               </div>
-              <h3 className="text-3xl font-bold mb-8">Total Annual Sales</h3>
-              
-              <div className="mb-10">
-                <div className="flex justify-between items-end mb-4">
-                  <label className="text-sm font-bold text-slate-300 uppercase tracking-wider">Vehicles Sold Per Year</label>
-                  <span className="text-5xl font-bold text-white tracking-tight">{annualSales}</span>
-                </div>
-                <input 
-                  type="range" 
-                  min="100" 
-                  max="5000" 
-                  step="50" 
-                  value={annualSales} 
-                  onChange={(e) => setAnnualSales(parseInt(e.target.value))}
-                  className="w-full h-4 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-brand-500 hover:accent-brand-400 transition-all"
-                />
-                <div className="flex justify-between text-xs text-slate-500 mt-3 font-mono">
-                  <span>100</span>
-                  <span>2,500</span>
-                  <span>5,000+</span>
-                </div>
-              </div>
-              
-              <div className="flex items-center space-x-2 text-sm text-slate-400 bg-slate-800/50 p-3 rounded-lg">
-                 <RefreshCw size={16} />
-                 <span>Comparing <strong>22.5 mins</strong> (Manual) vs <strong>1.75 mins</strong> (RTO Buddy) per file.</span>
+              <input 
+                type="range" 
+                min="10" 
+                max="500" 
+                step="10" 
+                value={monthlySales} 
+                onChange={(e) => setMonthlySales(parseInt(e.target.value))}
+                className="w-full h-2 bg-slate-700 rounded-full appearance-none cursor-pointer accent-white hover:accent-brand-200 transition-all"
+              />
+              <div className="flex justify-between text-[9px] text-slate-500 mt-2 font-mono uppercase tracking-wider">
+                <span>10</span>
+                <span>250</span>
+                <span>500+</span>
               </div>
             </div>
+            
+            <div className="flex items-center text-xs text-slate-400 gap-2">
+               <RefreshCw size={12} className="text-slate-500" />
+               <span>Calculated based on <strong className="text-slate-300">{annualFiles.toLocaleString()} files/year</strong></span>
+            </div>
+          </div>
 
-            <div className="bg-slate-800/80 backdrop-blur-sm border border-slate-700 rounded-2xl p-8 shadow-xl">
-               <div className="space-y-8">
-                  {/* Comparison Grid */}
-                  <div className="grid grid-cols-2 gap-8 border-b border-slate-700/50 pb-8">
-                     <div>
-                        <p className="text-xs text-slate-400 uppercase font-bold mb-2">Manual Process</p>
-                        <p className="text-3xl font-bold text-red-400">{Math.round(manualTotalMins/60).toLocaleString()} <span className="text-sm font-normal text-slate-500">hrs</span></p>
-                        <p className="text-[10px] text-slate-500 mt-1">Wasted Time</p>
-                     </div>
-                     <div>
-                        <p className="text-xs text-slate-400 uppercase font-bold mb-2">RTO Buddy</p>
-                        <p className="text-3xl font-bold text-emerald-400">{Math.round(autoTotalMins/60).toLocaleString()} <span className="text-sm font-normal text-slate-500">hrs</span></p>
-                        <p className="text-[10px] text-slate-500 mt-1">Optimized Time</p>
-                     </div>
+          {/* Right Card */}
+          <div className="flex-1 w-full md:max-w-[16rem] lg:max-w-[18rem]">
+            <div className="bg-[#121a2b] border border-slate-800 rounded-xl p-5 shadow-xl relative overflow-hidden">
+               {/* Comparison Rows */}
+               <div className="grid grid-cols-2 gap-3 pb-4 mb-4 border-b border-slate-800/80">
+                  <div>
+                     <p className="text-[9px] text-slate-500 uppercase font-bold tracking-widest mb-1">Manual Process</p>
+                     <p className="text-xl font-bold text-red-400">{manualTotalHours} <span className="text-[10px] font-medium text-slate-500">hrs/yr</span></p>
+                     <p className="text-[9px] text-slate-600 mt-0.5">~22 mins/file</p>
                   </div>
+                  <div>
+                     <p className="text-[9px] text-slate-500 uppercase font-bold tracking-widest mb-1">RTO Buddy</p>
+                     <p className="text-xl font-bold text-emerald-400">{autoTotalHours} <span className="text-[10px] font-medium text-slate-500">hrs/yr</span></p>
+                     <p className="text-[9px] text-slate-600 mt-0.5">~2 mins/file</p>
+                  </div>
+               </div>
 
-                  {/* Big Result */}
-                  <div className="text-center">
-                     <p className="text-slate-300 font-medium mb-3 uppercase tracking-wide text-xs">Total Time Saved Annually</p>
-                     <div className="flex flex-col items-center justify-center">
-                        <div className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-300 to-emerald-300 tracking-tight mb-4">
-                            {savedHours.toLocaleString()} <span className="text-2xl text-slate-400 font-bold">hours</span>
-                        </div>
-                        <div className="inline-flex items-center bg-emerald-500 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg shadow-emerald-500/20 animate-pulse-slow">
-                            <TrendingUp size={16} className="mr-2" />
-                            That's {savedDays} work days gained!
-                        </div>
-                     </div>
+               {/* Total Result */}
+               <div className="text-center">
+                  <p className="text-slate-300 font-medium mb-1 text-xs">Total Time Saved Annually</p>
+                  <div className="flex items-baseline justify-center gap-1.5 mb-4">
+                     <span className="text-4xl font-extrabold text-brand-400 tracking-tight">{savedHours}</span>
+                     <span className="text-lg font-bold text-brand-600">hrs</span>
+                  </div>
+                  
+                  <div className="inline-flex items-center bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-full text-[10px] md:text-xs font-semibold animate-pulse-slow">
+                     <CheckCircle size={12} className="mr-1.5" />
+                     Equal to {savedDays} work days saved!
                   </div>
                </div>
             </div>
           </div>
+
         </div>
       </div>
     </section>

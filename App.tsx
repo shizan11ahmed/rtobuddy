@@ -59,12 +59,12 @@ const AdobeScanLogo = () => (
 
 // --- LOGO DATABASE (User Provided URLs) ---
 const BrandList = [
-  { name: 'Hero', url: 'https://www.heromotocorp.com/content/dam/hero-aem-website/brand/logo/logo.svg', bg: 'bg-white' },
-  { name: 'TVS', url: 'https://www.tvsmotor.com/-/media/Feature/Header/TVSLogo-hr.svg', bg: 'bg-white' },
-  { name: 'Honda', url: 'https://edge.sitecorecloud.io/hondamotorc388f-hmsi8ece-prodb777-e813/media/Project/HONDA2WI/honda2wheelersindia/logo/logo-redbing.png?h=64&iar=0&w=80', bg: 'bg-white' },
-  { name: 'Bajaj', url: 'https://cdn.bajajauto.com/-/media/assets/bajajauto/global/bajaj-logo2.png', bg: 'bg-white' },
-  { name: 'Mahindra', url: 'https://auto.mahindra.com/on/demandware.static/Sites-amc-Site/-/default/dw0b97f45d/images/logoPeakLight.png', bg: 'bg-transparent' }, 
-  { name: 'Hyundai', url: 'https://www.hyundai.com/content/dam/hyundai/template_en/en/images/common/og-image/hyu_logo_og_image.jpg', bg: 'bg-white' }
+  { name: 'Hero', url: 'https://www.heromotocorp.com/content/dam/hero-aem-website/brand/logo/logo.svg',bg: 'bg-white' },
+  { name: 'TVS', url: 'https://www.tvsmotor.com/-/media/Feature/Header/TVSLogo-hr.svg',bg: 'bg-white' },
+  { name: 'Honda', url: 'https://edge.sitecorecloud.io/hondamotorc388f-hmsi8ece-prodb777-e813/media/Project/HONDA2WI/honda2wheelersindia/logo/logo-redbing.png?h=64&iar=0&w=80',bg: 'bg-white' },
+  { name: 'Bajaj', url: 'https://cdn.bajajauto.com/-/media/assets/bajajauto/global/bajaj-logo2.png',bg: 'bg-white' },
+  { name: 'Mahindra', url: 'https://auto.mahindra.com/on/demandware.static/Sites-amc-Site/-/default/dw0b97f45d/images/logoPeakLight.png',bg: 'bg-white' }, 
+  { name: 'Hyundai', url: 'https://www.hyundai.com/content/dam/hyundai/template_en/en/images/common/og-image/hyu_logo_og_image.jpg',bg: 'bg-white' }
 ];
 
 const Header = ({ currentPage, onNavigate }: { currentPage: string, onNavigate: (page: string, section?: string) => void }) => {
@@ -158,6 +158,26 @@ const Header = ({ currentPage, onNavigate }: { currentPage: string, onNavigate: 
 };
 
 // --- Components ---
+
+const WhatsAppButton = () => (
+  <a
+    href="https://wa.me/919876543210?text=Hi%20RTO%20Buddy,%20I'm%20interested%20in%20optimizing%20my%20dealership%20documentation."
+    target="_blank"
+    rel="noopener noreferrer"
+    className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-xl shadow-green-500/30 transition-all hover:scale-110 hover:-translate-y-1 group flex items-center justify-center"
+    aria-label="Chat on WhatsApp"
+  >
+    {/* WhatsApp SVG */}
+    <svg viewBox="0 0 24 24" className="w-8 h-8 fill-white" xmlns="http://www.w3.org/2000/svg">
+       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+    
+    {/* Tooltip */}
+    <span className="absolute right-full mr-4 bg-white text-slate-800 px-4 py-2 rounded-xl shadow-lg border border-slate-100 text-sm font-bold opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap pointer-events-none translate-x-2 group-hover:translate-x-0">
+      Chat with us
+    </span>
+  </a>
+);
 
 const InteractiveErrorCard = () => {
   const [isFixed, setIsFixed] = useState(false);
@@ -519,6 +539,68 @@ const WorkflowSection = () => {
   );
 };
 
+const TestimonialsSection = () => {
+  const testimonials = [
+    {
+      quote: "It made our work much easier and faster. Thanks to the strong compression technology, none of our files were ever reverted due to blurred images.",
+      author: "SAS Hero Babhnan",
+      role: "Authorized Hero Dealer",
+      initials: "SB"
+    },
+    {
+      quote: "The automatic folder creation is a game changer. We just type the customer name and boom—everything is organized on the desktop ready for upload.",
+      author: "Raj Motors",
+      role: "TVS Dealer",
+      initials: "RJ"
+    },
+    {
+      quote: "We used to struggle with 'File Size Exceeded' errors daily. Since switching to RTO Buddy, we haven't had a single rejection for image quality.",
+      author: "Amit Auto",
+      role: "Honda Dealer",
+      initials: "AM"
+    },
+    {
+      quote: "Processing time reduced from 20 minutes to under 2 minutes per file. My staff is so much happier now.",
+      author: "City Yamaha",
+      role: "Yamaha Dealer",
+      initials: "CY"
+    }
+  ];
+
+  return (
+    <section id="testimonials" className="py-20 bg-brand-50/50 overflow-hidden">
+      <div className="container mx-auto px-4 mb-10 text-center">
+        <h2 className="text-3xl font-bold text-slate-900 mb-4">Dealers Love RTO Buddy</h2>
+        <p className="text-lg text-slate-600">Don't just take our word for it.</p>
+      </div>
+
+      <div className="relative flex overflow-x-hidden">
+        <div className="animate-marquee whitespace-nowrap flex items-center space-x-6 px-4">
+          {[...testimonials, ...testimonials, ...testimonials].map((item, idx) => (
+            <div key={idx} className="inline-block w-80 md:w-96 bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-slate-100 whitespace-normal">
+               <div className="flex text-amber-400 mb-4">
+                 {[1,2,3,4,5].map(star => <Star key={star} fill="currentColor" size={16} />)}
+               </div>
+               <p className="text-slate-700 text-sm md:text-base italic mb-6 leading-relaxed">
+                 "{item.quote}"
+               </p>
+               <div className="flex items-center space-x-3">
+                 <div className="w-10 h-10 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-600 text-sm">
+                   {item.initials}
+                 </div>
+                 <div>
+                   <h4 className="font-bold text-slate-900 text-sm">{item.author}</h4>
+                   <p className="text-xs text-slate-500">{item.role}</p>
+                 </div>
+               </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // New Dedicated Contact Page Component
 const ContactPage = ({ onBack }: { onBack: () => void }) => {
   const [submitted, setSubmitted] = useState(false);
@@ -792,7 +874,7 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 selection:bg-brand-100 selection:text-brand-900">
+    <div className="min-h-screen bg-slate-50 selection:bg-brand-100 selection:text-brand-900 relative">
       <Header currentPage={currentPage} onNavigate={handleNavigate} />
 
       <main>
@@ -868,14 +950,15 @@ const App = () => {
             {/* Features Grid */}
             <section id="features" className="py-24 bg-white relative">
               <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center max-w-3xl mx-auto mb-20">
+                <div className="text-center max-w-3xl mx-auto mb-12 md:mb-20">
                   <h2 className="text-3xl font-bold text-slate-900 mb-4">Built for Every Dealership Type</h2>
                   <p className="text-lg text-slate-600">
                     Whether you are a 2W, 3W, or 4W dealership (AD, ARD, or ASC), RTO Buddy adapts to your volume.
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Mobile: Horizontal Scroll Snap | Desktop: Grid */}
+                <div className="flex overflow-x-auto pb-8 gap-4 snap-x snap-mandatory -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
                   {[
                     {
                       icon: <Maximize size={32} className="text-brand-600" />,
@@ -908,7 +991,7 @@ const App = () => {
                       desc: "Works seamlessly with scans from Adobe Scan, CamScanner, or any high-speed office scanner."
                     }
                   ].map((feature, i) => (
-                    <div key={i} className="p-8 rounded-2xl bg-slate-50 border border-slate-100 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-300 group">
+                    <div key={i} className="snap-center shrink-0 w-[85vw] sm:w-80 md:w-auto p-8 rounded-2xl bg-white/50 backdrop-blur-sm border border-slate-100 shadow-lg shadow-slate-200/50 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-300 group h-full">
                       <div className="w-14 h-14 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         {feature.icon}
                       </div>
@@ -924,83 +1007,7 @@ const App = () => {
 
             <WorkflowSection />
 
-            {/* Testimonials */}
-            <section id="testimonials" className="py-24 bg-brand-50/50">
-              <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold text-slate-900 mb-4">Dealers Love RTO Buddy</h2>
-                  <p className="text-lg text-slate-600">Don't just take our word for it.</p>
-                </div>
-
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                   <div className="bg-white p-8 rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 relative">
-                     <div className="flex text-amber-400 mb-4">
-                       <Star fill="currentColor" size={18} />
-                       <Star fill="currentColor" size={18} />
-                       <Star fill="currentColor" size={18} />
-                       <Star fill="currentColor" size={18} />
-                       <Star fill="currentColor" size={18} />
-                     </div>
-                     <p className="text-slate-700 text-lg italic mb-6">
-                       "SAS Hero Babhnan has been using RTO Buddy for 2 years. It made our work much easier and faster. Thanks to the strong compression technology, none of our files were ever reverted."
-                     </p>
-                     <div className="flex items-center space-x-4">
-                       <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-600">
-                         SB
-                       </div>
-                       <div>
-                         <h4 className="font-bold text-slate-900">SAS Hero Babhnan</h4>
-                         <p className="text-sm text-slate-500">Authorized Hero Dealer</p>
-                       </div>
-                     </div>
-                   </div>
-
-                   <div className="bg-white p-8 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition-all">
-                     <div className="flex text-amber-400 mb-4">
-                       <Star fill="currentColor" size={18} />
-                       <Star fill="currentColor" size={18} />
-                       <Star fill="currentColor" size={18} />
-                       <Star fill="currentColor" size={18} />
-                       <Star fill="currentColor" size={18} />
-                     </div>
-                     <p className="text-slate-700 mb-6">
-                       "The automatic folder creation is a game changer. We just type the customer name and boom—everything is organized on the desktop ready for upload."
-                     </p>
-                     <div className="flex items-center space-x-4">
-                       <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-600">
-                         RJ
-                       </div>
-                       <div>
-                         <h4 className="font-bold text-slate-900">Raj Motors</h4>
-                         <p className="text-sm text-slate-500">TVS Dealer</p>
-                       </div>
-                     </div>
-                   </div>
-
-                   <div className="bg-white p-8 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition-all">
-                     <div className="flex text-amber-400 mb-4">
-                       <Star fill="currentColor" size={18} />
-                       <Star fill="currentColor" size={18} />
-                       <Star fill="currentColor" size={18} />
-                       <Star fill="currentColor" size={18} />
-                       <Star fill="currentColor" size={18} />
-                     </div>
-                     <p className="text-slate-700 mb-6">
-                       "We used to struggle with 'File Size Exceeded' errors daily. Since switching to RTO Buddy, we haven't had a single rejection for image quality."
-                     </p>
-                     <div className="flex items-center space-x-4">
-                       <div className="w-12 h-12 bg-slate-200 rounded-full flex items-center justify-center font-bold text-slate-600">
-                         AM
-                       </div>
-                       <div>
-                         <h4 className="font-bold text-slate-900">Amit Auto</h4>
-                         <p className="text-sm text-slate-500">Honda Dealer</p>
-                       </div>
-                     </div>
-                   </div>
-                </div>
-              </div>
-            </section>
+            <TestimonialsSection />
 
             {/* CTA / Pricing Teaser */}
             <section id="pricing" className="py-24 bg-white">
@@ -1037,6 +1044,8 @@ const App = () => {
         ) : (
           <ContactPage onBack={() => handleNavigate('home', 'hero')} />
         )}
+
+        <WhatsAppButton />
       </main>
 
       {/* Footer */}

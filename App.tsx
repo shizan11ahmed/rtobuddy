@@ -575,9 +575,9 @@ const TestimonialsSection = () => {
       </div>
 
       <div className="relative flex overflow-x-hidden">
-        <div className="animate-marquee whitespace-nowrap flex items-center space-x-6 px-4">
+        <div className="animate-marquee whitespace-nowrap flex items-center space-x-6 px-4 hover:[animation-play-state:paused]">
           {[...testimonials, ...testimonials, ...testimonials].map((item, idx) => (
-            <div key={idx} className="inline-block w-80 md:w-96 bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-slate-100 whitespace-normal">
+            <div key={idx} className="inline-block w-80 md:w-96 bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-slate-100 whitespace-normal cursor-default">
                <div className="flex text-amber-400 mb-4">
                  {[1,2,3,4,5].map(star => <Star key={star} fill="currentColor" size={16} />)}
                </div>

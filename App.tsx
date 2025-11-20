@@ -29,7 +29,11 @@ import {
   Award,
   ChevronRight,
   ScanLine,
-  FileCheck
+  FileCheck,
+  Mail,
+  Phone,
+  MapPin,
+  Send
 } from 'lucide-react';
 
 // --- Assets & Helpers ---
@@ -59,7 +63,6 @@ const BrandList = [
   { name: 'TVS', url: 'https://www.tvsmotor.com/-/media/Feature/Header/TVSLogo-hr.svg', bg: 'bg-white' },
   { name: 'Honda', url: 'https://edge.sitecorecloud.io/hondamotorc388f-hmsi8ece-prodb777-e813/media/Project/HONDA2WI/honda2wheelersindia/logo/logo-redbing.png?h=64&iar=0&w=80', bg: 'bg-white' },
   { name: 'Bajaj', url: 'https://cdn.bajajauto.com/-/media/assets/bajajauto/global/bajaj-logo2.png', bg: 'bg-white' },
-  // Mahindra might be white text, so we allow it to sit on the dark section background, or ensure it has contrast
   { name: 'Mahindra', url: 'https://auto.mahindra.com/on/demandware.static/Sites-amc-Site/-/default/dw0b97f45d/images/logoPeakLight.png', bg: 'bg-transparent' }, 
   { name: 'Hyundai', url: 'https://www.hyundai.com/content/dam/hyundai/template_en/en/images/common/og-image/hyu_logo_og_image.jpg', bg: 'bg-white' }
 ];
@@ -120,7 +123,7 @@ const Header = ({ currentPage, onNavigate }: { currentPage: string, onNavigate: 
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <button onClick={() => onNavigate('home', 'pricing')} className="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg text-sm">
+            <button onClick={() => onNavigate('contact', 'top')} className="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg text-sm">
               Get Started
             </button>
           </div>
@@ -144,7 +147,7 @@ const Header = ({ currentPage, onNavigate }: { currentPage: string, onNavigate: 
                 {link.name}
               </a>
             ))}
-            <button onClick={() => { setIsOpen(false); onNavigate('home', 'pricing'); }} className="w-full bg-brand-600 text-white px-5 py-3 rounded-lg font-semibold">
+            <button onClick={() => { setIsOpen(false); onNavigate('contact', 'top'); }} className="w-full bg-brand-600 text-white px-5 py-3 rounded-lg font-semibold">
               Get Started
             </button>
           </div>
@@ -516,6 +519,148 @@ const WorkflowSection = () => {
   );
 };
 
+// New Dedicated Contact Page Component
+const ContactPage = ({ onBack }: { onBack: () => void }) => {
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    // In a real application, this would send data to a backend API
+    console.log("Form submitted! Lead captured.");
+    setTimeout(() => {
+      setSubmitted(true);
+    }, 500);
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="pt-32 pb-20 bg-slate-50 min-h-screen">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        <button 
+          onClick={onBack} 
+          className="group flex items-center text-sm font-semibold text-slate-500 hover:text-brand-600 mb-8 transition-colors"
+        >
+          <div className="bg-white border border-slate-200 p-2 rounded-full mr-3 shadow-sm group-hover:shadow-md transition-all">
+            <ArrowLeft size={16} />
+          </div>
+          Back to Home
+        </button>
+
+        <div className="grid md:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100">
+          {/* Left Side - Info */}
+          <div className="bg-slate-900 text-white p-10 relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-500 rounded-full filter blur-[80px] opacity-20 -translate-y-1/2 translate-x-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500 rounded-full filter blur-[80px] opacity-20 translate-y-1/2 -translate-x-1/2"></div>
+            
+            <div className="relative z-10 h-full flex flex-col justify-between">
+              <div>
+                <h2 className="text-3xl font-bold mb-6">Get Started with RTO Buddy</h2>
+                <p className="text-slate-300 mb-8 leading-relaxed">
+                  Fill out the form to start your free trial or request a personalized demo. Join hundreds of dealers saving time today.
+                </p>
+                
+                <div className="space-y-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                      <Mail size={20} className="text-brand-400" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-400 font-bold uppercase">Email Us</p>
+                      <p className="font-medium">support@rtobuddy.in</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                      <Phone size={20} className="text-brand-400" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-400 font-bold uppercase">Call Us</p>
+                      <p className="font-medium">+91 98765 43210</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center space-x-4">
+                    <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                      <MapPin size={20} className="text-brand-400" />
+                    </div>
+                    <div>
+                      <p className="text-xs text-slate-400 font-bold uppercase">Visit Us</p>
+                      <p className="font-medium">Sector 62, Noida, UP</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-12">
+                <div className="flex items-center space-x-2 text-sm text-slate-400">
+                  <Shield size={16} />
+                  <span>Your data is secure and will never be shared.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side - Form */}
+          <div className="p-10 flex items-center">
+            {submitted ? (
+              <div className="text-center w-full py-10">
+                <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
+                  <Check size={40} />
+                </div>
+                <h3 className="text-2xl font-bold text-slate-900 mb-2">Thank You!</h3>
+                <p className="text-slate-600 mb-8">
+                  We have received your request. Our team will contact you shortly to set up your RTO Buddy account.
+                </p>
+                <button 
+                  onClick={onBack}
+                  className="bg-slate-900 text-white px-6 py-3 rounded-xl font-bold hover:bg-slate-800 transition-all"
+                >
+                  Return to Home
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="w-full space-y-5">
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-2">Full Name</label>
+                  <input type="text" required className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="John Doe" />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-2">Dealership Name</label>
+                  <input type="text" required className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="e.g. Royal Motors" />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-bold text-slate-700 mb-2">Email</label>
+                    <input type="email" required className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="john@example.com" />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-slate-700 mb-2">Phone</label>
+                    <input type="tel" required className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="+91 98765..." />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-2">Message (Optional)</label>
+                  <textarea className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all h-24 resize-none" placeholder="Tell us about your dealership volume..."></textarea>
+                </div>
+
+                <button type="submit" className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-brand-500/20 flex items-center justify-center space-x-2 group">
+                  <span>Submit Request</span>
+                  <Send size={18} className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // New Dedicated About Page Component
 const AboutPage = ({ onBack }: { onBack: () => void }) => {
   useEffect(() => {
@@ -640,8 +785,8 @@ const App = () => {
           }
         }
       }, 10);
-    } else if (page === 'about') {
-       // Scroll to top for about page
+    } else if (page === 'about' || page === 'contact') {
+       // Scroll to top for about/contact page
        window.scrollTo(0, 0);
     }
   };
@@ -678,7 +823,10 @@ const App = () => {
                       Stop struggling with Vaahan portal rejections. RTO Buddy auto-resizes, splits, and formats your documents in seconds. Zero errors. Zero penalties.
                     </p>
                     <div className="flex flex-col sm:flex-row items-center gap-4">
-                      <button className="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-xl font-bold shadow-xl shadow-brand-500/20 transition-all hover:-translate-y-1 flex items-center justify-center">
+                      <button 
+                        onClick={() => handleNavigate('contact', 'top')} 
+                        className="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-xl font-bold shadow-xl shadow-brand-500/20 transition-all hover:-translate-y-1 flex items-center justify-center"
+                      >
                         Start Free Trial <ArrowRight className="ml-2" size={20} />
                       </button>
                       <button 
@@ -867,10 +1015,16 @@ const App = () => {
                   </p>
                   
                   <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
-                    <button className="bg-white text-brand-600 px-8 py-4 rounded-xl font-bold hover:bg-brand-50 transition-colors shadow-lg">
+                    <button 
+                      onClick={() => handleNavigate('contact', 'top')}
+                      className="bg-white text-brand-600 px-8 py-4 rounded-xl font-bold hover:bg-brand-50 transition-colors shadow-lg"
+                    >
                       Download Free Trial
                     </button>
-                    <button className="bg-brand-700 border border-brand-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-800 transition-colors">
+                    <button 
+                      onClick={() => handleNavigate('contact', 'top')}
+                      className="bg-brand-700 border border-brand-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-800 transition-colors"
+                    >
                       Contact Sales
                     </button>
                   </div>
@@ -878,8 +1032,10 @@ const App = () => {
               </div>
             </section>
           </>
-        ) : (
+        ) : currentPage === 'about' ? (
           <AboutPage onBack={() => handleNavigate('home', 'hero')} />
+        ) : (
+          <ContactPage onBack={() => handleNavigate('home', 'hero')} />
         )}
       </main>
 
@@ -912,7 +1068,7 @@ const App = () => {
               <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Company</h4>
               <ul className="space-y-3">
                 <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('about'); }} className="hover:text-brand-400 transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-brand-400 transition-colors">Contact</a></li>
+                <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('contact'); }} className="hover:text-brand-400 transition-colors">Contact</a></li>
                 <li><a href="#" className="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
                 <li><a href="#" className="hover:text-brand-400 transition-colors">Terms of Service</a></li>
               </ul>

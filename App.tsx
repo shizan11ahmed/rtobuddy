@@ -37,28 +37,31 @@ import {
 // Official App Icons using reliable Image Sources
 const CamScannerLogo = () => (
   <img 
-    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/CamScanner_Icon.png/480px-CamScanner_Icon.png" 
+    src="https://static-cdn.camscanner.com/camscanner-seo/img/logo-en.b6dee07.png" 
     alt="CamScanner" 
-    className="w-6 h-6 rounded shadow-sm"
+    className="h-5 w-auto object-contain"
+    referrerPolicy="no-referrer"
   />
 );
 
 const AdobeScanLogo = () => (
   <img 
-    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Adobe_Scan_icon.svg/1024px-Adobe_Scan_icon.svg.png" 
+    src="https://community.adobe.com/html/@7D71944697B2365B43B68BBB61520FF2/assets/icons/adobe-scan.svg" 
     alt="Adobe Scan" 
-    className="w-6 h-6 rounded shadow-sm"
+    className="h-6 w-6 rounded shadow-sm object-contain"
+    referrerPolicy="no-referrer"
   />
 );
 
-// --- LOGO DATABASE (Reliable Wikimedia URLs) ---
+// --- LOGO DATABASE (User Provided URLs) ---
 const BrandList = [
-  { name: 'Hero', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Hero_MotoCorp_Logo.svg/512px-Hero_MotoCorp_Logo.svg.png' },
-  { name: 'TVS', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/TVS_Motor_Company_Logo.svg/512px-TVS_Motor_Company_Logo.svg.png' },
-  { name: 'Honda', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Honda_Logo.svg/512px-Honda_Logo.svg.png' },
-  { name: 'Bajaj', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Bajaj_Auto_Logo.svg/512px-Bajaj_Auto_Logo.svg.png' },
-  { name: 'Mahindra', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Mahindra_Auto_logo.svg/512px-Mahindra_Auto_logo.svg.png' },
-  { name: 'Hyundai', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Hyundai_Motor_Company_logo.svg/512px-Hyundai_Motor_Company_logo.svg.png' }
+  { name: 'Hero', url: 'https://www.heromotocorp.com/content/dam/hero-aem-website/brand/logo/logo.svg', bg: 'bg-white' },
+  { name: 'TVS', url: 'https://www.tvsmotor.com/-/media/Feature/Header/TVSLogo-hr.svg', bg: 'bg-white' },
+  { name: 'Honda', url: 'https://edge.sitecorecloud.io/hondamotorc388f-hmsi8ece-prodb777-e813/media/Project/HONDA2WI/honda2wheelersindia/logo/logo-redbing.png?h=64&iar=0&w=80', bg: 'bg-white' },
+  { name: 'Bajaj', url: 'https://cdn.bajajauto.com/-/media/assets/bajajauto/global/bajaj-logo2.png', bg: 'bg-white' },
+  // Mahindra might be white text, so we allow it to sit on the dark section background, or ensure it has contrast
+  { name: 'Mahindra', url: 'https://auto.mahindra.com/on/demandware.static/Sites-amc-Site/-/default/dw0b97f45d/images/logoPeakLight.png', bg: 'bg-transparent' }, 
+  { name: 'Hyundai', url: 'https://www.hyundai.com/content/dam/hyundai/template_en/en/images/common/og-image/hyu_logo_og_image.jpg', bg: 'bg-white' }
 ];
 
 const Header = ({ currentPage, onNavigate }: { currentPage: string, onNavigate: (page: string, section?: string) => void }) => {
@@ -320,19 +323,23 @@ const InteractiveErrorCard = () => {
 
 const BrandLogos = () => {
   return (
-    <div className="py-12 bg-white border-y border-slate-100 overflow-hidden">
+    // Changed to dark background to ensure white logos (like Mahindra) are visible
+    <div className="py-12 bg-slate-900 border-y border-slate-800 overflow-hidden">
       <div className="container mx-auto px-4 mb-8 text-center">
-        <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">Trusted by leading dealers</p>
+        <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Trusted by leading dealers</p>
       </div>
       <div className="relative flex overflow-x-hidden group">
         <div className="animate-marquee whitespace-nowrap flex items-center space-x-16 md:space-x-24 px-4">
           {[...BrandList, ...BrandList, ...BrandList, ...BrandList].map((brand, index) => (
-            <div key={index} className="inline-flex items-center justify-center h-14 w-28 md:h-16 md:w-32 cursor-pointer hover:scale-105 transition-transform duration-300 flex-shrink-0">
+            // Wrapped in a container. If the logo is not transparent (like Hyundai JPG), we add rounded corners. 
+            // If it is transparent/white, it sits on the dark bg.
+            <div key={index} className={`inline-flex items-center justify-center h-16 w-32 md:h-20 md:w-40 cursor-pointer hover:scale-105 transition-transform duration-300 flex-shrink-0 rounded-xl ${brand.bg === 'bg-white' ? 'bg-white p-2' : ''}`}>
                <img 
                  src={brand.url} 
                  alt={brand.name} 
                  className="max-h-full max-w-full object-contain"
                  loading="lazy"
+                 referrerPolicy="no-referrer"
                />
             </div>
           ))}
@@ -491,22 +498,18 @@ const WorkflowSection = () => {
              ))}
           </div>
 
-          {/* Mobile Layout */}
-          <div className="md:hidden space-y-8 relative pl-8 border-l-2 border-slate-200 ml-4 max-w-sm mx-auto">
-              {steps.map((step, idx) => (
-                <div key={idx} className="relative">
-                   <div className="absolute -left-[41px] top-0 w-10 h-10 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center z-10">
-                      <span className="text-xs font-bold text-slate-500">{idx + 1}</span>
+          {/* Mobile Layout - Compact Grid */}
+          <div className="md:hidden grid grid-cols-2 gap-4 max-w-sm mx-auto">
+             {steps.map((step, idx) => (
+                <div key={idx} className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
+                   <div className="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center mb-3 text-slate-900 font-bold border border-slate-100 relative">
+                     {idx + 1}
                    </div>
-                   <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
-                      <div className="flex items-center gap-3 mb-2">
-                         <div className="p-1.5 bg-slate-50 rounded-lg">{step.icon}</div>
-                         <h3 className="font-bold text-slate-900">{step.title}</h3>
-                      </div>
-                      <p className="text-sm text-slate-600">{step.desc}</p>
-                   </div>
+                   <div className="mb-1">{step.icon}</div>
+                   <h3 className="font-bold text-slate-900 text-sm mb-1">{step.title}</h3>
+                   <p className="text-xs text-slate-500 leading-snug">{step.desc}</p>
                 </div>
-              ))}
+             ))}
           </div>
        </div>
     </section>

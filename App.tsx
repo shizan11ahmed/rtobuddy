@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { 
   Menu, 
@@ -27,7 +26,10 @@ import {
   TrendingUp,
   ArrowLeft,
   Users,
-  Award
+  Award,
+  ChevronRight,
+  ScanLine,
+  FileCheck
 } from 'lucide-react';
 
 // --- Assets & Helpers ---
@@ -49,17 +51,14 @@ const AdobeScanLogo = () => (
   />
 );
 
-// --- LOGO DATABASE (Stable Wikimedia URLs) ---
+// --- LOGO DATABASE (Reliable Wikimedia URLs) ---
 const BrandList = [
-  { name: 'Hero', url: 'https://upload.wikimedia.org/wikipedia/commons/0/05/Hero_MotoCorp_Logo.svg' },
-  { name: 'TVS', url: 'https://upload.wikimedia.org/wikipedia/commons/c/c3/TVS_Motor_Company_Logo.svg' },
-  { name: 'Honda', url: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Honda_Logo.svg' },
-  { name: 'Bajaj', url: 'https://upload.wikimedia.org/wikipedia/commons/e/ee/Bajaj_Auto_Logo.svg' },
-  { name: 'Yamaha', url: 'https://upload.wikimedia.org/wikipedia/commons/8/8b/Yamaha_Motor_Logo_2020.svg' },
-  { name: 'Suzuki', url: 'https://upload.wikimedia.org/wikipedia/commons/1/12/Suzuki_logo_2.svg' },
-  { name: 'Hyundai', url: 'https://upload.wikimedia.org/wikipedia/commons/4/41/Hyundai_Motor_Company_logo.svg' },
-  { name: 'Kia', url: 'https://upload.wikimedia.org/wikipedia/commons/4/47/Kia_logo.svg' },
-  { name: 'Mahindra', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Mahindra_Rise.svg/2560px-Mahindra_Rise.svg.png' }
+  { name: 'Hero', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Hero_MotoCorp_Logo.svg/512px-Hero_MotoCorp_Logo.svg.png' },
+  { name: 'TVS', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/TVS_Motor_Company_Logo.svg/512px-TVS_Motor_Company_Logo.svg.png' },
+  { name: 'Honda', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Honda_Logo.svg/512px-Honda_Logo.svg.png' },
+  { name: 'Bajaj', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Bajaj_Auto_Logo.svg/512px-Bajaj_Auto_Logo.svg.png' },
+  { name: 'Mahindra', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Mahindra_Auto_logo.svg/512px-Mahindra_Auto_logo.svg.png' },
+  { name: 'Hyundai', url: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Hyundai_Motor_Company_logo.svg/512px-Hyundai_Motor_Company_logo.svg.png' }
 ];
 
 const Header = ({ currentPage, onNavigate }: { currentPage: string, onNavigate: (page: string, section?: string) => void }) => {
@@ -326,13 +325,13 @@ const BrandLogos = () => {
         <p className="text-sm font-bold text-slate-400 uppercase tracking-widest">Trusted by leading dealers</p>
       </div>
       <div className="relative flex overflow-x-hidden group">
-        <div className="animate-marquee whitespace-nowrap flex items-center space-x-20 px-8">
-          {[...BrandList, ...BrandList, ...BrandList].map((brand, index) => (
-            <div key={index} className="inline-flex items-center justify-center h-16 w-32 cursor-pointer hover:scale-110 transition-transform duration-300">
+        <div className="animate-marquee whitespace-nowrap flex items-center space-x-16 md:space-x-24 px-4">
+          {[...BrandList, ...BrandList, ...BrandList, ...BrandList].map((brand, index) => (
+            <div key={index} className="inline-flex items-center justify-center h-14 w-28 md:h-16 md:w-32 cursor-pointer hover:scale-105 transition-transform duration-300 flex-shrink-0">
                <img 
                  src={brand.url} 
                  alt={brand.name} 
-                 className="max-h-full max-w-full object-contain filter grayscale-0 opacity-100"
+                 className="max-h-full max-w-full object-contain"
                  loading="lazy"
                />
             </div>
@@ -444,152 +443,72 @@ const TimeSavingsCalculator = () => {
 }
 
 const WorkflowSection = () => {
-  const [activeStep, setActiveStep] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveStep((prev) => (prev + 1) % 5); // Cycle 0-4 (4 is a pause)
-    }, 2500);
-    return () => clearInterval(interval);
-  }, []);
-
   const steps = [
     {
-      step: "01",
-      title: "Scan",
-      desc: "Use a desktop scanner, Adobe Scan, or CamScanner to capture docs.",
-      icon: <Printer className="w-8 h-8" />,
-      activeColor: "text-blue-400",
-      bgActive: "bg-blue-500"
+      title: "Capture Docs",
+      desc: "Use office scanners or mobile apps (Adobe/CamScanner).",
+      icon: <ScanLine className="w-6 h-6 text-brand-600" />,
     },
     {
-      step: "02",
       title: "Drag & Drop",
-      desc: "Drop the raw PDF or images into RTO Buddy.",
-      icon: <Upload className="w-8 h-8" />,
-      activeColor: "text-purple-400",
-      bgActive: "bg-purple-500"
+      desc: "Drop raw images or PDFs into RTO Buddy.",
+      icon: <Upload className="w-6 h-6 text-purple-600" />,
     },
     {
-      step: "03",
-      title: "Auto-Process",
-      desc: "We split, resize to under 400KB, and rename files (Form 20, Insurance).",
-      icon: <RefreshCw className="w-8 h-8" />,
-      activeColor: "text-pink-400",
-      bgActive: "bg-pink-500"
+      title: "AI Process",
+      desc: "Auto-splits, crops, and compresses to <400KB.",
+      icon: <RefreshCw className="w-6 h-6 text-pink-600" />,
     },
     {
-      step: "04",
-      title: "Upload",
-      desc: "A ready-to-upload folder is created on your desktop.",
-      icon: <CheckCircle className="w-8 h-8" />,
-      activeColor: "text-emerald-400",
-      bgActive: "bg-emerald-500"
-    }
+      title: "Ready",
+      desc: "Compliant folder created on desktop instantly.",
+      icon: <FileCheck className="w-6 h-6 text-emerald-600" />,
+    },
   ];
 
   return (
-    <section id="workflow" className="py-24 bg-slate-900 text-white overflow-hidden relative">
-      {/* Animated Background Particles */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-30">
-        <div className="absolute top-[20%] left-[10%] w-2 h-2 bg-brand-400 rounded-full animate-float"></div>
-        <div className="absolute top-[60%] right-[15%] w-3 h-3 bg-purple-400 rounded-full animate-pulse-slow"></div>
-        <div className="absolute bottom-[10%] left-[40%] w-1.5 h-1.5 bg-emerald-400 rounded-full animate-float animation-delay-2000"></div>
-        
-        {/* Glow Blobs */}
-        <div className="absolute top-10 right-10 w-96 h-96 bg-brand-500 rounded-full filter blur-[100px] opacity-20"></div>
-        <div className="absolute bottom-10 left-10 w-96 h-96 bg-purple-500 rounded-full filter blur-[100px] opacity-20"></div>
-      </div>
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20">
-          <div className="inline-flex items-center space-x-2 bg-slate-800 border border-slate-700 rounded-full px-3 py-1 mb-6">
-            <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
-            </span>
-            <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">How It Works</span>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">From Paper to Portal in Seconds</h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-            Your workflow doesn't change, it just gets faster. Watch the process in action.
-          </p>
-        </div>
-
-        <div className="relative max-w-6xl mx-auto">
-          {/* Connecting Line (Desktop) */}
-          <div className="hidden md:block absolute top-1/2 left-0 w-full h-1.5 bg-slate-800 -translate-y-1/2 z-0 rounded-full overflow-hidden">
-             {/* Animated Fill Line */}
-             <div 
-                className="h-full bg-gradient-to-r from-brand-500 via-purple-500 to-emerald-500 transition-all duration-700 ease-out relative"
-                style={{ width: `${Math.min((activeStep / (steps.length - 1)) * 100, 100)}%` }}
-             >
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)] animate-ping"></div>
-             </div>
+    <section id="workflow" className="py-20 bg-slate-50 border-y border-slate-200">
+       <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+             <h2 className="text-3xl font-bold text-slate-900">Simple 4-Step Workflow</h2>
+             <p className="text-slate-600 mt-2">No complex training needed.</p>
           </div>
 
-          {/* Connecting Line (Mobile) */}
-          <div className="md:hidden absolute top-0 left-8 w-1 h-full bg-slate-800 z-0 rounded-full">
-             <div 
-                className="w-full bg-gradient-to-b from-brand-500 via-purple-500 to-emerald-500 transition-all duration-700 ease-out"
-                style={{ height: `${Math.min((activeStep / (steps.length - 1)) * 100, 100)}%` }}
-             ></div>
-          </div>
-
-          <div className="grid md:grid-cols-4 gap-8 md:gap-4 relative z-10">
-            {steps.map((item, i) => {
-              const isActive = i === activeStep;
-              const isCompleted = i < activeStep;
-              
-              return (
-                <div 
-                   key={i} 
-                   className={`relative transition-all duration-500 transform ${isActive ? 'scale-105 md:-translate-y-4' : 'scale-100'} ${isCompleted || isActive ? 'opacity-100' : 'opacity-60'}`}
-                >
-                  <div className={`flex flex-row md:flex-col items-center md:items-center md:text-center bg-slate-900/80 backdrop-blur-md border p-6 rounded-2xl h-full
-                    ${isActive 
-                      ? 'border-brand-500 shadow-[0_0_30px_rgba(14,165,233,0.15)] bg-slate-800' 
-                      : isCompleted 
-                        ? 'border-slate-600' 
-                        : 'border-slate-800'
-                    } transition-colors duration-500`}
-                  >
-                    {/* Icon Circle */}
-                    <div className={`
-                      w-16 h-16 mx-0 md:mx-auto shrink-0 rounded-full border-2 flex items-center justify-center mb-0 md:mb-6 mr-6 md:mr-0 relative z-10 transition-all duration-500
-                      ${isActive 
-                        ? `${item.bgActive} border-transparent text-white shadow-lg scale-110` 
-                        : isCompleted
-                          ? 'bg-slate-800 border-slate-600 text-slate-400'
-                          : 'bg-slate-900 border-slate-700 text-slate-600'
-                      }
-                    `}>
-                      {isActive ? item.icon : isCompleted ? <Check className="w-8 h-8 text-emerald-500" /> : item.icon}
-                      
-                      {/* Ripple Effect for Active */}
-                      {isActive && (
-                         <div className={`absolute inset-0 rounded-full ${item.bgActive} opacity-30 animate-ping`}></div>
-                      )}
-                    </div>
-
-                    <div className="flex-1">
-                      <span className={`text-xs font-bold uppercase tracking-widest mb-2 block transition-colors duration-300 ${isActive ? item.activeColor : 'text-slate-600'}`}>
-                        Step {item.step}
-                      </span>
-                      <h3 className={`text-lg font-bold mb-2 transition-colors duration-300 ${isActive ? 'text-white' : 'text-slate-300'}`}>
-                        {item.title}
-                      </h3>
-                      <p className="text-slate-400 text-xs leading-relaxed">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
+          {/* Desktop Layout */}
+          <div className="hidden md:flex justify-between items-start relative max-w-5xl mx-auto">
+             <div className="absolute top-8 left-0 w-full h-0.5 bg-slate-200 -z-10"></div>
+             {steps.map((step, idx) => (
+                <div key={idx} className="flex flex-col items-center text-center w-1/4 px-2 group">
+                   <div className="w-16 h-16 bg-white border-4 border-slate-50 rounded-full shadow-lg flex items-center justify-center mb-6 relative z-10 group-hover:scale-110 transition-transform duration-300">
+                      {step.icon}
+                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-slate-900 rounded-full text-white text-xs flex items-center justify-center font-bold border-2 border-white">
+                        {idx + 1}
+                      </div>
+                   </div>
+                   <h3 className="text-lg font-bold text-slate-900 mb-2">{step.title}</h3>
+                   <p className="text-sm text-slate-500 leading-relaxed max-w-[200px]">{step.desc}</p>
                 </div>
-              );
-            })}
+             ))}
           </div>
-        </div>
-      </div>
+
+          {/* Mobile Layout */}
+          <div className="md:hidden space-y-8 relative pl-8 border-l-2 border-slate-200 ml-4 max-w-sm mx-auto">
+              {steps.map((step, idx) => (
+                <div key={idx} className="relative">
+                   <div className="absolute -left-[41px] top-0 w-10 h-10 bg-white border-2 border-slate-200 rounded-full flex items-center justify-center z-10">
+                      <span className="text-xs font-bold text-slate-500">{idx + 1}</span>
+                   </div>
+                   <div className="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
+                      <div className="flex items-center gap-3 mb-2">
+                         <div className="p-1.5 bg-slate-50 rounded-lg">{step.icon}</div>
+                         <h3 className="font-bold text-slate-900">{step.title}</h3>
+                      </div>
+                      <p className="text-sm text-slate-600">{step.desc}</p>
+                   </div>
+                </div>
+              ))}
+          </div>
+       </div>
     </section>
   );
 };

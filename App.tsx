@@ -33,7 +33,10 @@ import {
   Mail,
   Phone,
   MapPin,
-  Send
+  Send,
+  BarChart3,
+  FlaskConical,
+  Rocket
 } from 'lucide-react';
 
 // --- Assets & Helpers ---
@@ -63,7 +66,7 @@ const BrandList = [
   { name: 'TVS', url: 'https://www.tvsmotor.com/-/media/Feature/Header/TVSLogo-hr.svg',bg: 'bg-white' },
   { name: 'Honda', url: 'https://edge.sitecorecloud.io/hondamotorc388f-hmsi8ece-prodb777-e813/media/Project/HONDA2WI/honda2wheelersindia/logo/logo-redbing.png?h=64&iar=0&w=80',bg: 'bg-white' },
   { name: 'Bajaj', url: 'https://cdn.bajajauto.com/-/media/assets/bajajauto/global/bajaj-logo2.png',bg: 'bg-white' },
-  { name: 'Mahindra', url: 'https://auto.mahindra.com/on/demandware.static/Sites-amc-Site/-/default/dw0b97f45d/images/logoPeakLight.png',bg: 'bg-white' }, 
+  { name: 'Mahindra', url: 'https://auto.mahindra.com/on/demandware.static/Sites-amc-Site/-/default/dw0b97f45d/images/logoPeakLight.png',bg: 'bg-transparent' }, 
   { name: 'Hyundai', url: 'https://www.hyundai.com/content/dam/hyundai/template_en/en/images/common/og-image/hyu_logo_og_image.jpg',bg: 'bg-white' }
 ];
 
@@ -164,7 +167,7 @@ const WhatsAppButton = () => (
     href="https://wa.me/919876543210?text=Hi%20RTO%20Buddy,%20I'm%20interested%20in%20optimizing%20my%20dealership%20documentation."
     target="_blank"
     rel="noopener noreferrer"
-    className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-xl shadow-green-500/30 transition-all hover:scale-110 hover:-translate-y-1 group flex items-center justify-center"
+    className="fixed bottom-6 right-6 z-[100] bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-xl shadow-green-500/30 transition-all hover:scale-110 hover:-translate-y-1 group flex items-center justify-center"
     aria-label="Chat on WhatsApp"
   >
     {/* WhatsApp SVG */}
@@ -743,16 +746,36 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
   );
 };
 
-// New Dedicated About Page Component
+// Updated Hybrid About Page: Storytelling Timeline + Premium Stats
 const AboutPage = ({ onBack }: { onBack: () => void }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const timelineEvents = [
+    {
+      year: "Inception",
+      title: "Closed Beta",
+      desc: "Started with 8 high-volume dealers. We learned that real-world scanners are messy and portals are strict.",
+      icon: <FlaskConical size={20} />
+    },
+    {
+      year: "Testing",
+      title: "Stress Test",
+      desc: "Processed over 28,000 files. We trained our algorithms on the weirdest, darkest, and most crooked scans we could find.",
+      icon: <BarChart3 size={20} />
+    },
+    {
+      year: "Launch",
+      title: "Public Release",
+      desc: "RTO Buddy v2.0 goes live. Battle-tested, reliable, and ready for any dealership in India.",
+      icon: <Rocket size={20} />
+    }
+  ];
+
   return (
     <div className="pt-32 pb-20 bg-slate-50 min-h-screen">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb / Back */}
         <button 
           onClick={onBack} 
           className="group flex items-center text-sm font-semibold text-slate-500 hover:text-brand-600 mb-8 transition-colors"
@@ -763,79 +786,110 @@ const AboutPage = ({ onBack }: { onBack: () => void }) => {
           Back to Home
         </button>
 
-        <div className="max-w-4xl mx-auto">
-          {/* Header Section */}
-          <div className="text-center mb-16">
-             <div className="inline-flex items-center space-x-2 bg-brand-100 text-brand-700 rounded-full px-3 py-1 mb-6">
+        <div className="max-w-3xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12">
+             <div className="inline-flex items-center space-x-2 bg-brand-100 text-brand-700 rounded-full px-3 py-1 mb-4">
                 <History size={14} />
                 <span className="text-xs font-bold uppercase tracking-wider">Our Journey</span>
              </div>
-             <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
-               From v1.0 to v2.0: <br/><span className="text-brand-600">A Journey of Perfection</span>
+             <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
+               From v1.0 to v2.0: <br /><span className="text-brand-600">A Journey of Perfection</span>
              </h1>
-             <p className="text-xl text-slate-600 leading-relaxed">
+             <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-lg mx-auto">
                RTO Buddy didn't just appear overnight. It is the result of two years of relentless testing, feedback, and refinement in the real world.
              </p>
           </div>
 
-          {/* Main Content Card */}
-          <div className="bg-white rounded-3xl shadow-xl shadow-slate-200 border border-slate-100 overflow-hidden mb-16">
-            <div className="relative h-64 bg-slate-900 flex items-center justify-center overflow-hidden">
-               <div className="absolute inset-0 bg-brand-600/20"></div>
-               <div className="absolute top-0 right-0 w-96 h-96 bg-brand-500 rounded-full filter blur-[100px] opacity-30 translate-x-1/2 -translate-y-1/2"></div>
-               <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500 rounded-full filter blur-[100px] opacity-30 -translate-x-1/2 translate-y-1/2"></div>
+          {/* Main Content: Vertical Story + Stats */}
+          <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
+            
+            {/* Blue Journey Summary Card */}
+            <div className="bg-gradient-to-br from-slate-800 to-brand-900 p-8 md:p-10 text-center text-white relative overflow-hidden">
+               {/* Decorative blobs */}
+               <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+               <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-500/10 rounded-full blur-2xl transform -translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
                
-               <div className="relative z-10 text-center text-white px-4">
-                  <div className="inline-flex items-center space-x-4 mb-4 opacity-80">
-                     <span className="font-mono text-lg">v1.0 (Beta)</span>
-                     <ArrowRight size={20} />
-                     <span className="font-mono text-lg font-bold text-brand-300">v2.0 (Live)</span>
+               <div className="relative z-10">
+                  <div className="inline-flex items-center gap-3 text-sm md:text-base font-mono text-brand-200 mb-2">
+                     <span>v1.0 (Beta)</span>
+                     <ArrowRight size={16} />
+                     <span className="font-bold text-white">v2.0 (Live)</span>
                   </div>
-                  <p className="font-bold text-2xl">Market Accessible & Battle Tested</p>
+                  <h2 className="text-2xl md:text-3xl font-bold text-white">Market Accessible & Battle Tested</h2>
                </div>
             </div>
 
-            <div className="p-8 md:p-12 space-y-8 text-lg text-slate-700 leading-relaxed">
-              <p>
-                For the past <strong>2 years</strong>, we ran RTO Buddy v1.0 in a closed beta environment across 8 high-volume dealership locations. We didn't want to launch a product that "might" work; we wanted one that <strong>definitely</strong> works.
-              </p>
-              <p>
-                During this rigorous testing phase, we encountered every possible scanner variation, every weird document format, and every obscure Vaahan portal error. We used this data to train our algorithms to handle edge cases that other software simply ignores.
-              </p>
-              <div className="bg-brand-50 border-l-4 border-brand-500 p-6 rounded-r-xl italic text-slate-800 font-medium">
-                "The transition from v1.0 to v2.0 marks our shift from a testing tool to a fully market-accessible solution. We are now open for all dealers, confident that our system handles the workload effortlessly."
-              </div>
-              <p>
-                Today, RTO Buddy isn't just software; it's a proven partner that has already saved thousands of hours for dealers just like you.
-              </p>
+            {/* Top Section: Vertical Timeline */}
+            <div className="p-8 md:p-12 bg-white relative">
+               {/* Connecting Line (Desktop: Center, Mobile: Left) */}
+               <div className="hidden md:block absolute left-1/2 top-12 bottom-12 w-0.5 bg-slate-200 -translate-x-1/2"></div>
+               <div className="md:hidden absolute left-8 top-12 bottom-12 w-0.5 bg-slate-200"></div>
+
+               <div className="space-y-12">
+                 {timelineEvents.map((event, idx) => (
+                   // Mobile: Flex row (No absolute positioning mess). Desktop: Alternating layout.
+                   <div key={idx} className={`flex md:items-center gap-6 relative ${idx % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
+                      
+                      {/* Mobile Timeline Marker (Hidden on Desktop) */}
+                      <div className="md:hidden flex flex-col items-center shrink-0 w-16 pt-1">
+                         <div className="w-16 h-8 bg-white border border-brand-200 text-brand-600 text-xs font-bold rounded-full flex items-center justify-center shadow-sm z-10 relative">
+                           {event.year}
+                         </div>
+                      </div>
+
+                      {/* Desktop Timeline Marker (Centered Absolute) */}
+                      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-24 h-8 bg-white border border-brand-200 text-brand-600 text-xs font-bold rounded-full items-center justify-center shadow-sm z-10">
+                        {event.year}
+                      </div>
+
+                      {/* Content Card */}
+                      <div className={`w-full md:w-[45%] p-6 rounded-2xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-md transition-all duration-300`}>
+                         <div className="flex items-center gap-3 mb-2 text-slate-900">
+                            <div className="p-2 bg-brand-100 text-brand-600 rounded-lg shrink-0">
+                              {event.icon}
+                            </div>
+                            <h3 className="font-bold text-lg">{event.title}</h3>
+                         </div>
+                         <p className="text-sm text-slate-600 leading-relaxed">
+                           {event.desc}
+                         </p>
+                      </div>
+                      
+                      {/* Spacer for the other side on desktop */}
+                      <div className="hidden md:block w-[45%]"></div>
+                   </div>
+                 ))}
+               </div>
             </div>
-          </div>
 
-          {/* Stats Grid */}
-          <div className="grid md:grid-cols-3 gap-6">
-             <div className="bg-white p-6 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 text-center hover:-translate-y-1 transition-transform duration-300">
-                <div className="w-14 h-14 mx-auto rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mb-4">
-                   <FileText size={28} />
-                </div>
-                <h3 className="text-3xl font-extrabold text-slate-900 mb-1">28,000+</h3>
-                <p className="text-sm font-bold text-slate-500 uppercase tracking-wide">Files Processed</p>
-             </div>
-             
-             <div className="bg-white p-6 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 text-center hover:-translate-y-1 transition-transform duration-300">
-                <div className="w-14 h-14 mx-auto rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mb-4">
-                   <Users size={28} />
-                </div>
-                <h3 className="text-3xl font-extrabold text-slate-900 mb-1">2 Years</h3>
-                <p className="text-sm font-bold text-slate-500 uppercase tracking-wide">Rigorous Beta Testing</p>
-             </div>
+            {/* Bottom Section: Premium Dark Stats */}
+            <div className="bg-slate-900 p-8 md:p-12 text-white">
+               <div className="grid grid-cols-3 gap-4 md:gap-8 divide-x divide-slate-800/50">
+                  <div className="text-center px-2">
+                     <div className="w-10 h-10 mx-auto bg-brand-900/50 rounded-full flex items-center justify-center text-brand-400 mb-3">
+                        <FileText size={20} />
+                     </div>
+                     <div className="text-2xl md:text-3xl font-bold text-white mb-1">28k+</div>
+                     <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Files Processed</div>
+                  </div>
+                  <div className="text-center px-2">
+                     <div className="w-10 h-10 mx-auto bg-purple-900/50 rounded-full flex items-center justify-center text-purple-400 mb-3">
+                        <Clock size={20} />
+                     </div>
+                     <div className="text-2xl md:text-3xl font-bold text-white mb-1">2 Yrs</div>
+                     <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Beta Testing</div>
+                  </div>
+                  <div className="text-center px-2">
+                     <div className="w-10 h-10 mx-auto bg-emerald-900/50 rounded-full flex items-center justify-center text-emerald-400 mb-3">
+                        <CheckCircle size={20} />
+                     </div>
+                     <div className="text-2xl md:text-3xl font-bold text-white mb-1">100%</div>
+                     <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Market Ready</div>
+                  </div>
+               </div>
+            </div>
 
-             <div className="bg-white p-6 rounded-2xl shadow-lg shadow-slate-200/50 border border-slate-100 text-center hover:-translate-y-1 transition-transform duration-300">
-                <div className="w-14 h-14 mx-auto rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mb-4">
-                   <Award size={28} />
-                </div>
-                <h3 className="text-3xl font-extrabold text-slate-900 mb-1">100%</h3>
-                <p className="text-sm font-bold text-slate-500 uppercase tracking-wide">Ready for Market</p>
-             </div>
           </div>
         </div>
       </div>
@@ -1045,6 +1099,7 @@ const App = () => {
           <ContactPage onBack={() => handleNavigate('home', 'hero')} />
         )}
 
+        {/* WhatsApp Button */}
         <WhatsAppButton />
       </main>
 

@@ -1,5 +1,5 @@
 {
   "name": "RTO Buddy",
-  "description": "Modern landing page for RTO Buddy document management software tailored for automobile dealers.",
+  "description": "Automate RTO document management for automobile dealers. Auto-resize, split, and format files for the Vaahan portal with RTO Buddy.",
   "requestFramePermissions": []
 }

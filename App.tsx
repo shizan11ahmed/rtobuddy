@@ -45,7 +45,7 @@ import {
 const CamScannerLogo = () => (
   <img 
     src="https://static-cdn.camscanner.com/camscanner-seo/img/logo-en.b6dee07.png" 
-    alt="CamScanner" 
+    alt="CamScanner App Logo" 
     className="h-5 w-auto object-contain"
     referrerPolicy="no-referrer"
   />
@@ -54,7 +54,7 @@ const CamScannerLogo = () => (
 const AdobeScanLogo = () => (
   <img 
     src="https://community.adobe.com/html/@7D71944697B2365B43B68BBB61520FF2/assets/icons/adobe-scan.svg" 
-    alt="Adobe Scan" 
+    alt="Adobe Scan App Logo" 
     className="h-6 w-6 rounded shadow-sm object-contain"
     referrerPolicy="no-referrer"
   />
@@ -62,10 +62,10 @@ const AdobeScanLogo = () => (
 
 // --- LOGO DATABASE (User Provided URLs) ---
 const BrandList = [
-  { name: 'Hero', url: 'https://www.heromotocorp.com/content/dam/hero-aem-website/brand/logo/logo.svg',bg: 'bg-white' },
-  { name: 'TVS', url: 'https://www.tvsmotor.com/-/media/Feature/Header/TVSLogo-hr.svg',bg: 'bg-white' },
+  { name: 'Hero MotoCorp', url: 'https://www.heromotocorp.com/content/dam/hero-aem-website/brand/logo/logo.svg',bg: 'bg-white' },
+  { name: 'TVS Motor', url: 'https://www.tvsmotor.com/-/media/Feature/Header/TVSLogo-hr.svg',bg: 'bg-white' },
   { name: 'Honda', url: 'https://edge.sitecorecloud.io/hondamotorc388f-hmsi8ece-prodb777-e813/media/Project/HONDA2WI/honda2wheelersindia/logo/logo-redbing.png?h=64&iar=0&w=80',bg: 'bg-white' },
-  { name: 'Bajaj', url: 'https://cdn.bajajauto.com/-/media/assets/bajajauto/global/bajaj-logo2.png',bg: 'bg-white' },
+  { name: 'Bajaj Auto', url: 'https://cdn.bajajauto.com/-/media/assets/bajajauto/global/bajaj-logo2.png',bg: 'bg-white' },
   { name: 'Mahindra', url: 'https://auto.mahindra.com/on/demandware.static/Sites-amc-Site/-/default/dw0b97f45d/images/logoPeakLight.png',bg: 'bg-transparent' }, 
   { name: 'Hyundai', url: 'https://www.hyundai.com/content/dam/hyundai/template_en/en/images/common/og-image/hyu_logo_og_image.jpg',bg: 'bg-white' }
 ];
@@ -362,7 +362,7 @@ const BrandLogos = () => {
             <div key={index} className={`inline-flex items-center justify-center h-16 w-32 md:h-20 md:w-40 cursor-pointer hover:scale-105 transition-transform duration-300 flex-shrink-0 rounded-xl ${brand.bg === 'bg-white' ? 'bg-white p-2' : ''}`}>
                <img 
                  src={brand.url} 
-                 alt={brand.name} 
+                 alt={`${brand.name} Logo`} 
                  className="max-h-full max-w-full object-contain"
                  loading="lazy"
                  referrerPolicy="no-referrer"

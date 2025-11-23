@@ -133,16 +133,63 @@
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
       }
+
+      /* --- Logo Animation Keyframes --- */
+      
+      /* 1. Stack Up (Default) */
+      @keyframes stackUp {
+        0% { opacity: 0; transform: translateY(20px) scale(0.8); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      .animate-stack-1 { animation: stackUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards; opacity: 0; }
+      .animate-stack-2 { animation: stackUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards; opacity: 0; }
+      .animate-stack-3 { animation: stackUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards; opacity: 0; }
+      .animate-reveal { animation: fadeInUp 0.8s ease-out 0.8s forwards; opacity: 0; }
+
+      /* 2. Draw Path (Tracing) */
+      @keyframes drawPath {
+        from { stroke-dasharray: 100; stroke-dashoffset: 100; }
+        to { stroke-dasharray: 100; stroke-dashoffset: 0; }
+      }
+      .animate-draw { stroke-dasharray: 100; stroke-dashoffset: 100; animation: drawPath 1.5s ease-out forwards; }
+
+      /* 3. Float (Gentle Hover) */
+      @keyframes floatLogo {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+      }
+      .animate-float-logo { animation: floatLogo 3s ease-in-out infinite; }
+
+      /* 4. Slide In */
+      @keyframes slideInLeft {
+        from { transform: translateX(-20px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      .animate-slide-1 { animation: slideInLeft 0.5s ease-out 0.1s forwards; opacity: 0; }
+      .animate-slide-2 { animation: slideInLeft 0.5s ease-out 0.2s forwards; opacity: 0; }
+      .animate-slide-3 { animation: slideInLeft 0.5s ease-out 0.3s forwards; opacity: 0; }
+
+      /* 5. Pop In */
+      @keyframes popIn {
+        0% { transform: scale(0); opacity: 0; }
+        80% { transform: scale(1.1); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+      .animate-pop-1 { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.1s forwards; opacity: 0; }
+      .animate-pop-2 { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s forwards; opacity: 0; }
+      .animate-pop-3 { animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards; opacity: 0; }
+
     </style>
   <script type="importmap">
 {
   "imports": {
     "vite": "https://aistudiocdn.com/vite@^7.2.4",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.344.0",
     "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+    "react-dom": "https://aistudiocdn.com/react-dom@^18.3.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^18.3.1/",
+    "react": "https://aistudiocdn.com/react@^18.3.1",
+    "react/": "https://aistudiocdn.com/react@^18.3.1/"
   }
 }
 </script>

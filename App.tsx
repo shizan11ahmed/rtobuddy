@@ -607,14 +607,36 @@ const TestimonialsSection = () => {
 // New Dedicated Contact Page Component
 const ContactPage = ({ onBack }: { onBack: () => void }) => {
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // Added loading state
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // In a real application, this would send data to a backend API
-    console.log("Form submitted! Lead captured.");
-    setTimeout(() => {
-      setSubmitted(true);
-    }, 500);
+    setIsSubmitting(true);
+
+    const formData = new FormData(e.currentTarget);
+    // REPLACE 'YOUR_ACCESS_KEY_HERE' WITH THE KEY YOU GET FROM WEB3FORMS
+    formData.append("access_key", "f6596992-8e23-4a24-b260-016fc075edf1"); 
+    formData.append("from_name", "RTO Buddy Website");
+    formData.append("botcheck", ""); // Honeypot for spam
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitted(true);
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("Error submitting form. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   useEffect(() => {
@@ -654,7 +676,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                     </div>
                     <div>
                       <p className="text-xs text-slate-400 font-bold uppercase">Email Us</p>
-                      <p className="font-medium">support@rtobuddy.in</p>
+                      <p className="font-medium">info@rtobuddy.in</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -707,35 +729,51 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="w-full space-y-5">
+                {/* Hidden Subject Field for Email */}
+                <input type="hidden" name="subject" value="New Lead from RTO Buddy Website" />
+                
+                {/* Honeypot Spam Protection */}
+                <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-2">Full Name</label>
-                  <input type="text" required className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="John Doe" />
+                  <input type="text" name="name" required className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="John Doe" />
                 </div>
                 
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-2">Dealership Name</label>
-                  <input type="text" required className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="e.g. Royal Motors" />
+                  <input type="text" name="dealership" required className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="e.g. Royal Motors" />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-bold text-slate-700 mb-2">Email</label>
-                    <input type="email" required className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="john@example.com" />
+                    <input type="email" name="email" required className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="john@example.com" />
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-slate-700 mb-2">Phone</label>
-                    <input type="tel" required className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="+91 98765..." />
+                    <input type="tel" name="phone" required className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="+91 98765..." />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-2">Message (Optional)</label>
-                  <textarea className="w-full px-4 py-3 rounded-lg border border-slate-200 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all h-24 resize-none" placeholder="Tell us about your dealership volume..."></textarea>
+                  <textarea name="message" className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all h-24 resize-none" placeholder="Tell us about your dealership volume..."></textarea>
                 </div>
 
-                <button type="submit" className="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-brand-500/20 flex items-center justify-center space-x-2 group">
-                  <span>Submit Request</span>
-                  <Send size={18} className="group-hover:translate-x-1 transition-transform" />
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className={`w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-brand-500/20 flex items-center justify-center space-x-2 group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                >
+                  {isSubmitting ? (
+                    <span>Sending...</span>
+                  ) : (
+                    <>
+                      <span>Submit Request</span>
+                      <Send size={18} className="group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
                 </button>
               </form>
             )}
@@ -1141,7 +1179,7 @@ const App = () => {
             <div>
               <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Contact</h4>
               <ul className="space-y-3">
-                <li>support@rtobuddy.in</li>
+                <li>info@rtobuddy.in</li>
                 <li>+91 98765 43210</li>
                 <li>Sector 62, Noida, UP</li>
               </ul>

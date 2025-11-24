@@ -662,14 +662,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
         newErrors.email = "Please enter a valid email address (e.g., user@domain.com).";
     }
 
-    // Check for 10-digit mobile number (optional +91)
-    // Allow formats like: 9876543210, +919876543210, 09876543210
-    // We strip non-digits first for the length check
     const cleanPhone = phone.replace(/\D/g, '');
-    const phoneRegex = /^(\+91)?[6-9]\d{9}$/;
-    
-    // If valid length (10-12 digits depending on prefix) and starts with valid digit
-    // Simple Check: Last 10 digits must be valid Indian mobile (start with 6-9)
     const last10 = cleanPhone.slice(-10);
     if (cleanPhone.length < 10 || !/^[6-9]\d{9}$/.test(last10)) {
         newErrors.phone = "Please enter a valid 10-digit Indian mobile number.";
@@ -801,11 +794,23 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                 <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-2">Full Name</label>
-                  <input type="text" name="name" required className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="John Doe" />
+                  <input 
+                    type="text" 
+                    name="name" 
+                    required 
+                    className="w-full px-5 py-4 rounded-xl border border-slate-300 bg-white text-slate-900 text-lg placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all font-medium" 
+                    placeholder="John Doe" 
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-2">Dealership Name</label>
-                  <input type="text" name="dealership" required className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all" placeholder="e.g. Royal Motors" />
+                  <input 
+                    type="text" 
+                    name="dealership" 
+                    required 
+                    className="w-full px-5 py-4 rounded-xl border border-slate-300 bg-white text-slate-900 text-lg placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all font-medium" 
+                    placeholder="e.g. Royal Motors" 
+                  />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
@@ -814,7 +819,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                         type="email" 
                         name="email" 
                         required 
-                        className={`w-full px-4 py-3 rounded-lg border ${errors.email ? 'border-red-500' : 'border-slate-200'} bg-white text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all`} 
+                        className={`w-full px-5 py-4 rounded-xl border ${errors.email ? 'border-red-500' : 'border-slate-300'} bg-white text-slate-900 text-lg placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all font-medium`} 
                         placeholder="john@example.com" 
                     />
                     {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
@@ -825,7 +830,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                         type="tel" 
                         name="phone" 
                         required 
-                        className={`w-full px-4 py-3 rounded-lg border ${errors.phone ? 'border-red-500' : 'border-slate-200'} bg-white text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all`} 
+                        className={`w-full px-5 py-4 rounded-xl border ${errors.phone ? 'border-red-500' : 'border-slate-300'} bg-white text-slate-900 text-lg placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all font-medium`} 
                         placeholder="+91 98765..." 
                         onInput={(e) => {
                             const target = e.target as HTMLInputElement;
@@ -838,7 +843,11 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-2">Message (Optional)</label>
-                  <textarea name="message" className="w-full px-4 py-3 rounded-lg border border-slate-200 bg-white text-slate-900 placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all h-24 resize-none" placeholder="Tell us about your dealership volume..."></textarea>
+                  <textarea 
+                    name="message" 
+                    className="w-full px-5 py-4 rounded-xl border border-slate-300 bg-white text-slate-900 text-lg placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all h-24 resize-none font-medium" 
+                    placeholder="Tell us about your dealership volume..."
+                  ></textarea>
                 </div>
                 <button type="submit" disabled={isSubmitting} className={`w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 rounded-xl transition-all shadow-lg shadow-brand-500/20 flex items-center justify-center space-x-2 group ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}>
                   {isSubmitting ? <span>Sending...</span> : <><span>Submit Request</span><Send size={18} className="group-hover:translate-x-1 transition-transform" /></>}

@@ -119,6 +119,24 @@ const AnimatedLogo = ({ size = "normal", className = "", variant = "stack" }: { 
   );
 };
 
+// Vyke Company Logo Component
+const VykeLogo = () => (
+  <div className="inline-flex items-center justify-center ml-2 relative top-1" title="Vyke">
+    <svg width="70" height="24" viewBox="0 0 70 24" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="vykeGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#00529b" />
+          <stop offset="100%" stopColor="#e11d2b" />
+        </linearGradient>
+      </defs>
+      <text x="0" y="18" fontFamily="sans-serif" fontWeight="900" fontSize="22" fill="url(#vykeGradient)" letterSpacing="-0.5">vyke</text>
+      {/* The two distinct red dots above the 'y' area */}
+      <circle cx="22" cy="5" r="2" fill="#e11d2b" />
+      <circle cx="28" cy="5" r="2" fill="#e11d2b" />
+    </svg>
+  </div>
+);
+
 // Loading Screen Component
 const LoadingScreen = () => {
   return (
@@ -255,7 +273,7 @@ const Header = ({ currentPage, onNavigate }: { currentPage: string, onNavigate: 
 
 const WhatsAppButton = () => (
   <a
-    href="https://wa.me/919876543210?text=Hi%20RTO%20Buddy,%20I'm%20interested%20in%20optimizing%20my%20dealership%20documentation."
+    href="https://wa.me/918062182350?text=Hi%20RTO%20Buddy,%20I'm%20interested%20in%20optimizing%20my%20dealership%20documentation."
     target="_blank"
     rel="noopener noreferrer"
     className="fixed bottom-6 right-6 z-[100] bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-xl shadow-green-500/30 transition-all hover:scale-110 hover:-translate-y-1 group flex items-center justify-center"
@@ -752,7 +770,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                     </div>
                     <div>
                       <p className="text-xs text-slate-400 font-bold uppercase">Call Us</p>
-                      <p className="font-medium">+91 98765 43210</p>
+                      <p className="font-medium">+91 8062182350</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -1173,13 +1191,17 @@ const App = () => {
                 <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Contact</h4>
                 <ul className="space-y-3">
                   <li>info@rtobuddy.in</li>
-                  <li>+91 98765 43210</li>
+                  <li>+91 8062182350</li>
                   <li>Sector 62, Noida, UP</li>
                 </ul>
               </div>
             </div>
-            <div className="border-t border-slate-800 mt-12 pt-8 text-center text-sm">
-              © {new Date().getFullYear()} RTO Buddy. All rights reserved.
+            <div className="border-t border-slate-800 mt-12 pt-8 text-center text-sm flex flex-col md:flex-row items-center justify-between">
+              <p>© {new Date().getFullYear()} RTO Buddy. All rights reserved.</p>
+              <div className="flex items-center mt-4 md:mt-0">
+                <span className="text-slate-500 mr-1">A product by</span>
+                <VykeLogo />
+              </div>
             </div>
           </div>
         </footer>

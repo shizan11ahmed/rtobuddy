@@ -38,7 +38,6 @@ import {
   FlaskConical,
   Rocket,
   Instagram,
-  Facebook,
   Linkedin
 } from 'lucide-react';
 
@@ -1404,12 +1403,9 @@ const App = () => {
                   The #1 Document Management Solution for Automobile Dealers in India. Trusted, Fast, and Compliant.
                 </p>
                 <div className="flex space-x-4">
-                  <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors cursor-pointer">
+                  <a href="https://www.linkedin.com/company/vyke-retail-private-limited/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors cursor-pointer">
                     <Linkedin size={20} />
-                  </div>
-                  <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors cursor-pointer">
-                    <Facebook size={20} />
-                  </div>
+                  </a>
                   <a href="https://www.instagram.com/rtobuddy.in/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors cursor-pointer">
                     <Instagram size={20} />
                   </a>

@@ -119,22 +119,14 @@ const AnimatedLogo = ({ size = "normal", className = "", variant = "stack" }: { 
   );
 };
 
-// Vyke Company Logo Component
+// Vyke Company Logo Component - Uses external image file
 const VykeLogo = () => (
-  <div className="inline-flex items-center justify-center ml-2 relative top-1" title="Vyke">
-    <svg width="70" height="24" viewBox="0 0 70 24" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="vykeGradient" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#00529b" />
-          <stop offset="100%" stopColor="#e11d2b" />
-        </linearGradient>
-      </defs>
-      <text x="0" y="18" fontFamily="sans-serif" fontWeight="900" fontSize="22" fill="url(#vykeGradient)" letterSpacing="-0.5">vyke</text>
-      {/* The two distinct red dots above the 'y' area */}
-      <circle cx="22" cy="5" r="2" fill="#e11d2b" />
-      <circle cx="28" cy="5" r="2" fill="#e11d2b" />
-    </svg>
-  </div>
+  <img 
+    src="https://chutney.pythonanywhere.com/static/vyke_logo.png" 
+    alt="Vyke" 
+    className="h-7 ml-2 object-contain opacity-90 hover:opacity-100 transition-opacity" 
+    referrerPolicy="no-referrer"
+  />
 );
 
 // Loading Screen Component
@@ -849,7 +841,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                         name="phone" 
                         required 
                         className={`w-full px-5 py-4 rounded-xl border ${errors.phone ? 'border-red-500' : 'border-slate-300'} bg-white text-slate-900 text-lg placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all font-medium`} 
-                        placeholder="+91 98765..." 
+                        placeholder="+91 8062182350" 
                         onInput={(e) => {
                             const target = e.target as HTMLInputElement;
                             target.value = target.value.replace(/[^0-9+]/g, '');
@@ -873,6 +865,78 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
               </form>
             )}
           </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// Privacy Policy Page Component
+const PrivacyPolicyPage = ({ onBack }: { onBack: () => void }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="pt-32 pb-20 bg-slate-50 min-h-screen">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        <button 
+          onClick={onBack} 
+          className="group flex items-center text-sm font-semibold text-slate-500 hover:text-brand-600 mb-8 transition-colors"
+        >
+          <div className="bg-white border border-slate-200 p-2 rounded-full mr-3 shadow-sm group-hover:shadow-md transition-all">
+            <ArrowLeft size={16} />
+          </div>
+          Back to Home
+        </button>
+
+        <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 prose prose-slate max-w-none">
+          <h1 className="text-3xl font-bold text-slate-900 mb-6">Privacy Policy</h1>
+          <p className="text-slate-600 mb-4">Last Updated: {new Date().toLocaleDateString()}</p>
+
+          <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">1. Introduction</h2>
+          <p className="text-slate-600 mb-4">
+            Welcome to RTO Buddy ("we," "our," or "us"). We are committed to protecting your privacy and ensuring your personal information is handled in a safe and responsible manner. This Privacy Policy explains how we collect, use, and protect your information.
+          </p>
+
+          <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">2. Information We Collect</h2>
+          <p className="text-slate-600 mb-4">
+            We may collect the following types of information:
+          </p>
+          <ul className="list-disc pl-5 text-slate-600 mb-4 space-y-2">
+            <li><strong>Personal Information:</strong> Name, email address, phone number, and dealership name when you fill out our contact or demo request forms.</li>
+            <li><strong>Usage Data:</strong> Information about how you interact with our website, such as pages visited and time spent.</li>
+          </ul>
+
+          <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">3. How We Use Your Information</h2>
+          <p className="text-slate-600 mb-4">
+            We use the information we collect to:
+          </p>
+          <ul className="list-disc pl-5 text-slate-600 mb-4 space-y-2">
+            <li>Provide, operate, and maintain our services.</li>
+            <li>Communicate with you regarding your inquiries, demo requests, or support needs.</li>
+            <li>Improve our website and software functionality.</li>
+            <li>Send you updates, marketing materials, or promotional offers (you can opt-out at any time).</li>
+          </ul>
+
+          <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">4. Data Security</h2>
+          <p className="text-slate-600 mb-4">
+            We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet is 100% secure.
+          </p>
+
+          <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">5. Third-Party Services</h2>
+          <p className="text-slate-600 mb-4">
+            We may use third-party services (such as email providers or analytics tools) to facilitate our services. These third parties have access to your personal information only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
+          </p>
+
+          <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">6. Contact Us</h2>
+          <p className="text-slate-600 mb-4">
+            If you have any questions about this Privacy Policy, please contact us at:
+          </p>
+          <p className="text-slate-900 font-medium">
+            Email: info@rtobuddy.in<br />
+            Phone: +91 8062182350
+          </p>
         </div>
       </div>
     </div>
@@ -1032,7 +1096,7 @@ const App = () => {
           }
         }
       }, 10);
-    } else if (page === 'about' || page === 'contact') {
+    } else if (page === 'about' || page === 'contact' || page === 'privacy') {
        window.scrollTo(0, 0);
     }
   };
@@ -1151,6 +1215,8 @@ const App = () => {
             </>
           ) : currentPage === 'about' ? (
             <AboutPage onBack={() => handleNavigate('home', 'hero')} />
+          ) : currentPage === 'privacy' ? (
+            <PrivacyPolicyPage onBack={() => handleNavigate('home', 'hero')} />
           ) : (
             <ContactPage onBack={() => handleNavigate('home', 'hero')} />
           )}
@@ -1183,7 +1249,7 @@ const App = () => {
                 <ul className="space-y-3">
                   <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('about'); }} className="hover:text-brand-400 transition-colors">About Us</a></li>
                   <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('contact'); }} className="hover:text-brand-400 transition-colors">Contact</a></li>
-                  <li><a href="#" className="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
+                  <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('privacy'); }} className="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
                   <li><a href="#" className="hover:text-brand-400 transition-colors">Terms of Service</a></li>
                 </ul>
               </div>

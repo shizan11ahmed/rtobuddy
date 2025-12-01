@@ -893,52 +893,100 @@ const PrivacyPolicyPage = ({ onBack }: { onBack: () => void }) => {
         </button>
 
         <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 prose prose-slate max-w-none">
-          <h1 className="text-3xl font-bold text-slate-900 mb-6">Privacy Policy</h1>
-          <p className="text-slate-600 mb-4">Last Updated: {new Date().toLocaleDateString()}</p>
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">Privacy Policy</h1>
+          <p className="text-slate-500 text-sm mb-8 font-medium">Last Updated: December 1, 2025</p>
 
-          <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">1. Introduction</h2>
-          <p className="text-slate-600 mb-4">
-            Welcome to RTO Buddy ("we," "our," or "us"). We are committed to protecting your privacy and ensuring your personal information is handled in a safe and responsible manner. This Privacy Policy explains how we collect, use, and protect your information.
-          </p>
-
-          <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">2. Information We Collect</h2>
-          <p className="text-slate-600 mb-4">
-            We may collect the following types of information:
-          </p>
-          <ul className="list-disc pl-5 text-slate-600 mb-4 space-y-2">
-            <li><strong>Personal Information:</strong> Name, email address, phone number, and dealership name when you fill out our contact or demo request forms.</li>
-            <li><strong>Usage Data:</strong> Information about how you interact with our website, such as pages visited and time spent.</li>
-          </ul>
-
-          <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">3. How We Use Your Information</h2>
-          <p className="text-slate-600 mb-4">
-            We use the information we collect to:
-          </p>
-          <ul className="list-disc pl-5 text-slate-600 mb-4 space-y-2">
-            <li>Provide, operate, and maintain our services.</li>
-            <li>Communicate with you regarding your inquiries, demo requests, or support needs.</li>
-            <li>Improve our website and software functionality.</li>
-            <li>Send you updates, marketing materials, or promotional offers (you can opt-out at any time).</li>
-          </ul>
-
-          <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">4. Data Security</h2>
-          <p className="text-slate-600 mb-4">
-            We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet is 100% secure.
+          <p className="text-slate-600 mb-6 leading-relaxed">
+            At RTO Buddy, accessible from https://rtobuddy.in, one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by RTO Buddy and how we use it.
           </p>
 
-          <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">5. Third-Party Services</h2>
-          <p className="text-slate-600 mb-4">
-            We may use third-party services (such as email providers or analytics tools) to facilitate our services. These third parties have access to your personal information only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
-          </p>
+          <div className="space-y-8">
+            <section>
+                <h2 className="text-xl font-bold text-slate-900 mb-3">1. Information We Collect</h2>
+                <p className="text-slate-600 mb-2">We collect several different types of information for various purposes to provide and improve our Service to you:</p>
+                
+                <h3 className="text-lg font-semibold text-slate-800 mt-4 mb-2">Personal Data</h3>
+                <p className="text-slate-600 mb-2">While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you ("Personal Data"). Personally identifiable information may include, but is not limited to:</p>
+                <ul className="list-disc pl-5 text-slate-600 space-y-1">
+                    <li>Email address</li>
+                    <li>First name and last name</li>
+                    <li>Phone number</li>
+                    <li>Business/Dealership Name</li>
+                    <li>Address, State, Province, ZIP/Postal code, City</li>
+                </ul>
 
-          <h2 className="text-xl font-bold text-slate-900 mt-8 mb-4">6. Contact Us</h2>
-          <p className="text-slate-600 mb-4">
-            If you have any questions about this Privacy Policy, please contact us at:
-          </p>
-          <p className="text-slate-900 font-medium">
-            Email: info@rtobuddy.in<br />
-            Phone: +91 8062182350
-          </p>
+                <h3 className="text-lg font-semibold text-slate-800 mt-4 mb-2">Usage Data</h3>
+                <p className="text-slate-600 mb-2">We may also collect information how the Service is accessed and used ("Usage Data"). This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data.</p>
+            </section>
+
+            <section>
+                <h2 className="text-xl font-bold text-slate-900 mb-3">2. How We Use Your Data</h2>
+                <p className="text-slate-600 mb-2">RTO Buddy uses the collected data for various purposes:</p>
+                <ul className="list-disc pl-5 text-slate-600 space-y-1">
+                    <li>To provide and maintain the Service</li>
+                    <li>To notify you about changes to our Service</li>
+                    <li>To allow you to participate in interactive features of our Service when you choose to do so</li>
+                    <li>To provide customer care and support</li>
+                    <li>To provide analysis or valuable information so that we can improve the Service</li>
+                    <li>To monitor the usage of the Service</li>
+                    <li>To detect, prevent and address technical issues</li>
+                </ul>
+            </section>
+
+             <section>
+                <h2 className="text-xl font-bold text-slate-900 mb-3">3. Data Retention</h2>
+                <p className="text-slate-600">
+                    RTO Buddy will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.
+                </p>
+            </section>
+
+            <section>
+                <h2 className="text-xl font-bold text-slate-900 mb-3">4. Disclosure of Data</h2>
+                <p className="text-slate-600 mb-2">RTO Buddy may disclose your Personal Data in the good faith belief that such action is necessary to:</p>
+                <ul className="list-disc pl-5 text-slate-600 space-y-1">
+                    <li>To comply with a legal obligation</li>
+                    <li>To protect and defend the rights or property of RTO Buddy</li>
+                    <li>To prevent or investigate possible wrongdoing in connection with the Service</li>
+                    <li>To protect the personal safety of users of the Service or the public</li>
+                    <li>To protect against legal liability</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2 className="text-xl font-bold text-slate-900 mb-3">5. Security of Data</h2>
+                <p className="text-slate-600">
+                    The security of your data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.
+                </p>
+            </section>
+
+            <section>
+                <h2 className="text-xl font-bold text-slate-900 mb-3">6. Third Party Service Providers</h2>
+                <p className="text-slate-600">
+                    We may employ third party companies and individuals to facilitate our Service ("Service Providers"), to provide the Service on our behalf, to perform Service-related services or to assist us in analyzing how our Service is used. These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
+                </p>
+            </section>
+
+             <section>
+                <h2 className="text-xl font-bold text-slate-900 mb-3">7. Contact Us</h2>
+                <p className="text-slate-600 mb-4">
+                    If you have any questions about this Privacy Policy, please contact us:
+                </p>
+                 <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <div className="flex items-start space-x-3 text-slate-700 mb-3">
+                        <Mail size={18} className="mt-1 text-brand-500" />
+                        <span>info@rtobuddy.in</span>
+                    </div>
+                     <div className="flex items-start space-x-3 text-slate-700 mb-3">
+                        <Phone size={18} className="mt-1 text-brand-500" />
+                        <span>+91 8062182350</span>
+                    </div>
+                     <div className="flex items-start space-x-3 text-slate-700">
+                        <MapPin size={18} className="mt-1 text-brand-500" />
+                        <span>Basti, Uttar Pradesh, India</span>
+                    </div>
+                </div>
+            </section>
+          </div>
         </div>
       </div>
     </div>

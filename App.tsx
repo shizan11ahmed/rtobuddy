@@ -36,7 +36,10 @@ import {
   Send,
   BarChart3,
   FlaskConical,
-  Rocket
+  Rocket,
+  Instagram,
+  Facebook,
+  Linkedin
 } from 'lucide-react';
 
 // --- Assets & Helpers ---
@@ -771,7 +774,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                     </div>
                     <div>
                       <p className="text-xs text-slate-400 font-bold uppercase">Visit Us</p>
-                      <p className="font-medium">Sector 62, Noida, UP</p>
+                      <p className="font-medium">Basti, Uttar Pradesh, India</p>
                     </div>
                   </div>
                 </div>
@@ -1066,6 +1069,169 @@ const AboutPage = ({ onBack }: { onBack: () => void }) => {
   );
 };
 
+const TermsPage = ({ onBack }: { onBack: () => void }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="pt-32 pb-20 bg-slate-50 min-h-screen">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        <button
+          onClick={onBack}
+          className="group flex items-center text-sm font-semibold text-slate-500 hover:text-brand-600 mb-8 transition-colors"
+        >
+          <div className="bg-white border border-slate-200 p-2 rounded-full mr-3 shadow-sm group-hover:shadow-md transition-all">
+            <ArrowLeft size={16} />
+          </div>
+          Back to Home
+        </button>
+
+        <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 prose prose-slate max-w-none">
+          <h1 className="text-3xl font-bold text-slate-900 mb-2">Terms & Conditions</h1>
+          <p className="text-slate-500 text-sm mb-8 font-medium">Last Updated: December 1, 2025</p>
+
+          <p className="text-slate-600 mb-6 leading-relaxed">
+            Please read these Terms & Conditions ("Terms") carefully before using RTO Buddy (“Service,” “we,” “our,” “us”). By accessing our website or application, you agree to be bound by these Terms.
+          </p>
+
+          <div className="space-y-8">
+            <section>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">1. Use of the Service</h2>
+              <p className="text-slate-600 mb-2">You agree to use RTO Buddy only for lawful and authorized purposes. You must not:</p>
+              <ul className="list-disc pl-5 text-slate-600 space-y-1">
+                <li>Upload false, misleading, or illegal information.</li>
+                <li>Attempt to disrupt, interfere with, or reverse-engineer the system.</li>
+                <li>Engage in fraudulent or harmful behavior affecting the platform or other users.</li>
+              </ul>
+              <p className="text-slate-600 mt-2 text-sm italic">We reserve the right to suspend services immediately if we detect violations.</p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">2. Accounts & Registration</h2>
+              <p className="text-slate-600 mb-2">To access certain features, you may need to create an account. You agree to:</p>
+              <ul className="list-disc pl-5 text-slate-600 space-y-1">
+                <li>Provide accurate, current, and complete information.</li>
+                <li>Safeguard your login credentials and access keys.</li>
+                <li>Notify us immediately of unauthorized account access.</li>
+              </ul>
+              <p className="text-slate-600 mt-2">You are fully responsible for all activity that occurs under your account.</p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">3. Services Provided</h2>
+              <p className="text-slate-600 mb-2">RTO Buddy offers specialized tools including:</p>
+              <ul className="list-disc pl-5 text-slate-600 space-y-1">
+                <li>RTO-related document management and processing.</li>
+                <li>Dealership workflow dashboards.</li>
+                <li>Lead management and communication tools.</li>
+                <li>Automated formatting utilities.</li>
+              </ul>
+              <div className="mt-3 p-3 bg-amber-50 border border-amber-100 rounded-lg">
+                <p className="text-amber-800 text-sm font-semibold flex items-center">
+                  <AlertTriangle size={14} className="mr-2" />
+                  Note: We do NOT provide VIN lookup or VIN decoding services.
+                </p>
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">4. Accuracy of Data</h2>
+              <p className="text-slate-600 mb-2">We strive to provide reliable information and processing, but:</p>
+              <ul className="list-disc pl-5 text-slate-600 space-y-1">
+                <li>Data may come from third-party or public sources which we do not control.</li>
+                <li>We cannot guarantee 100% accuracy or completeness of external data.</li>
+                <li>Users should verify critical details with official RTO authorities.</li>
+              </ul>
+              <p className="text-slate-600 mt-2">Use the information provided by the service at your own discretion.</p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">5. Payments & Subscriptions</h2>
+              <ul className="list-disc pl-5 text-slate-600 space-y-1">
+                <li>Payments are processed via secure third-party providers.</li>
+                <li>Subscription fees are non-refundable unless required by applicable law.</li>
+                <li>Pricing structures may change with prior notice to active subscribers.</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">6. Intellectual Property</h2>
+              <p className="text-slate-600">
+                All branding, software, code, and content belong to RTO Buddy. You may not copy, distribute, reproduce, or modify our materials or use our trademarks without express written consent.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">7. Third-Party Content</h2>
+              <p className="text-slate-600">
+                Our service may contain links to third-party tools or websites. We are not responsible for their content, privacy practices, or any damages resulting from their use.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">8. Limitation of Liability</h2>
+              <p className="text-slate-600 mb-2">To the maximum extent permitted by law, RTO Buddy is not liable for:</p>
+              <ul className="list-disc pl-5 text-slate-600 space-y-1">
+                <li>Indirect, incidental, or consequential damages.</li>
+                <li>Loss of business, revenue, data, or profits.</li>
+                <li>Errors originating from third-party sources or user inputs.</li>
+              </ul>
+              <p className="text-slate-600 mt-2">You use the service at your own risk.</p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">9. Termination</h2>
+              <p className="text-slate-600">
+                We may terminate or restrict access to the service if you violate these Terms, misuse our platform, or engage in unauthorized or illegal activity.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">10. Changes to These Terms</h2>
+              <p className="text-slate-600">
+                We may revise these Terms occasionally. Continued use of the Service after updates constitutes acceptance of the revised Terms.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-xl font-bold text-slate-900 mb-3">11. Governing Law</h2>
+              <p className="text-slate-600">
+                These Terms are governed by and construed in accordance with the laws of India.
+              </p>
+            </section>
+
+            <section className="bg-slate-50 p-6 rounded-xl border border-slate-200 mt-8">
+              <h2 className="text-xl font-bold text-slate-900 mb-4">12. Contact & Escalation</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">General Support</h3>
+                  <div className="flex items-start space-x-3 text-slate-700">
+                    <Mail size={18} className="mt-1 text-brand-500" />
+                    <span>info@rtobuddy.in</span>
+                  </div>
+                  <div className="flex items-start space-x-3 text-slate-700 mt-2">
+                    <Phone size={18} className="mt-1 text-brand-500" />
+                    <span>+91 8062182350</span>
+                  </div>
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Escalations</h3>
+                  <p className="text-xs text-slate-500 mb-2">For unresolved issues or serious concerns:</p>
+                  <div className="flex items-start space-x-3 text-slate-700">
+                    <Mail size={18} className="mt-1 text-red-500" />
+                    <span>info@vyke.co.in</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
   const [loading, setLoading] = useState(true);
@@ -1096,7 +1262,7 @@ const App = () => {
           }
         }
       }, 10);
-    } else if (page === 'about' || page === 'contact' || page === 'privacy') {
+    } else if (page === 'about' || page === 'contact' || page === 'privacy' || page === 'terms') {
        window.scrollTo(0, 0);
     }
   };
@@ -1217,6 +1383,8 @@ const App = () => {
             <AboutPage onBack={() => handleNavigate('home', 'hero')} />
           ) : currentPage === 'privacy' ? (
             <PrivacyPolicyPage onBack={() => handleNavigate('home', 'hero')} />
+          ) : currentPage === 'terms' ? (
+            <TermsPage onBack={() => handleNavigate('home', 'hero')} />
           ) : (
             <ContactPage onBack={() => handleNavigate('home', 'hero')} />
           )}
@@ -1237,11 +1405,14 @@ const App = () => {
                 </p>
                 <div className="flex space-x-4">
                   <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors cursor-pointer">
-                    <span className="font-bold">in</span>
+                    <Linkedin size={20} />
                   </div>
                   <div className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors cursor-pointer">
-                    <span className="font-bold">fb</span>
+                    <Facebook size={20} />
                   </div>
+                  <a href="https://www.instagram.com/rtobuddy.in/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors cursor-pointer">
+                    <Instagram size={20} />
+                  </a>
                 </div>
               </div>
               <div>
@@ -1250,7 +1421,7 @@ const App = () => {
                   <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('about'); }} className="hover:text-brand-400 transition-colors">About Us</a></li>
                   <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('contact'); }} className="hover:text-brand-400 transition-colors">Contact</a></li>
                   <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('privacy'); }} className="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
-                  <li><a href="#" className="hover:text-brand-400 transition-colors">Terms of Service</a></li>
+                  <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('terms'); }} className="hover:text-brand-400 transition-colors">Terms of Service</a></li>
                 </ul>
               </div>
               <div>
@@ -1258,7 +1429,7 @@ const App = () => {
                 <ul className="space-y-3">
                   <li>info@rtobuddy.in</li>
                   <li>+91 8062182350</li>
-                  <li>Sector 62, Noida, UP</li>
+                  <li>Basti, Uttar Pradesh, India</li>
                 </ul>
               </div>
             </div>

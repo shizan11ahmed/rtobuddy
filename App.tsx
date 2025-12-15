@@ -197,6 +197,7 @@ const Header = ({ currentPage, onNavigate }: { currentPage: string, onNavigate: 
     { name: 'Features', id: 'home', section: 'features' },
     { name: 'ROI Calculator', id: 'home', section: 'calculator' },
     { name: 'How It Works', id: 'home', section: 'workflow' },
+    { name: 'Videos', id: 'home', section: 'videos' },
     { name: 'About Us', id: 'about', section: 'top' },
   ];
 
@@ -267,7 +268,7 @@ const Header = ({ currentPage, onNavigate }: { currentPage: string, onNavigate: 
 
 const WhatsAppButton = () => (
   <a
-    href="https://wa.me/918062182350?text=Hi%20RTO%20Buddy,%20I'm%20interested%20in%20optimizing%20my%20dealership%20documentation."
+    href="https://wa.me/919403890720?text=Hi%20RTO%20Buddy,%20I'm%20interested%20in%20optimizing%20my%20dealership%20documentation."
     target="_blank"
     rel="noopener noreferrer"
     className="fixed bottom-6 right-6 z-[100] bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-xl shadow-green-500/30 transition-all hover:scale-110 hover:-translate-y-1 group flex items-center justify-center"
@@ -598,6 +599,101 @@ const WorkflowSection = () => {
   );
 };
 
+const VideoShowcase = () => {
+  return (
+    <section id="videos" className="py-24 bg-slate-900 text-white overflow-hidden relative">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20">
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-500 blur-[100px]"></div>
+        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-purple-600 blur-[100px]"></div>
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10">
+        <div className="text-center mb-16">
+           <div className="inline-flex items-center space-x-2 bg-brand-500/20 border border-brand-500/30 text-brand-300 rounded-full px-3 py-1 mb-6">
+              <Play size={12} fill="currentColor" />
+              <span className="text-[10px] font-bold uppercase tracking-widest">Video Tour</span>
+           </div>
+           <h2 className="text-3xl md:text-4xl font-bold mb-6">See RTO Buddy in Action</h2>
+           <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+             Watch how we automate the Vaahan portal workflow, from mobile scan to final upload.
+           </p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {/* Main YouTube Video (Span 2 cols on desktop) */}
+            <div className="lg:col-span-2 space-y-4">
+               {/* Video Player UI */}
+               <div className="relative aspect-video bg-slate-800 rounded-2xl overflow-hidden shadow-2xl border border-slate-700 group">
+                  {/* YouTube Placeholder / Embed */}
+                  <div className="absolute inset-0 bg-slate-900 flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center">
+                    <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors"></div>
+                    <iframe 
+                      width="100%" 
+                      height="100%" 
+                      src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=placeholder" // Placeholder ID
+                      title="RTO Buddy Demo" 
+                      frameBorder="0" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      allowFullScreen
+                      className="absolute inset-0 z-10 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500"
+                    ></iframe>
+                    <div className="z-0 flex flex-col items-center">
+                       <div className="w-20 h-20 bg-brand-600 rounded-full flex items-center justify-center shadow-lg shadow-brand-500/50 mb-4 animate-pulse-slow">
+                          <Play size={32} className="text-white ml-1" fill="currentColor" />
+                       </div>
+                       <p className="font-bold text-white text-lg">Watch Full Demo</p>
+                    </div>
+                  </div>
+               </div>
+               <div>
+                  <h3 className="text-2xl font-bold text-white">Full Platform Walkthrough</h3>
+                  <p className="text-slate-400 mt-2">Deep dive into the dashboard, bulk processing, and automatic folder creation. See exactly how much time you save.</p>
+               </div>
+            </div>
+
+            {/* Portrait Videos Column (Span 1 col) */}
+            <div className="lg:col-span-1 space-y-6">
+               <div className="flex flex-col gap-6 h-full">
+                  {/* Portrait Video 1 */}
+                  <div className="flex-1 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group min-h-[280px] shadow-lg cursor-pointer hover:border-brand-500/50 transition-colors">
+                      {/* NEW IMAGE: Professional / Office Context */}
+                      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=800&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" alt="Why RTO Buddy" />
+                      <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
+                         <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mb-3 group-hover:bg-brand-600 group-hover:text-white transition-all transform group-hover:scale-110">
+                            <Play fill="currentColor" size={16} />
+                         </div>
+                         <h4 className="font-bold text-lg leading-tight text-white mb-1">Why Dealers Switch?</h4>
+                         <div className="flex items-center space-x-2 text-xs text-slate-300">
+                            <span className="bg-red-600 px-1.5 py-0.5 rounded text-white font-bold text-[10px]">REEL</span>
+                            <span>• 1 min explainer</span>
+                         </div>
+                      </div>
+                  </div>
+
+                  {/* Portrait Video 2 */}
+                  <div className="flex-1 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group min-h-[280px] shadow-lg cursor-pointer hover:border-brand-500/50 transition-colors">
+                      {/* NEW IMAGE: Hand holding phone / scanning */}
+                      <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=800&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" alt="Mobile Scanning" />
+                      <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
+                         <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mb-3 group-hover:bg-brand-600 group-hover:text-white transition-all transform group-hover:scale-110">
+                            <Play fill="currentColor" size={16} />
+                         </div>
+                         <h4 className="font-bold text-lg leading-tight text-white mb-1">Mobile Scanning Tips</h4>
+                         <div className="flex items-center space-x-2 text-xs text-slate-300">
+                             <span className="bg-red-600 px-1.5 py-0.5 rounded text-white font-bold text-[10px]">REEL</span>
+                             <span>• Best practices</span>
+                         </div>
+                      </div>
+                  </div>
+               </div>
+            </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 const TestimonialsSection = () => {
   const testimonials = [
     {
@@ -741,7 +837,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
         <div className="grid md:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100">
           <div className="bg-slate-900 text-white p-10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-500 rounded-full filter blur-[80px] opacity-20 -translate-y-1/2 translate-x-1/2"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500 rounded-full filter blur-[80px] opacity-20 translate-y-1/2 -translate-x-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500 rounded-full filter blur-[80px] opacity-20 translate-y-1/2 -translate-x-1/3"></div>
             <div className="relative z-10 h-full flex flex-col justify-between">
               <div>
                 <h2 className="text-3xl font-bold mb-6">Get Started with RTO Buddy</h2>
@@ -764,7 +860,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                     </div>
                     <div>
                       <p className="text-xs text-slate-400 font-bold uppercase">Call Us</p>
-                      <p className="font-medium">+91 8062182350</p>
+                      <p className="font-medium">+91 9403890720</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -843,7 +939,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                         name="phone" 
                         required 
                         className={`w-full px-5 py-4 rounded-xl border ${errors.phone ? 'border-red-500' : 'border-slate-300'} bg-white text-slate-900 text-lg placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all font-medium`} 
-                        placeholder="+91 8062182350" 
+                        placeholder="+91 9403890720" 
                         onInput={(e) => {
                             const target = e.target as HTMLInputElement;
                             target.value = target.value.replace(/[^0-9+]/g, '');
@@ -978,7 +1074,7 @@ const PrivacyPolicyPage = ({ onBack }: { onBack: () => void }) => {
                     </div>
                      <div className="flex items-start space-x-3 text-slate-700 mb-3">
                         <Phone size={18} className="mt-1 text-brand-500" />
-                        <span>+91 8062182350</span>
+                        <span>+91 9403890720</span>
                     </div>
                      <div className="flex items-start space-x-3 text-slate-700">
                         <MapPin size={18} className="mt-1 text-brand-500" />
@@ -1259,7 +1355,7 @@ const TermsPage = ({ onBack }: { onBack: () => void }) => {
                   </div>
                   <div className="flex items-start space-x-3 text-slate-700 mt-2">
                     <Phone size={18} className="mt-1 text-brand-500" />
-                    <span>+91 8062182350</span>
+                    <span>+91 9403890720</span>
                   </div>
                 </div>
                 <div>
@@ -1404,6 +1500,7 @@ const App = () => {
                 </div>
               </section>
               <WorkflowSection />
+              <VideoShowcase />
               <TestimonialsSection />
               <section id="pricing" className="py-24 bg-white">
                 <div className="container mx-auto px-4 max-w-4xl">
@@ -1472,7 +1569,7 @@ const App = () => {
                 <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Contact</h4>
                 <ul className="space-y-3">
                   <li>info@rtobuddy.in</li>
-                  <li>+91 8062182350</li>
+                  <li>+91 9403890720</li>
                   <li>Basti, Uttar Pradesh, India</li>
                 </ul>
               </div>

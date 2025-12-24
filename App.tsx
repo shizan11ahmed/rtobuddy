@@ -600,6 +600,8 @@ const WorkflowSection = () => {
 };
 
 const VideoShowcase = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+
   return (
     <section id="videos" className="py-24 bg-slate-900 text-white overflow-hidden relative">
       {/* Background Decor */}
@@ -625,26 +627,38 @@ const VideoShowcase = () => {
             <div className="lg:col-span-2 space-y-4">
                {/* Video Player UI */}
                <div className="relative aspect-video bg-slate-800 rounded-2xl overflow-hidden shadow-2xl border border-slate-700 group">
-                  {/* YouTube Placeholder / Embed */}
-                  <div className="absolute inset-0 bg-slate-900 flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center">
-                    <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors"></div>
+                  {!isPlaying ? (
+                    <div 
+                      className="absolute inset-0 cursor-pointer group"
+                      onClick={() => setIsPlaying(true)}
+                    >
+                      {/* Background Image */}
+                      <img 
+                        src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop" 
+                        alt="Video Thumbnail" 
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                      {/* Overlay */}
+                      <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors flex flex-col items-center justify-center">
+                         <div className="w-20 h-20 bg-brand-600 rounded-full flex items-center justify-center shadow-lg shadow-brand-500/50 mb-4 animate-pulse-slow group-hover:scale-110 transition-transform">
+                            <Play size={32} className="text-white ml-1" fill="currentColor" />
+                         </div>
+                         <p className="font-bold text-white text-lg">Watch Full Demo</p>
+                      </div>
+                    </div>
+                  ) : (
                     <iframe 
                       width="100%" 
                       height="100%" 
-                      src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=placeholder" // Placeholder ID
-                      title="RTO Buddy Demo" 
+                      src="https://www.youtube.com/embed/uZNl3o6Kgbk?si=4UmFoXlyfHEJJK-Y&autoplay=1" 
+                      title="RTO Buddy Walkthrough" 
                       frameBorder="0" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                      referrerPolicy="strict-origin-when-cross-origin" 
                       allowFullScreen
-                      className="absolute inset-0 z-10 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-opacity duration-500"
+                      className="absolute inset-0 w-full h-full"
                     ></iframe>
-                    <div className="z-0 flex flex-col items-center">
-                       <div className="w-20 h-20 bg-brand-600 rounded-full flex items-center justify-center shadow-lg shadow-brand-500/50 mb-4 animate-pulse-slow">
-                          <Play size={32} className="text-white ml-1" fill="currentColor" />
-                       </div>
-                       <p className="font-bold text-white text-lg">Watch Full Demo</p>
-                    </div>
-                  </div>
+                  )}
                </div>
                <div>
                   <h3 className="text-2xl font-bold text-white">Full Platform Walkthrough</h3>
@@ -1436,7 +1450,7 @@ const App = () => {
                         <span className="text-brand-600">Document Management</span>
                       </h1>
                       <p className="text-lg text-slate-600 mb-8 leading-relaxed font-medium">
-                        Stop struggling with Vaahan portal rejections. RTO Buddy auto-resizes, splits, and formats your documents in seconds. Zero errors. Zero penalties.
+                        Stop struggling with Vaahan portal rejections. RTO Buddy auto-resizes, splits, and formats your documents in seconds. Zero errors, zero penalties.
                       </p>
                       <div className="flex flex-col sm:flex-row items-center gap-4">
                         <button onClick={() => handleNavigate('contact', 'top')} className="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-xl font-bold shadow-xl shadow-brand-500/20 transition-all hover:-translate-y-1 flex items-center justify-center">

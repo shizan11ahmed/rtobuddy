@@ -127,7 +127,6 @@ const VykeLogo = () => (
     src="https://chutney.pythonanywhere.com/static/vyke_logo.png" 
     alt="Vyke" 
     className="h-7 ml-2 object-contain opacity-90 hover:opacity-100 transition-opacity" 
-    referrerPolicy="no-referrer"
   />
 );
 
@@ -157,7 +156,6 @@ const CamScannerLogo = () => (
     src="https://static-cdn.camscanner.com/camscanner-seo/img/logo-en.b6dee07.png" 
     alt="CamScanner App Logo" 
     className="h-5 w-auto object-contain"
-    referrerPolicy="no-referrer"
   />
 );
 
@@ -166,7 +164,6 @@ const AdobeScanLogo = () => (
     src="https://community.adobe.com/html/@7D71944697B2365B43B68BBB61520FF2/assets/icons/adobe-scan.svg" 
     alt="Adobe Scan App Logo" 
     className="h-6 w-6 rounded shadow-sm object-contain"
-    referrerPolicy="no-referrer"
   />
 );
 
@@ -445,7 +442,6 @@ const BrandLogos = () => {
                  alt={`${brand.name} Logo`} 
                  className="max-h-full max-w-full object-contain"
                  loading="lazy"
-                 referrerPolicy="no-referrer"
                />
             </div>
           ))}
@@ -600,11 +596,16 @@ const WorkflowSection = () => {
 };
 
 const VideoShowcase = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [playingId, setPlayingId] = useState<string | null>(null);
+
+  const videos = {
+    main: "uZNl3o6Kgbk",
+    short1: "RXEKRFgIBEU",
+    short2: "RXEKRFgIBEU" 
+  };
 
   return (
     <section id="videos" className="py-24 bg-slate-900 text-white overflow-hidden relative">
-      {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20">
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-brand-500 blur-[100px]"></div>
         <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-purple-600 blur-[100px]"></div>
@@ -623,38 +624,34 @@ const VideoShowcase = () => {
         </div>
 
         <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {/* Main YouTube Video (Span 2 cols on desktop) */}
             <div className="lg:col-span-2 space-y-4">
-               {/* Video Player UI */}
-               <div className="relative aspect-video bg-slate-800 rounded-2xl overflow-hidden shadow-2xl border border-slate-700 group">
-                  {!isPlaying ? (
-                    <div 
-                      className="absolute inset-0 cursor-pointer group"
-                      onClick={() => setIsPlaying(true)}
+               <div className="relative aspect-video bg-slate-800 rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
+                  {playingId !== 'main' ? (
+                    <button 
+                      type="button"
+                      className="absolute inset-0 cursor-pointer group w-full h-full"
+                      onClick={() => setPlayingId('main')}
                     >
-                      {/* Background Image */}
                       <img 
                         src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop" 
                         alt="Video Thumbnail" 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      {/* Overlay */}
                       <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-colors flex flex-col items-center justify-center">
                          <div className="w-20 h-20 bg-brand-600 rounded-full flex items-center justify-center shadow-lg shadow-brand-500/50 mb-4 animate-pulse-slow group-hover:scale-110 transition-transform">
                             <Play size={32} className="text-white ml-1" fill="currentColor" />
                          </div>
                          <p className="font-bold text-white text-lg">Watch Full Demo</p>
                       </div>
-                    </div>
+                    </button>
                   ) : (
                     <iframe 
                       width="100%" 
                       height="100%" 
-                      src="https://www.youtube.com/embed/uZNl3o6Kgbk?si=4UmFoXlyfHEJJK-Y&autoplay=1" 
+                      src={`https://www.youtube-nocookie.com/embed/${videos.main}?autoplay=1&rel=0&modestbranding=1`} 
                       title="RTO Buddy Walkthrough" 
                       frameBorder="0" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                      referrerPolicy="strict-origin-when-cross-origin" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  
                       allowFullScreen
                       className="absolute inset-0 w-full h-full"
                     ></iframe>
@@ -666,47 +663,84 @@ const VideoShowcase = () => {
                </div>
             </div>
 
-            {/* Portrait Videos Column (Span 1 col) */}
             <div className="lg:col-span-1 space-y-6">
                <div className="flex flex-col gap-6 h-full">
-                  {/* Portrait Video 1 */}
-                  <div className="flex-1 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group min-h-[280px] shadow-lg cursor-pointer hover:border-brand-500/50 transition-colors">
-                      {/* NEW IMAGE: Professional / Office Context */}
-                      <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=800&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" alt="Why RTO Buddy" />
-                      <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
-                         <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mb-3 group-hover:bg-brand-600 group-hover:text-white transition-all transform group-hover:scale-110">
-                            <Play fill="currentColor" size={16} />
-                         </div>
-                         <h4 className="font-bold text-lg leading-tight text-white mb-1">Why Dealers Switch?</h4>
-                         <div className="flex items-center space-x-2 text-xs text-slate-300">
-                            <span className="bg-red-600 px-1.5 py-0.5 rounded text-white font-bold text-[10px]">REEL</span>
-                            <span>• 1 min explainer</span>
-                         </div>
-                      </div>
+                  <div 
+                    className="flex-1 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative min-h-[280px] shadow-lg"
+                  >
+                      {playingId !== 'short1' ? (
+                        <button 
+                          type="button"
+                          className="absolute inset-0 group w-full h-full text-left"
+                          onClick={() => setPlayingId('short1')}
+                        >
+                          <img src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=800&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" alt="Why RTO Buddy" />
+                          <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
+                            <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mb-3 group-hover:bg-brand-600 group-hover:text-white transition-all transform group-hover:scale-110">
+                                <Play fill="currentColor" size={16} />
+                            </div>
+                            <h4 className="font-bold text-lg leading-tight text-white mb-1">Why Dealers Switch?</h4>
+                            <div className="flex items-center space-x-2 text-xs text-slate-300">
+                                <span className="bg-red-600 px-1.5 py-0.5 rounded text-white font-bold text-[10px]">REEL</span>
+                                <span>• 1 min explainer</span>
+                            </div>
+                          </div>
+                        </button>
+                      ) : (
+                        <iframe 
+                          width="100%" 
+                          height="100%" 
+                          src={`https://www.youtube-nocookie.com/embed/${videos.short1}?autoplay=1&mute=1&rel=0`} 
+                          title="RTO Buddy Short" 
+                          frameBorder="0" 
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                          allowFullScreen
+                          className="absolute inset-0 w-full h-full"
+                        ></iframe>
+                      )}
                   </div>
 
-                  {/* Portrait Video 2 */}
-                  <div className="flex-1 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative group min-h-[280px] shadow-lg cursor-pointer hover:border-brand-500/50 transition-colors">
-                      {/* NEW IMAGE: Hand holding phone / scanning */}
-                      <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=800&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" alt="Mobile Scanning" />
-                      <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
-                         <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mb-3 group-hover:bg-brand-600 group-hover:text-white transition-all transform group-hover:scale-110">
-                            <Play fill="currentColor" size={16} />
-                         </div>
-                         <h4 className="font-bold text-lg leading-tight text-white mb-1">Mobile Scanning Tips</h4>
-                         <div className="flex items-center space-x-2 text-xs text-slate-300">
-                             <span className="bg-red-600 px-1.5 py-0.5 rounded text-white font-bold text-[10px]">REEL</span>
-                             <span>• Best practices</span>
-                         </div>
-                      </div>
+                  <div 
+                    className="flex-1 bg-slate-800 rounded-xl overflow-hidden border border-slate-700 relative min-h-[280px] shadow-lg"
+                  >
+                      {playingId !== 'short2' ? (
+                        <button 
+                          type="button"
+                          className="absolute inset-0 group w-full h-full text-left"
+                          onClick={() => setPlayingId('short2')}
+                        >
+                          <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=800&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" alt="Mobile Scanning" />
+                          <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/90 via-black/40 to-transparent">
+                            <div className="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center mb-3 group-hover:bg-brand-600 group-hover:text-white transition-all transform group-hover:scale-110">
+                                <Play fill="currentColor" size={16} />
+                            </div>
+                            <h4 className="font-bold text-lg leading-tight text-white mb-1">Mobile Scanning Tips</h4>
+                            <div className="flex items-center space-x-2 text-xs text-slate-300">
+                                <span className="bg-red-600 px-1.5 py-0.5 rounded text-white font-bold text-[10px]">REEL</span>
+                                <span>• Best practices</span>
+                            </div>
+                          </div>
+                        </button>
+                      ) : (
+                        <iframe 
+                          width="100%" 
+                          height="100%" 
+                          src={`https://www.youtube-nocookie.com/embed/${videos.short2}?autoplay=1&mute=1&rel=0`} 
+                          title="RTO Buddy Demo Short" 
+                          frameBorder="0" 
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                          allowFullScreen
+                          className="absolute inset-0 w-full h-full"
+                        ></iframe>
+                      )}
                   </div>
                </div>
             </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
 const TestimonialsSection = () => {
   const testimonials = [
@@ -806,7 +840,6 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
     }
 
     setIsSubmitting(true);
-
     formData.append("access_key", "f6596992-8e23-4a24-b260-016fc075edf1"); 
     formData.append("from_name", "RTO Buddy Website");
     formData.append("botcheck", "");
@@ -816,9 +849,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
         method: "POST",
         body: formData
       });
-
       const result = await response.json();
-
       if (result.success) {
         setSubmitted(true);
       } else {
@@ -1014,9 +1045,7 @@ const PrivacyPolicyPage = ({ onBack }: { onBack: () => void }) => {
             <section>
                 <h2 className="text-xl font-bold text-slate-900 mb-3">1. Information We Collect</h2>
                 <p className="text-slate-600 mb-2">We collect several different types of information for various purposes to provide and improve our Service to you:</p>
-                
                 <h3 className="text-lg font-semibold text-slate-800 mt-4 mb-2">Personal Data</h3>
-                <p className="text-slate-600 mb-2">While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you ("Personal Data"). Personally identifiable information may include, but is not limited to:</p>
                 <ul className="list-disc pl-5 text-slate-600 space-y-1">
                     <li>Email address</li>
                     <li>First name and last name</li>
@@ -1024,75 +1053,22 @@ const PrivacyPolicyPage = ({ onBack }: { onBack: () => void }) => {
                     <li>Business/Dealership Name</li>
                     <li>Address, State, Province, ZIP/Postal code, City</li>
                 </ul>
-
-                <h3 className="text-lg font-semibold text-slate-800 mt-4 mb-2">Usage Data</h3>
-                <p className="text-slate-600 mb-2">We may also collect information how the Service is accessed and used ("Usage Data"). This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data.</p>
             </section>
-
             <section>
                 <h2 className="text-xl font-bold text-slate-900 mb-3">2. How We Use Your Data</h2>
-                <p className="text-slate-600 mb-2">RTO Buddy uses the collected data for various purposes:</p>
                 <ul className="list-disc pl-5 text-slate-600 space-y-1">
                     <li>To provide and maintain the Service</li>
                     <li>To notify you about changes to our Service</li>
-                    <li>To allow you to participate in interactive features of our Service when you choose to do so</li>
                     <li>To provide customer care and support</li>
-                    <li>To provide analysis or valuable information so that we can improve the Service</li>
-                    <li>To monitor the usage of the Service</li>
                     <li>To detect, prevent and address technical issues</li>
                 </ul>
             </section>
-
-             <section>
-                <h2 className="text-xl font-bold text-slate-900 mb-3">3. Data Retention</h2>
-                <p className="text-slate-600">
-                    RTO Buddy will retain your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your Personal Data to the extent necessary to comply with our legal obligations (for example, if we are required to retain your data to comply with applicable laws), resolve disputes, and enforce our legal agreements and policies.
-                </p>
-            </section>
-
             <section>
-                <h2 className="text-xl font-bold text-slate-900 mb-3">4. Disclosure of Data</h2>
-                <p className="text-slate-600 mb-2">RTO Buddy may disclose your Personal Data in the good faith belief that such action is necessary to:</p>
-                <ul className="list-disc pl-5 text-slate-600 space-y-1">
-                    <li>To comply with a legal obligation</li>
-                    <li>To protect and defend the rights or property of RTO Buddy</li>
-                    <li>To prevent or investigate possible wrongdoing in connection with the Service</li>
-                    <li>To protect the personal safety of users of the Service or the public</li>
-                    <li>To protect against legal liability</li>
-                </ul>
-            </section>
-
-            <section>
-                <h2 className="text-xl font-bold text-slate-900 mb-3">5. Security of Data</h2>
-                <p className="text-slate-600">
-                    The security of your data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.
-                </p>
-            </section>
-
-            <section>
-                <h2 className="text-xl font-bold text-slate-900 mb-3">6. Third Party Service Providers</h2>
-                <p className="text-slate-600">
-                    We may employ third party companies and individuals to facilitate our Service ("Service Providers"), to provide the Service on our behalf, to perform Service-related services or to assist us in analyzing how our Service is used. These third parties have access to your Personal Data only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
-                </p>
-            </section>
-
-             <section>
-                <h2 className="text-xl font-bold text-slate-900 mb-3">7. Contact Us</h2>
-                <p className="text-slate-600 mb-4">
-                    If you have any questions about this Privacy Policy, please contact us:
-                </p>
+                <h2 className="text-xl font-bold text-slate-900 mb-3">3. Contact Us</h2>
                  <div className="bg-slate-50 p-6 rounded-xl border border-slate-200">
                     <div className="flex items-start space-x-3 text-slate-700 mb-3">
                         <Mail size={18} className="mt-1 text-brand-500" />
                         <span>info@rtobuddy.in</span>
-                    </div>
-                     <div className="flex items-start space-x-3 text-slate-700 mb-3">
-                        <Phone size={18} className="mt-1 text-brand-500" />
-                        <span>+91 9403890720</span>
-                    </div>
-                     <div className="flex items-start space-x-3 text-slate-700">
-                        <MapPin size={18} className="mt-1 text-brand-500" />
-                        <span>Basti, Uttar Pradesh, India</span>
                     </div>
                 </div>
             </section>
@@ -1147,14 +1123,9 @@ const AboutPage = ({ onBack }: { onBack: () => void }) => {
              <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
                From v1.0 to v2.0: <br /><span className="text-brand-600">A Journey of Perfection</span>
              </h1>
-             <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-lg mx-auto">
-               RTO Buddy didn't just appear overnight. It is the result of two years of relentless testing, feedback, and refinement in the real world.
-             </p>
           </div>
           <div className="bg-white rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden">
             <div className="bg-gradient-to-br from-slate-800 to-brand-900 p-8 md:p-10 text-center text-white relative overflow-hidden">
-               <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
-               <div className="absolute bottom-0 left-0 w-32 h-32 bg-brand-500/10 rounded-full blur-2xl transform -translate-x-1/3 translate-y-1/3 pointer-events-none"></div>
                <div className="relative z-10">
                   <div className="inline-flex items-center gap-3 text-sm md:text-base font-mono text-brand-200 mb-2">
                      <span>v1.0 (Beta)</span>
@@ -1165,19 +1136,9 @@ const AboutPage = ({ onBack }: { onBack: () => void }) => {
                </div>
             </div>
             <div className="p-8 md:p-12 bg-white relative">
-               <div className="hidden md:block absolute left-1/2 top-12 bottom-12 w-0.5 bg-slate-200 -translate-x-1/2"></div>
-               <div className="md:hidden absolute left-8 top-12 bottom-12 w-0.5 bg-slate-200"></div>
                <div className="space-y-12">
                  {timelineEvents.map((event, idx) => (
                    <div key={idx} className={`flex md:items-center gap-6 relative ${idx % 2 !== 0 ? 'md:flex-row-reverse' : 'md:flex-row'}`}>
-                      <div className="md:hidden flex flex-col items-center shrink-0 w-16 pt-1">
-                         <div className="w-16 h-8 bg-white border border-brand-200 text-brand-600 text-xs font-bold rounded-full flex items-center justify-center shadow-sm z-10 relative">
-                           {event.year}
-                         </div>
-                      </div>
-                      <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-24 h-8 bg-white border border-brand-200 text-brand-600 text-xs font-bold rounded-full items-center justify-center shadow-sm z-10">
-                        {event.year}
-                      </div>
                       <div className={`w-full md:w-[45%] p-6 rounded-2xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-md transition-all duration-300`}>
                          <div className="flex items-center gap-3 mb-2 text-slate-900">
                             <div className="p-2 bg-brand-100 text-brand-600 rounded-lg shrink-0">
@@ -1189,34 +1150,12 @@ const AboutPage = ({ onBack }: { onBack: () => void }) => {
                            {event.desc}
                          </p>
                       </div>
+                      <div className="hidden md:block w-[10%] flex flex-col items-center">
+                          <div className="w-10 h-10 bg-brand-600 rounded-full flex items-center justify-center text-white text-[10px] font-bold">{event.year.slice(0,3)}</div>
+                      </div>
                       <div className="hidden md:block w-[45%]"></div>
                    </div>
                  ))}
-               </div>
-            </div>
-            <div className="bg-slate-900 p-8 md:p-12 text-white">
-               <div className="grid grid-cols-3 gap-4 md:gap-8 divide-x divide-slate-800/50">
-                  <div className="text-center px-2">
-                     <div className="w-10 h-10 mx-auto bg-brand-900/50 rounded-full flex items-center justify-center text-brand-400 mb-3">
-                        <FileText size={20} />
-                     </div>
-                     <div className="text-2xl md:text-3xl font-bold text-white mb-1">28k+</div>
-                     <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Files Processed</div>
-                  </div>
-                  <div className="text-center px-2">
-                     <div className="w-10 h-10 mx-auto bg-purple-900/50 rounded-full flex items-center justify-center text-purple-400 mb-3">
-                        <Clock size={20} />
-                     </div>
-                     <div className="text-2xl md:text-3xl font-bold text-white mb-1">2 Yrs</div>
-                     <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Beta Testing</div>
-                  </div>
-                  <div className="text-center px-2">
-                     <div className="w-10 h-10 mx-auto bg-emerald-900/50 rounded-full flex items-center justify-center text-emerald-400 mb-3">
-                        <CheckCircle size={20} />
-                     </div>
-                     <div className="text-2xl md:text-3xl font-bold text-white mb-1">100%</div>
-                     <div className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Market Ready</div>
-                  </div>
                </div>
             </div>
           </div>
@@ -1246,143 +1185,9 @@ const TermsPage = ({ onBack }: { onBack: () => void }) => {
 
         <div className="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 prose prose-slate max-w-none">
           <h1 className="text-3xl font-bold text-slate-900 mb-2">Terms & Conditions</h1>
-          <p className="text-slate-500 text-sm mb-8 font-medium">Last Updated: December 1, 2025</p>
-
           <p className="text-slate-600 mb-6 leading-relaxed">
-            Please read these Terms & Conditions ("Terms") carefully before using RTO Buddy (“Service,” “we,” “our,” “us”). By accessing our website or application, you agree to be bound by these Terms.
+            By accessing RTO Buddy, you agree to be bound by these Terms.
           </p>
-
-          <div className="space-y-8">
-            <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-3">1. Use of the Service</h2>
-              <p className="text-slate-600 mb-2">You agree to use RTO Buddy only for lawful and authorized purposes. You must not:</p>
-              <ul className="list-disc pl-5 text-slate-600 space-y-1">
-                <li>Upload false, misleading, or illegal information.</li>
-                <li>Attempt to disrupt, interfere with, or reverse-engineer the system.</li>
-                <li>Engage in fraudulent or harmful behavior affecting the platform or other users.</li>
-              </ul>
-              <p className="text-slate-600 mt-2 text-sm italic">We reserve the right to suspend services immediately if we detect violations.</p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-3">2. Accounts & Registration</h2>
-              <p className="text-slate-600 mb-2">To access certain features, you may need to create an account. You agree to:</p>
-              <ul className="list-disc pl-5 text-slate-600 space-y-1">
-                <li>Provide accurate, current, and complete information.</li>
-                <li>Safeguard your login credentials and access keys.</li>
-                <li>Notify us immediately of unauthorized account access.</li>
-              </ul>
-              <p className="text-slate-600 mt-2">You are fully responsible for all activity that occurs under your account.</p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-3">3. Services Provided</h2>
-              <p className="text-slate-600 mb-2">RTO Buddy offers specialized tools including:</p>
-              <ul className="list-disc pl-5 text-slate-600 space-y-1">
-                <li>RTO-related document management and processing.</li>
-                <li>Dealership workflow dashboards.</li>
-                <li>Lead management and communication tools.</li>
-                <li>Automated formatting utilities.</li>
-              </ul>
-              <div className="mt-3 p-3 bg-amber-50 border border-amber-100 rounded-lg">
-                <p className="text-amber-800 text-sm font-semibold flex items-center">
-                  <AlertTriangle size={14} className="mr-2" />
-                  Note: We do NOT provide VIN lookup or VIN decoding services.
-                </p>
-              </div>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-3">4. Accuracy of Data</h2>
-              <p className="text-slate-600 mb-2">We strive to provide reliable information and processing, but:</p>
-              <ul className="list-disc pl-5 text-slate-600 space-y-1">
-                <li>Data may come from third-party or public sources which we do not control.</li>
-                <li>We cannot guarantee 100% accuracy or completeness of external data.</li>
-                <li>Users should verify critical details with official RTO authorities.</li>
-              </ul>
-              <p className="text-slate-600 mt-2">Use the information provided by the service at your own discretion.</p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-3">5. Payments & Subscriptions</h2>
-              <ul className="list-disc pl-5 text-slate-600 space-y-1">
-                <li>Payments are processed via secure third-party providers.</li>
-                <li>Subscription fees are non-refundable unless required by applicable law.</li>
-                <li>Pricing structures may change with prior notice to active subscribers.</li>
-              </ul>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-3">6. Intellectual Property</h2>
-              <p className="text-slate-600">
-                All branding, software, code, and content belong to RTO Buddy. You may not copy, distribute, reproduce, or modify our materials or use our trademarks without express written consent.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-3">7. Third-Party Content</h2>
-              <p className="text-slate-600">
-                Our service may contain links to third-party tools or websites. We are not responsible for their content, privacy practices, or any damages resulting from their use.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-3">8. Limitation of Liability</h2>
-              <p className="text-slate-600 mb-2">To the maximum extent permitted by law, RTO Buddy is not liable for:</p>
-              <ul className="list-disc pl-5 text-slate-600 space-y-1">
-                <li>Indirect, incidental, or consequential damages.</li>
-                <li>Loss of business, revenue, data, or profits.</li>
-                <li>Errors originating from third-party sources or user inputs.</li>
-              </ul>
-              <p className="text-slate-600 mt-2">You use the service at your own risk.</p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-3">9. Termination</h2>
-              <p className="text-slate-600">
-                We may terminate or restrict access to the service if you violate these Terms, misuse our platform, or engage in unauthorized or illegal activity.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-3">10. Changes to These Terms</h2>
-              <p className="text-slate-600">
-                We may revise these Terms occasionally. Continued use of the Service after updates constitutes acceptance of the revised Terms.
-              </p>
-            </section>
-
-            <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-3">11. Governing Law</h2>
-              <p className="text-slate-600">
-                These Terms are governed by and construed in accordance with the laws of India.
-              </p>
-            </section>
-
-            <section className="bg-slate-50 p-6 rounded-xl border border-slate-200 mt-8">
-              <h2 className="text-xl font-bold text-slate-900 mb-4">12. Contact & Escalation</h2>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">General Support</h3>
-                  <div className="flex items-start space-x-3 text-slate-700">
-                    <Mail size={18} className="mt-1 text-brand-500" />
-                    <span>info@rtobuddy.in</span>
-                  </div>
-                  <div className="flex items-start space-x-3 text-slate-700 mt-2">
-                    <Phone size={18} className="mt-1 text-brand-500" />
-                    <span>+91 9403890720</span>
-                  </div>
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold text-slate-500 uppercase tracking-wider mb-2">Escalations</h3>
-                  <p className="text-xs text-slate-500 mb-2">For unresolved issues or serious concerns:</p>
-                  <div className="flex items-start space-x-3 text-slate-700">
-                    <Mail size={18} className="mt-1 text-red-500" />
-                    <span>info@vyke.co.in</span>
-                  </div>
-                </div>
-              </div>
-            </section>
-          </div>
         </div>
       </div>
     </div>
@@ -1419,7 +1224,7 @@ const App = () => {
           }
         }
       }, 10);
-    } else if (page === 'about' || page === 'contact' || page === 'privacy' || page === 'terms') {
+    } else {
        window.scrollTo(0, 0);
     }
   };
@@ -1427,17 +1232,12 @@ const App = () => {
   return (
     <>
       {loading && <LoadingScreen />}
-      <div className={`min-h-screen bg-slate-50 selection:bg-brand-100 selection:text-brand-900 relative ${loading ? 'opacity-0' : 'opacity-100 transition-opacity duration-700'}`}>
+      <div className={`min-h-screen bg-slate-50 relative ${loading ? 'opacity-0' : 'opacity-100 transition-opacity duration-700'}`}>
         <Header currentPage={currentPage} onNavigate={handleNavigate} />
         <main>
           {currentPage === 'home' ? (
             <>
               <section id="hero" className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 pointer-events-none">
-                   <div className="absolute top-20 left-10 w-72 h-72 bg-brand-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-                   <div className="absolute top-20 right-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-                   <div className="absolute -bottom-8 left-1/3 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
-                </div>
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                   <div className="grid lg:grid-cols-2 gap-16 items-center">
                     <div className="max-w-2xl">
@@ -1453,26 +1253,9 @@ const App = () => {
                         Stop struggling with Vaahan portal rejections. RTO Buddy auto-resizes, splits, and formats your documents in seconds. Zero errors, zero penalties.
                       </p>
                       <div className="flex flex-col sm:flex-row items-center gap-4">
-                        <button onClick={() => handleNavigate('contact', 'top')} className="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-xl font-bold shadow-xl shadow-brand-500/20 transition-all hover:-translate-y-1 flex items-center justify-center">
+                        <button onClick={() => handleNavigate('contact', 'top')} className="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-xl font-bold shadow-xl flex items-center justify-center">
                           Start Free Trial <ArrowRight className="ml-2" size={20} />
                         </button>
-                        <button onClick={() => handleNavigate('home', 'calculator')} className="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center">
-                          <Calculator className="mr-2 text-slate-500" size={16} /> Calculate Savings
-                        </button>
-                      </div>
-                      <div className="mt-10 grid grid-cols-3 gap-6 border-t border-slate-200/60 pt-8">
-                        <div>
-                          <h3 className="text-3xl font-bold text-slate-900">200K+</h3>
-                          <p className="text-sm text-slate-500 font-medium mt-1">Documents Processed</p>
-                        </div>
-                        <div>
-                          <h3 className="text-3xl font-bold text-slate-900">0%</h3>
-                          <p className="text-sm text-slate-500 font-medium mt-1">Rejection Rate</p>
-                        </div>
-                        <div>
-                          <h3 className="text-3xl font-bold text-slate-900">75%</h3>
-                          <p className="text-sm text-slate-500 font-medium mt-1">Time Saved</p>
-                        </div>
                       </div>
                     </div>
                     <div className="relative">
@@ -1485,29 +1268,21 @@ const App = () => {
               <TimeSavingsCalculator />
               <section id="features" className="py-24 bg-white relative">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-                  <div className="text-center max-w-3xl mx-auto mb-12 md:mb-20">
+                  <div className="text-center max-w-3xl mx-auto mb-12">
                     <h2 className="text-3xl font-bold text-slate-900 mb-4">Built for Every Dealership Type</h2>
-                    <p className="text-lg text-slate-600">
-                      Whether you are a 2W, 3W, or 4W dealership (AD, ARD, or ASC), RTO Buddy adapts to your volume.
-                    </p>
                   </div>
-                  <div className="flex overflow-x-auto pb-8 gap-4 snap-x snap-mandatory -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {[
-                      { icon: <Maximize size={32} className="text-brand-600" />, title: "Auto-Fixes Size (400KB)", desc: "Automatically compresses files to meet the RTO's strict 400KB limit without losing readability." },
+                      { icon: <Maximize size={32} className="text-brand-600" />, title: "Auto-Fixes Size (400KB)", desc: "Automatically compresses files to meet the RTO's strict limit." },
                       { icon: <FolderPlus size={32} className="text-brand-600" />, title: "Smart Folder Creation", desc: "Just enter a customer name. RTO Buddy creates a desktop folder with all files named correctly." },
-                      { icon: <Clock size={32} className="text-brand-600" />, title: "Saves 75% Staff Time", desc: "Turn a 20-minute manual task into a 3-minute automatic process. Free up your staff." },
-                      { icon: <Shield size={32} className="text-brand-600" />, title: "Zero Rejections", desc: "Our algorithms ensure every document is legible and formatted exactly how Vaahan wants it." },
-                      { icon: <ImageIcon size={32} className="text-brand-600" />, title: "Photo to PDF", desc: "Instantly convert vehicle photos (Front, Side, Chassis) into compliant PDFs." },
-                      { icon: <Smartphone size={32} className="text-brand-600" />, title: "App Compatible", desc: "Works seamlessly with scans from Adobe Scan, CamScanner, or any high-speed office scanner." }
+                      { icon: <Clock size={32} className="text-brand-600" />, title: "Saves 75% Staff Time", desc: "Turn a 20-minute manual task into a 3-minute automatic process." }
                     ].map((feature, i) => (
-                      <div key={i} className="snap-center shrink-0 w-[85vw] sm:w-80 md:w-auto p-8 rounded-2xl bg-white/50 backdrop-blur-sm border border-slate-100 shadow-lg shadow-slate-200/50 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-300 group h-full">
-                        <div className="w-14 h-14 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                      <div key={i} className="p-8 rounded-2xl bg-white border border-slate-100 shadow-lg group">
+                        <div className="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                           {feature.icon}
                         </div>
                         <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
-                        <p className="text-slate-600 leading-relaxed">
-                          {feature.desc}
-                        </p>
+                        <p className="text-slate-600">{feature.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -1519,18 +1294,10 @@ const App = () => {
               <section id="pricing" className="py-24 bg-white">
                 <div className="container mx-auto px-4 max-w-4xl">
                   <div className="bg-brand-600 rounded-3xl p-8 sm:p-16 text-center text-white relative overflow-hidden shadow-2xl shadow-brand-500/30">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                    <div className="absolute bottom-0 left-0 w-40 h-40 bg-black opacity-10 rounded-full translate-y-1/3 -translate-x-1/3"></div>
                     <h2 className="text-3xl sm:text-4xl font-bold mb-6 relative z-10">Ready to Speed Up Your RTO Work?</h2>
-                    <p className="text-brand-100 text-lg mb-10 max-w-2xl mx-auto relative z-10">
-                      Join hundreds of dealers who have automated their documentation process. Start your free trial today.
-                    </p>
                     <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
-                      <button onClick={() => handleNavigate('contact', 'top')} className="bg-white text-brand-600 px-8 py-4 rounded-xl font-bold hover:bg-brand-50 transition-colors shadow-lg">
+                      <button onClick={() => handleNavigate('contact', 'top')} className="bg-white text-brand-600 px-8 py-4 rounded-xl font-bold hover:bg-brand-50 transition-colors">
                         Download Free Trial
-                      </button>
-                      <button onClick={() => handleNavigate('contact', 'top')} className="bg-brand-700 border border-brand-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-800 transition-colors">
-                        Contact Sales
                       </button>
                     </div>
                   </div>
@@ -1553,38 +1320,18 @@ const App = () => {
             <div className="grid md:grid-cols-4 gap-12">
               <div className="col-span-2">
                 <div className="flex items-center space-x-2 mb-6 text-white">
-                  <div className="bg-brand-600 p-1.5 rounded">
-                    <Layers size={20} />
-                  </div>
+                  <Layers size={20} className="text-brand-600" />
                   <span className="text-xl font-extrabold">RTO Buddy</span>
                 </div>
                 <p className="mb-6 max-w-sm">
                   The #1 Document Management Solution for Automobile Dealers in India. Trusted, Fast, and Compliant.
                 </p>
-                <div className="flex space-x-4">
-                  <a href="https://www.linkedin.com/company/vyke-retail-private-limited/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors cursor-pointer">
-                    <Linkedin size={20} />
-                  </a>
-                  <a href="https://www.instagram.com/rtobuddy.in/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors cursor-pointer">
-                    <Instagram size={20} />
-                  </a>
-                </div>
               </div>
               <div>
                 <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Company</h4>
                 <ul className="space-y-3">
-                  <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('about'); }} className="hover:text-brand-400 transition-colors">About Us</a></li>
-                  <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('contact'); }} className="hover:text-brand-400 transition-colors">Contact</a></li>
-                  <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('privacy'); }} className="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
-                  <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('terms'); }} className="hover:text-brand-400 transition-colors">Terms of Service</a></li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Contact</h4>
-                <ul className="space-y-3">
-                  <li>info@rtobuddy.in</li>
-                  <li>+91 9403890720</li>
-                  <li>Basti, Uttar Pradesh, India</li>
+                  <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('about'); }} className="hover:text-brand-400">About Us</a></li>
+                  <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('contact'); }} className="hover:text-brand-400">Contact</a></li>
                 </ul>
               </div>
             </div>

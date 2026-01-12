@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { 
   Menu, 
   X, 
@@ -1434,6 +1435,7 @@ const App = () => {
   return (
     <>
       {loading && <LoadingScreen />}
+      <SpeedInsights />
       <div className={`min-h-screen bg-slate-50 selection:bg-brand-100 selection:text-brand-900 relative ${loading ? 'opacity-0' : 'opacity-100 transition-opacity duration-700'}`}>
         <Header currentPage={currentPage} onNavigate={handleNavigate} />
         <main>

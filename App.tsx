@@ -342,20 +342,20 @@ const PresetShowcase = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12 md:mb-16">
               {presetFeatures.map((feature, i) => (
-                <div key={i} className="p-6 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white hover:shadow-lg transition-all group text-center md:text-left">
-                  <div className={`w-12 h-12 mx-auto md:mx-0 ${feature.bg} ${feature.color} rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-sm`}>
-                    {feature.icon}
+                <div key={i} className="p-4 md:p-6 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white hover:shadow-lg transition-all group text-center md:text-left">
+                  <div className={`w-10 h-10 md:w-12 md:h-12 mx-auto md:mx-0 ${feature.bg} ${feature.color} rounded-xl flex items-center justify-center mb-3 md:mb-5 group-hover:scale-110 transition-transform shadow-sm`}>
+                    {React.cloneElement(feature.icon as React.ReactElement, { size: 16 })}
                   </div>
-                  <h3 className="text-base font-bold text-slate-900 mb-2">{feature.label}</h3>
-                  <p className="text-sm text-slate-500">{feature.desc}</p>
+                  <h3 className="text-xs md:text-base font-bold text-slate-900 mb-1 md:text-base">{feature.label}</h3>
+                  <p className="text-[10px] md:text-sm text-slate-500 leading-tight">{feature.desc}</p>
                 </div>
               ))}
             </div>
 
-            <div className="bg-slate-900 rounded-3xl p-1 shadow-2xl">
-              <div className="bg-[#0B1120] rounded-[22px] p-6 md:p-10 relative overflow-hidden">
+            <div className="bg-slate-900 rounded-2xl md:rounded-3xl p-0.5 md:p-1 shadow-2xl">
+              <div className="bg-[#0B1120] rounded-[14px] md:rounded-[22px] p-5 md:p-10 relative overflow-hidden">
                 {/* Decorative background elements */}
                 <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
                   <Settings2 size={200} />
@@ -384,43 +384,42 @@ const PresetShowcase = () => {
                     </div>
                   </div>
 
-                  {/* Interactive-looking UI Mockup */}
-                  <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 shadow-2xl">
-                    <div className="flex items-center justify-between mb-4 pb-4 border-b border-slate-700">
+                  <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 md:p-5 shadow-2xl self-start lg:self-auto w-full max-w-md mx-auto lg:max-w-none">
+                    <div className="flex items-center justify-between mb-3 md:mb-4 pb-3 md:pb-4 border-b border-slate-700">
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></div>
-                        <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Active Preset: MH-01 Custom</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"></div>
+                        <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider">Active Preset: MH-01 Custom</span>
                       </div>
-                      <button className="text-[10px] bg-brand-600 hover:bg-brand-500 text-white px-3 py-1.5 rounded transition-colors font-bold uppercase tracking-wider">Save Changes</button>
+                      <button className="text-[8px] md:text-[10px] bg-brand-600 hover:bg-brand-500 text-white px-2 md:px-3 py-1 md:py-1.5 rounded transition-colors font-bold uppercase tracking-wider">Save</button>
                     </div>
                     
-                    <div className="space-y-3">
+                    <div className="space-y-2 md:space-y-3">
                       {/* Rule 1 */}
-                      <div className="bg-slate-900 border border-slate-700/50 rounded-lg p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group hover:border-brand-500/50 transition-colors cursor-pointer">
-                        <div className="flex items-center gap-3">
-                          <div className="cursor-grab text-slate-600 group-hover:text-slate-400"><Menu size={14} /></div>
-                          <span className="text-sm font-bold text-slate-200">Form_20.pdf</span>
+                      <div className="bg-slate-900 border border-slate-700/50 rounded-lg p-2.5 md:p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 md:gap-3 group hover:border-brand-500/50 transition-colors cursor-pointer">
+                        <div className="flex items-center gap-2 md:gap-3">
+                          <div className="cursor-grab text-slate-600 group-hover:text-slate-400"><Menu size={12} /></div>
+                          <span className="text-xs md:text-sm font-bold text-slate-200">Form_20.pdf</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs text-slate-400 bg-slate-800 px-2 py-1 rounded border border-slate-700">Pages: 1, 2, 5</span>
-                          <span className="text-xs text-brand-400 bg-brand-500/10 px-2 py-1 rounded border border-brand-500/20">&lt; 300KB</span>
+                          <span className="text-[9px] md:text-xs text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700 whitespace-nowrap">Pages: 1, 2, 5</span>
+                          <span className="text-[9px] md:text-xs text-brand-400 bg-brand-500/10 px-1.5 py-0.5 rounded border border-brand-500/20 whitespace-nowrap">&lt; 300KB</span>
                         </div>
                       </div>
                       {/* Rule 2 */}
-                      <div className="bg-slate-900 border border-slate-700/50 rounded-lg p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group hover:border-brand-500/50 transition-colors cursor-pointer">
-                        <div className="flex items-center gap-3">
-                          <div className="cursor-grab text-slate-600 group-hover:text-slate-400"><Menu size={14} /></div>
-                          <span className="text-sm font-bold text-slate-200">Address_Proof.pdf</span>
+                      <div className="bg-slate-900 border border-slate-700/50 rounded-lg p-2.5 md:p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 md:gap-3 group hover:border-brand-500/50 transition-colors cursor-pointer">
+                        <div className="flex items-center gap-2 md:gap-3">
+                          <div className="cursor-grab text-slate-600 group-hover:text-slate-400"><Menu size={12} /></div>
+                          <span className="text-xs md:text-sm font-bold text-slate-200">Address_Proof.pdf</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-xs text-slate-400 bg-slate-800 px-2 py-1 rounded border border-slate-700">Pages: 4</span>
-                          <span className="text-xs text-brand-400 bg-brand-500/10 px-2 py-1 rounded border border-brand-500/20">High Res</span>
+                          <span className="text-[9px] md:text-xs text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700 whitespace-nowrap">Pages: 4</span>
+                          <span className="text-[9px] md:text-xs text-brand-400 bg-brand-500/10 px-1.5 py-0.5 rounded border border-brand-500/20 whitespace-nowrap">High Res</span>
                         </div>
                       </div>
                       {/* Add New Rule */}
-                      <div className="border-2 border-dashed border-slate-700 rounded-lg p-3 flex items-center justify-center gap-2 text-slate-500 hover:text-brand-400 hover:border-brand-500/50 hover:bg-brand-500/5 transition-all cursor-pointer">
-                        <span className="text-lg leading-none">+</span>
-                        <span className="text-sm font-bold">Add Document Rule</span>
+                      <div className="border-2 border-dashed border-slate-700 rounded-lg p-2 md:p-3 flex items-center justify-center gap-2 text-slate-500 hover:text-brand-400 hover:border-brand-500/50 hover:bg-brand-500/5 transition-all cursor-pointer">
+                        <span className="text-base md:text-lg leading-none">+</span>
+                        <span className="text-xs md:text-sm font-bold">Add Rule</span>
                       </div>
                     </div>
                   </div>
@@ -571,31 +570,31 @@ const DashboardSpotlight = () => {
           )}
 
           {phase === 'done' && (
-             <div className="w-full flex flex-col animate-fade-in-up">
-                <div className="flex items-center justify-between mb-6">
+             <div className="w-full flex flex-col animate-fade-in-up h-full">
+                <div className="flex items-center justify-between mb-4 md:mb-6">
                    <div>
-                      <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
-                         <CheckCircle className="text-emerald-500" /> Processing Complete
+                      <h3 className="text-lg md:text-2xl font-bold text-white flex items-center gap-2">
+                         <CheckCircle className="text-emerald-500" size={18} /> <span className="truncate">Processing Complete</span>
                       </h3>
-                      <p className="text-slate-400 mt-1 text-sm">15 pages split into 5 compliant documents in 4.2s</p>
+                      <p className="text-slate-400 mt-0.5 text-[10px] md:text-sm">15 pages split into 5 compliant documents in 4.2s</p>
                    </div>
                 </div>
                 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 w-full content-start">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-4 w-full overflow-y-auto no-scrollbar pr-1">
                    {[
-                     { name: 'Form_20.pdf', size: '280 KB', icon: <FileText className="text-blue-400"/> },
-                     { name: 'Form_21.pdf', size: '150 KB', icon: <FileText className="text-blue-400"/> },
-                     { name: 'Form_22.pdf', size: '190 KB', icon: <FileText className="text-blue-400"/> },
-                     { name: 'Affidavit.pdf', size: '310 KB', icon: <FileText className="text-purple-400"/> },
-                     { name: 'Photos_Front_Chassis.pdf', size: '380 KB', icon: <ImageIcon className="text-emerald-400"/> },
+                     { name: 'Form_20.pdf', size: '280 KB', icon: <FileText className="text-blue-400" size={14}/> },
+                     { name: 'Form_21.pdf', size: '150 KB', icon: <FileText className="text-blue-400" size={14}/> },
+                     { name: 'Form_22.pdf', size: '190 KB', icon: <FileText className="text-blue-400" size={14}/> },
+                     { name: 'Affidavit.pdf', size: '310 KB', icon: <FileText className="text-purple-400" size={14}/> },
+                     { name: 'Photos_Front.pdf', size: '380 KB', icon: <ImageIcon className="text-emerald-400" size={14}/> },
                    ].map((file, i) => (
-                      <div key={i} className="bg-slate-800/80 border border-slate-700 rounded-xl p-4 flex items-start gap-3 hover:border-slate-600 transition-colors group/file cursor-default animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
-                         <div className="mt-1 bg-slate-900 p-2 rounded-lg group-hover/file:scale-110 transition-transform shrink-0">{file.icon}</div>
+                      <div key={i} className="bg-slate-800/80 border border-slate-700 rounded-lg p-2.5 md:p-4 flex items-center gap-3 hover:border-slate-600 transition-colors group/file cursor-default animate-fade-in-up" style={{ animationDelay: `${i * 50}ms` }}>
+                         <div className="bg-slate-900 p-1.5 md:p-2 rounded group-hover/file:scale-110 transition-transform shrink-0">{file.icon}</div>
                          <div className="min-w-0 flex-1">
-                            <p className="text-sm font-bold text-slate-200 truncate pr-2">{file.name}</p>
-                            <div className="flex items-center gap-2 mt-1.5">
-                               <span className="text-xs text-emerald-400 font-mono bg-emerald-400/10 px-1.5 py-0.5 rounded shrink-0">{file.size}</span>
-                               <span className="text-[9px] text-slate-400 uppercase tracking-wider font-semibold shrink-0">Compliant</span>
+                            <p className="text-[11px] md:text-sm font-bold text-slate-200 truncate">{file.name}</p>
+                            <div className="flex items-center gap-2 mt-0.5">
+                               <span className="text-[9px] md:text-xs text-emerald-400 font-mono bg-emerald-400/10 px-1 rounded shrink-0">{file.size}</span>
+                               <span className="text-[8px] md:text-[9px] text-slate-500 uppercase tracking-wider font-semibold shrink-0 hidden xs:inline">Compliant</span>
                             </div>
                          </div>
                       </div>
@@ -656,22 +655,22 @@ const TimeSavingsCalculator = () => {
   return (
     <section id="calculator" className="py-12 bg-white">
       <div className="container mx-auto px-4 max-w-4xl">
-        <div className="bg-[#0B1120] rounded-2xl p-6 md:p-10 text-white shadow-2xl ring-1 ring-slate-800">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div className="bg-[#0B1120] rounded-2xl p-5 md:p-10 text-white shadow-2xl ring-1 ring-slate-800">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             {/* Left side */}
             <div className="w-full">
               <div className="inline-flex items-center space-x-2 bg-brand-900/40 border border-brand-500/30 rounded-full px-2.5 py-0.5 mb-4">
-                <Calculator size={12} className="text-brand-400" />
-                <span className="text-[9px] font-bold text-brand-300 uppercase tracking-widest">ROI Calculator</span>
+                <Calculator size={10} className="text-brand-400" />
+                <span className="text-[8px] md:text-[9px] font-bold text-brand-300 uppercase tracking-widest">ROI Calculator</span>
               </div>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Calculate your savings.</h2>
-              <p className="text-slate-400 text-sm md:text-base mb-8 leading-relaxed">
+              <h2 className="text-xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">Calculate your savings.</h2>
+              <p className="text-slate-400 text-xs md:text-base mb-6 md:mb-8 leading-relaxed">
                 Manual RTO work kills productivity and incurs penalties. Move the slider to see how much time and money RTO Buddy can save you.
               </p>
               <div className="mb-6">
-                <div className="flex justify-between items-end mb-4">
-                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Monthly Vehicle Sales</label>
-                  <span className="text-4xl font-bold text-white tracking-tight">{monthlySales}</span>
+                <div className="flex justify-between items-end mb-3 md:mb-4">
+                  <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Monthly Vehicle Sales</label>
+                  <span className="text-3xl md:text-4xl font-bold text-white tracking-tight">{monthlySales}</span>
                 </div>
                 <input 
                   type="range" 
@@ -680,53 +679,53 @@ const TimeSavingsCalculator = () => {
                   step="10" 
                   value={monthlySales} 
                   onChange={(e) => setMonthlySales(parseInt(e.target.value))}
-                  className="w-full h-2.5 bg-slate-700 rounded-full appearance-none cursor-pointer accent-white hover:accent-brand-200 transition-all"
+                  className="w-full h-1.5 md:h-2.5 bg-slate-700 rounded-full appearance-none cursor-pointer accent-white hover:accent-brand-200 transition-all"
                 />
-                <div className="flex justify-between text-[10px] text-slate-500 mt-3 font-mono uppercase tracking-wider">
+                <div className="flex justify-between text-[8px] md:text-[10px] text-slate-500 mt-2 md:mt-3 font-mono uppercase tracking-wider">
                   <span>10</span>
                   <span>250</span>
                   <span>500+</span>
                 </div>
               </div>
-              <div className="flex items-center text-xs text-slate-400 gap-2">
-                 <RefreshCw size={12} className="text-slate-500" />
-                 <span>Calculated based on <strong className="text-slate-300">{annualFiles.toLocaleString()} files/year</strong></span>
+              <div className="flex items-center text-[10px] md:text-xs text-slate-400 gap-2">
+                 <RefreshCw size={10} className="text-slate-500" />
+                 <span>Based on <strong className="text-slate-300">{annualFiles.toLocaleString()} files/year</strong></span>
               </div>
             </div>
 
             {/* Right side */}
             <div className="w-full max-w-md mx-auto lg:max-w-none">
-              <div className="bg-[#121a2b] border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
-                 <div className="grid grid-cols-2 gap-4 pb-5 mb-5 border-b border-slate-800/80">
-                    <div>
-                       <p className="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-1">Manual Process</p>
-                       <p className="text-2xl font-bold text-red-400">{manualTotalHours} <span className="text-xs font-medium text-slate-500">hrs/yr</span></p>
-                       <p className="text-[10px] text-slate-600 mt-1">~22 mins/file</p>
+              <div className="bg-[#121a2b] border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl relative overflow-hidden">
+                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 pb-4 md:pb-5 mb-4 md:mb-5 border-b border-slate-800/80">
+                    <div className="bg-slate-800/30 p-2.5 md:p-3 rounded-xl border border-slate-700/50">
+                       <p className="text-[8px] md:text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-1">Manual Process</p>
+                       <p className="text-xl md:text-2xl font-bold text-red-400">{manualTotalHours} <span className="text-[10px] md:text-xs font-medium text-slate-500">hrs/yr</span></p>
+                       <p className="text-[8px] md:text-[10px] text-slate-600 mt-0.5 md:mt-1">~22 mins/file</p>
                     </div>
-                    <div>
-                       <p className="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-1">RTO Buddy</p>
-                       <p className="text-2xl font-bold text-emerald-400">{autoTotalHours} <span className="text-xs font-medium text-slate-500">hrs/yr</span></p>
-                       <p className="text-[10px] text-slate-600 mt-1">~2 mins/file</p>
-                    </div>
-                 </div>
-                 <div className="text-center mb-5">
-                    <p className="text-slate-300 font-medium mb-2 text-sm">Total Time Saved Annually</p>
-                    <div className="flex items-baseline justify-center gap-2 mb-3">
-                       <span className="text-5xl font-extrabold text-brand-400 tracking-tight">{savedHours}</span>
-                       <span className="text-xl font-bold text-brand-600">hrs</span>
-                    </div>
-                    <div className="inline-flex items-center bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-full text-xs font-semibold animate-pulse-slow">
-                       <CheckCircle size={14} className="mr-1.5" />
-                       Equal to {savedDays} work days saved!
+                    <div className="bg-brand-500/5 p-2.5 md:p-3 rounded-xl border border-brand-500/20">
+                       <p className="text-[8px] md:text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-1">RTO Buddy</p>
+                       <p className="text-xl md:text-2xl font-bold text-emerald-400">{autoTotalHours} <span className="text-[10px] md:text-xs font-medium text-slate-500">hrs/yr</span></p>
+                       <p className="text-[8px] md:text-[10px] text-slate-600 mt-0.5 md:mt-1">~2 mins/file</p>
                     </div>
                  </div>
-                 <div className="text-center pt-5 border-t border-slate-800/80">
-                    <p className="text-slate-300 font-medium mb-2 text-sm">Estimated Penalty Saved</p>
-                    <div className="flex items-baseline justify-center gap-1.5 mb-1">
-                       <span className="text-3xl font-extrabold text-emerald-400 tracking-tight">₹{penaltySaved.toLocaleString()}</span>
-                       <span className="text-base font-bold text-emerald-600">/yr</span>
+                 <div className="text-center mb-4 md:mb-5">
+                    <p className="text-slate-300 font-medium mb-1 md:mb-2 text-xs md:text-sm">Total Time Saved Annually</p>
+                    <div className="flex items-baseline justify-center gap-1.5 md:gap-2 mb-2 md:mb-3">
+                       <span className="text-4xl md:text-5xl font-extrabold text-brand-400 tracking-tight">{savedHours}</span>
+                       <span className="text-lg md:text-xl font-bold text-brand-600">hrs</span>
                     </div>
-                    <p className="text-[10px] text-slate-500 mt-1">Assuming 15% revert rate at ₹300/week penalty</p>
+                    <div className="inline-flex items-center bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded-full text-[10px] md:text-xs font-semibold animate-pulse-slow">
+                       <CheckCircle size={12} className="mr-1" />
+                       {savedDays} work days saved!
+                    </div>
+                 </div>
+                 <div className="text-center pt-4 md:pt-5 border-t border-slate-800/80">
+                    <p className="text-slate-300 font-medium mb-1 md:mb-2 text-xs md:text-sm">Estimated Penalty Saved</p>
+                    <div className="flex items-baseline justify-center gap-1 mb-0.5 md:mb-1">
+                       <span className="text-2xl md:text-3xl font-extrabold text-emerald-400 tracking-tight">₹{penaltySaved.toLocaleString()}</span>
+                       <span className="text-sm md:text-base font-bold text-emerald-600">/yr</span>
+                    </div>
+                    <p className="text-[8px] md:text-[10px] text-slate-500 mt-0.5 md:mt-1">Assuming 15% revert rate</p>
                  </div>
               </div>
             </div>
@@ -748,93 +747,93 @@ const ProductTourGallery = () => {
           </p>
         </div>
 
-        <div className="space-y-24 md:space-y-32">
+        <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-12 -mx-4 px-4 lg:mx-0 lg:px-0 lg:block lg:space-y-32 lg:pb-0 no-scrollbar">
           {/* Feature 1: Homescreen */}
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          <div className="flex-shrink-0 w-[85vw] snap-center flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
             <div className="w-full lg:w-5/12 order-2 lg:order-1">
-              <div className="inline-flex items-center space-x-2 bg-brand-500/10 text-brand-400 px-3 py-1 rounded-full text-xs font-semibold mb-6">
+              <div className="inline-flex items-center space-x-2 bg-brand-500/10 text-brand-400 px-3 py-1 rounded-full text-xs font-semibold mb-4 lg:mb-6">
                 <LayoutDashboard size={14} />
                 <span>Core Interface</span>
               </div>
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">Intuitive Homescreen</h3>
-              <p className="text-lg text-slate-400 mb-8 leading-relaxed">
-                A clean, modern interface designed for speed and clarity. Everything you need is just one click away, ensuring your team spends less time navigating and more time processing.
+              <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 lg:mb-6 leading-tight">Intuitive Homescreen</h3>
+              <p className="text-base lg:text-lg text-slate-400 mb-6 lg:mb-8 leading-relaxed">
+                A clean, modern interface designed for speed and clarity. Everything you need is just one click away.
               </p>
-              <ul className="space-y-4">
+              <ul className="space-y-3 lg:space-y-4">
                 <li className="flex items-start gap-3 text-slate-300">
-                  <CheckCircle className="text-brand-500 shrink-0 mt-1" size={18} />
-                  <span>Quick access to recent uploads and status</span>
+                  <CheckCircle className="text-brand-500 shrink-0 mt-1" size={16} />
+                  <span className="text-sm lg:text-base">Quick access to recent uploads</span>
                 </li>
                 <li className="flex items-start gap-3 text-slate-300">
-                  <CheckCircle className="text-brand-500 shrink-0 mt-1" size={18} />
-                  <span>Real-time processing metrics at a glance</span>
+                  <CheckCircle className="text-brand-500 shrink-0 mt-1" size={16} />
+                  <span className="text-sm lg:text-base">Real-time processing metrics</span>
                 </li>
               </ul>
             </div>
             <div className="w-full lg:w-7/12 order-1 lg:order-2 relative group">
               <div className="absolute -inset-4 bg-brand-500/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 bg-slate-900">
-                <img src="https://chutney.pythonanywhere.com/static/homescreen_2.1.jpeg" alt="Homescreen" className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 bg-slate-900 aspect-[16/10] lg:aspect-auto">
+                <img src="https://chutney.pythonanywhere.com/static/homescreen_2.1.jpeg" alt="Homescreen" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
               </div>
             </div>
           </div>
 
           {/* Feature 2: Presets */}
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          <div className="flex-shrink-0 w-[85vw] snap-center flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
             <div className="w-full lg:w-7/12 relative group">
               <div className="absolute -inset-4 bg-purple-500/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 bg-slate-900">
-                <img src="https://chutney.pythonanywhere.com/static/preset_2.1.jpeg" alt="Presets" className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 bg-slate-900 aspect-[16/10] lg:aspect-auto">
+                <img src="https://chutney.pythonanywhere.com/static/preset_2.1.jpeg" alt="Presets" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
               </div>
             </div>
             <div className="w-full lg:w-5/12">
-              <div className="inline-flex items-center space-x-2 bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-xs font-semibold mb-6">
+              <div className="inline-flex items-center space-x-2 bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-xs font-semibold mb-4 lg:mb-6">
                 <Zap size={14} />
                 <span>Automation</span>
               </div>
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">Lightning-Fast Presets</h3>
-              <p className="text-lg text-slate-400 mb-8 leading-relaxed">
-                Select and apply document configurations instantly from the dropdown. Switch between different RTO rulesets without missing a beat.
+              <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 lg:mb-6 leading-tight">Lightning-Fast Presets</h3>
+              <p className="text-base lg:text-lg text-slate-400 mb-6 lg:mb-8 leading-relaxed">
+                Select and apply document configurations instantly from the dropdown. Switch rulesets without missing a beat.
               </p>
-              <ul className="space-y-4">
+              <ul className="space-y-3 lg:space-y-4">
                 <li className="flex items-start gap-3 text-slate-300">
-                  <CheckCircle className="text-purple-500 shrink-0 mt-1" size={18} />
-                  <span>Apply complex rules with a single click</span>
+                  <CheckCircle className="text-purple-500 shrink-0 mt-1" size={16} />
+                  <span className="text-sm lg:text-base">Apply complex rules with one click</span>
                 </li>
                 <li className="flex items-start gap-3 text-slate-300">
-                  <CheckCircle className="text-purple-500 shrink-0 mt-1" size={18} />
-                  <span>Eliminate manual configuration errors</span>
+                  <CheckCircle className="text-purple-500 shrink-0 mt-1" size={16} />
+                  <span className="text-sm lg:text-base">Eliminate manual configuration errors</span>
                 </li>
               </ul>
             </div>
           </div>
 
           {/* Feature 3: Profile */}
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          <div className="flex-shrink-0 w-[85vw] snap-center flex flex-col lg:flex-row items-center gap-8 lg:gap-20">
             <div className="w-full lg:w-5/12 order-2 lg:order-1">
-              <div className="inline-flex items-center space-x-2 bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full text-xs font-semibold mb-6">
+              <div className="inline-flex items-center space-x-2 bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full text-xs font-semibold mb-4 lg:mb-6">
                 <UserCircle size={14} />
                 <span>Management</span>
               </div>
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">Profile & Support Hub</h3>
-              <p className="text-lg text-slate-400 mb-8 leading-relaxed">
-                Manage your dealership details, track your usage, and access dedicated support directly from your personalized dashboard.
+              <h3 className="text-2xl md:text-4xl font-bold text-white mb-4 lg:mb-6 leading-tight">Profile & Support Hub</h3>
+              <p className="text-base lg:text-lg text-slate-400 mb-6 lg:mb-8 leading-relaxed">
+                Manage dealership details, track usage, and access dedicated support directly from your dashboard.
               </p>
-              <ul className="space-y-4">
+              <ul className="space-y-3 lg:space-y-4">
                 <li className="flex items-start gap-3 text-slate-300">
-                  <CheckCircle className="text-emerald-500 shrink-0 mt-1" size={18} />
-                  <span>Centralized account management</span>
+                  <CheckCircle className="text-emerald-500 shrink-0 mt-1" size={16} />
+                  <span className="text-sm lg:text-base">Centralized account management</span>
                 </li>
                 <li className="flex items-start gap-3 text-slate-300">
-                  <CheckCircle className="text-emerald-500 shrink-0 mt-1" size={18} />
-                  <span>Direct line to priority customer support</span>
+                  <CheckCircle className="text-emerald-500 shrink-0 mt-1" size={16} />
+                  <span className="text-sm lg:text-base">Direct line to priority support</span>
                 </li>
               </ul>
             </div>
             <div className="w-full lg:w-7/12 order-1 lg:order-2 relative group">
               <div className="absolute -inset-4 bg-emerald-500/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 bg-slate-900">
-                <img src="https://chutney.pythonanywhere.com/static/profile_2.1.jpeg" alt="Profile" className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 bg-slate-900 aspect-[16/10] lg:aspect-auto">
+                <img src="https://chutney.pythonanywhere.com/static/profile_2.1.jpeg" alt="Profile" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
               </div>
             </div>
           </div>
@@ -890,15 +889,15 @@ const WorkflowSection = () => {
                 </div>
              ))}
           </div>
-          <div className="md:hidden grid grid-cols-2 gap-4 max-w-sm mx-auto">
+          <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 pb-8 -mx-4 px-4 no-scrollbar">
              {steps.map((step, idx) => (
-                <div key={idx} className="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
-                   <div className="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center mb-3 text-slate-900 font-bold border border-slate-100 relative">
+                <div key={idx} className="flex-shrink-0 w-[75vw] snap-center bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center text-center">
+                   <div className="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mb-4 text-slate-900 font-bold border border-slate-100 relative">
                      {idx + 1}
                    </div>
-                   <div className="mb-1">{step.icon}</div>
-                   <h3 className="font-bold text-slate-900 text-sm mb-1">{step.title}</h3>
-                   <p className="text-xs text-slate-500 leading-snug">{step.desc}</p>
+                   <div className="mb-2">{step.icon}</div>
+                   <h3 className="font-bold text-slate-900 text-base mb-2">{step.title}</h3>
+                   <p className="text-sm text-slate-500 leading-relaxed">{step.desc}</p>
                 </div>
              ))}
           </div>
@@ -961,9 +960,9 @@ const VideoShowcase = () => {
                     />
                   )}
                </div>
-               <div className="pl-2 text-center">
-                  <h3 className="text-2xl font-bold text-white tracking-tight">Comprehensive Dashboard Demo</h3>
-                  <p className="text-slate-400 mt-2 leading-relaxed">A detailed tour of the RTO Buddy interface. See how we process files in bulk and organize everything into compliant folders automatically.</p>
+               <div className="px-4 text-center max-w-2xl mx-auto">
+                  <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">Comprehensive Dashboard Demo</h3>
+                  <p className="text-slate-400 mt-3 text-sm md:text-base leading-relaxed">A detailed tour of the RTO Buddy interface. See how we process files in bulk and organize everything into compliant folders automatically.</p>
                </div>
             </div>
         </div>
@@ -1112,55 +1111,55 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
           Back to Home
         </button>
 
-        <div className="grid md:grid-cols-2 gap-12 bg-white rounded-3xl shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100">
-          <div className="bg-slate-900 text-white p-10 relative overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 bg-white rounded-3xl shadow-xl shadow-slate-200/50 overflow-hidden border border-slate-100">
+          <div className="bg-slate-900 text-white p-8 md:p-10 relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-500 rounded-full filter blur-[80px] opacity-20 -translate-y-1/2 translate-x-1/2"></div>
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500 rounded-full filter blur-[80px] opacity-20 translate-y-1/2 -translate-x-1/3"></div>
             <div className="relative z-10 h-full flex flex-col justify-between">
               <div>
-                <h2 className="text-3xl font-bold mb-6">Get Started with RTO Buddy</h2>
-                <p className="text-slate-300 mb-8 leading-relaxed">
+                <h2 className="text-2xl md:text-3xl font-bold mb-6">Get Started with RTO Buddy</h2>
+                <p className="text-slate-300 mb-8 text-sm md:text-base leading-relaxed">
                   Fill out the form to start your free trial or request a personalized demo. Join hundreds of dealers saving time today.
                 </p>
                 <div className="space-y-6">
                   <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                    <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
                       <Mail size={20} className="text-brand-400" />
                     </div>
                     <div>
-                      <p className="text-xs text-slate-400 font-bold uppercase">Email Us</p>
-                      <p className="font-medium">info@rtobuddy.in</p>
+                      <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Email Us</p>
+                      <p className="font-medium text-sm md:text-base">info@rtobuddy.in</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                    <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
                       <Phone size={20} className="text-brand-400" />
                     </div>
                     <div>
-                      <p className="text-xs text-slate-400 font-bold uppercase">Call Us</p>
-                      <p className="font-medium">+91 9403890720</p>
+                      <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Call Us</p>
+                      <p className="font-medium text-sm md:text-base">+91 9403890720</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                    <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
                       <MapPin size={20} className="text-brand-400" />
                     </div>
                     <div>
-                      <p className="text-xs text-slate-400 font-bold uppercase">Visit Us</p>
-                      <p className="font-medium">Basti, Uttar Pradesh, India</p>
+                      <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Visit Us</p>
+                      <p className="font-medium text-sm md:text-base">Basti, Uttar Pradesh, India</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="pt-12">
-                <div className="flex items-center space-x-2 text-sm text-slate-400">
-                  <Shield size={16} />
-                  <span>Your data is secure and will never be shared.</span>
+              <div className="pt-10">
+                <div className="flex items-center space-x-2 text-xs text-slate-400">
+                  <Shield size={14} />
+                  <span>Your data is secure and compliant.</span>
                 </div>
               </div>
             </div>
           </div>
-          <div className="p-10 flex items-center">
+          <div className="p-8 md:p-10 flex items-center">
             {submitted ? (
               <div className="text-center w-full py-10">
                 <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
@@ -1198,17 +1197,17 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                     placeholder="e.g. Royal Motors" 
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-sm font-bold text-slate-700 mb-2">Email</label>
                     <input 
                         type="email" 
                         name="email" 
                         required 
-                        className={`w-full px-5 py-4 rounded-xl border ${errors.email ? 'border-red-500' : 'border-slate-300'} bg-white text-slate-900 text-lg placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all font-medium`} 
+                        className={`w-full px-5 py-3.5 rounded-xl border ${errors.email ? 'border-red-500' : 'border-slate-300'} bg-white text-slate-900 text-base placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all font-medium`} 
                         placeholder="john@example.com" 
                     />
-                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+                    {errors.email && <p className="text-red-500 text-[10px] mt-1">{errors.email}</p>}
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-slate-700 mb-2">Phone</label>
@@ -1216,7 +1215,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                         type="tel" 
                         name="phone" 
                         required 
-                        className={`w-full px-5 py-4 rounded-xl border ${errors.phone ? 'border-red-500' : 'border-slate-300'} bg-white text-slate-900 text-lg placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all font-medium`} 
+                        className={`w-full px-5 py-3.5 rounded-xl border ${errors.phone ? 'border-red-500' : 'border-slate-300'} bg-white text-slate-900 text-base placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all font-medium`} 
                         placeholder="+91 9403890720" 
                         onInput={(e) => {
                             const target = e.target as HTMLInputElement;
@@ -1224,7 +1223,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                         }}
                         maxLength={13}
                     />
-                    {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
+                    {errors.phone && <p className="text-red-500 text-[10px] mt-1">{errors.phone}</p>}
                   </div>
                 </div>
                 <div>
@@ -1448,14 +1447,14 @@ const AboutPage = ({ onBack }: { onBack: () => void }) => {
                       <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-24 h-8 bg-white border border-brand-200 text-brand-600 text-xs font-bold rounded-full items-center justify-center shadow-sm z-10">
                         {event.year}
                       </div>
-                      <div className={`w-full md:w-[45%] p-6 rounded-2xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-md transition-all duration-300`}>
+                      <div className={`w-full md:w-[45%] p-5 md:p-6 rounded-2xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:shadow-md transition-all duration-300`}>
                          <div className="flex items-center gap-3 mb-2 text-slate-900">
-                            <div className="p-2 bg-brand-100 text-brand-600 rounded-lg shrink-0">
+                            <div className="p-1.5 md:p-2 bg-brand-100 text-brand-600 rounded-lg shrink-0">
                               {event.icon}
                             </div>
-                            <h3 className="font-bold text-lg">{event.title}</h3>
+                            <h3 className="font-bold text-base md:text-lg">{event.title}</h3>
                          </div>
-                         <p className="text-sm text-slate-600 leading-relaxed">
+                         <p className="text-xs md:text-sm text-slate-600 leading-relaxed">
                            {event.desc}
                          </p>
                       </div>
@@ -1731,16 +1730,16 @@ const App = () => {
                           <Play className="mr-2 text-brand-600" size={18} fill="currentColor" /> Watch Demo
                         </button>
                       </div>
-                      <div className="grid grid-cols-3 gap-8 border-t border-slate-200/60 pt-10">
-                        <div>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 border-t border-slate-200/60 pt-10">
+                        <div className="text-center sm:text-left">
                           <h3 className="text-3xl font-bold text-slate-900">200K+</h3>
                           <p className="text-sm text-slate-500 font-bold uppercase tracking-wider mt-1">Processed</p>
                         </div>
-                        <div>
+                        <div className="text-center sm:text-left">
                           <h3 className="text-3xl font-bold text-slate-900">0%</h3>
                           <p className="text-sm text-slate-500 font-bold uppercase tracking-wider mt-1">Rejections</p>
                         </div>
-                        <div>
+                        <div className="text-center sm:text-left">
                           <h3 className="text-3xl font-bold text-slate-900">4s</h3>
                           <p className="text-sm text-slate-500 font-bold uppercase tracking-wider mt-1">Per File</p>
                         </div>
@@ -1763,7 +1762,7 @@ const App = () => {
                       Whether you are a 2W, 3W, or 4W dealership (AD, ARD, or ASC), RTO Buddy adapts to your volume.
                     </p>
                   </div>
-                  <div className="flex overflow-x-auto pb-8 gap-4 snap-x snap-mandatory -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
+                  <div className="flex overflow-x-auto pb-12 gap-6 snap-x snap-mandatory -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 md:mx-0 md:px-0 no-scrollbar">
                     {[
                       { icon: <Settings2 size={32} className="text-brand-600" />, title: "Lightning-Fast Presets", desc: "Instantly access your most-used document configurations with our new, intuitive drop-down preset menu." },
                       { icon: <ImageIcon size={32} className="text-brand-600" />, title: "Advanced Photo Management", desc: "Total control over vehicle images. Add up to 6 photos, customize tiles, and edit names directly in-app." },
@@ -1772,12 +1771,12 @@ const App = () => {
                       { icon: <UserCircle size={32} className="text-brand-600" />, title: "Profile & Support Hub", desc: "Manage dealership data seamlessly with the new profile section and direct customer support access." },
                       { icon: <Maximize size={32} className="text-brand-600" />, title: "Auto-Fixes Size (400KB)", desc: "Automatically compresses files to meet the RTO's strict 400KB limit without losing readability." }
                     ].map((feature, i) => (
-                      <div key={i} className="snap-center shrink-0 w-[85vw] sm:w-80 md:w-auto p-8 rounded-2xl bg-white/50 backdrop-blur-sm border border-slate-100 shadow-lg shadow-slate-200/50 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-300 group h-full">
+                      <div key={i} className="snap-center shrink-0 w-[80vw] sm:w-80 md:w-auto p-8 rounded-2xl bg-white/50 backdrop-blur-sm border border-slate-100 shadow-lg shadow-slate-200/50 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-300 group flex flex-col h-full">
                         <div className="w-14 h-14 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                           {feature.icon}
                         </div>
                         <h3 className="text-xl font-bold text-slate-900 mb-3">{feature.title}</h3>
-                        <p className="text-slate-600 leading-relaxed">
+                        <p className="text-slate-600 leading-relaxed flex-grow">
                           {feature.desc}
                         </p>
                       </div>
@@ -1798,11 +1797,11 @@ const App = () => {
                     <p className="text-brand-100 text-lg mb-10 max-w-2xl mx-auto relative z-10">
                       Join hundreds of dealers who have automated their documentation process. Start your free trial today.
                     </p>
-                    <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10">
-                      <button onClick={() => handleNavigate('contact', 'top')} className="bg-white text-brand-600 px-8 py-4 rounded-xl font-bold hover:bg-brand-50 transition-colors shadow-lg">
+                    <div className="flex flex-col sm:flex-row justify-center gap-4 relative z-10 max-w-md mx-auto sm:max-w-none">
+                      <button onClick={() => handleNavigate('contact', 'top')} className="w-full sm:w-auto bg-white text-brand-600 px-8 py-4 rounded-xl font-bold hover:bg-brand-50 transition-colors shadow-lg">
                         Download Free Trial
                       </button>
-                      <button onClick={() => handleNavigate('contact', 'top')} className="bg-brand-700 border border-brand-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-800 transition-colors">
+                      <button onClick={() => handleNavigate('contact', 'top')} className="w-full sm:w-auto bg-brand-700 border border-brand-500 text-white px-8 py-4 rounded-xl font-bold hover:bg-brand-800 transition-colors">
                         Contact Sales
                       </button>
                     </div>
@@ -1820,18 +1819,19 @@ const App = () => {
             <ContactPage onBack={() => handleNavigate('home', 'hero')} />
           )}
           <WhatsAppButton />
-        </main>
-        <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+      </main>
+
+      <footer className="bg-slate-900 text-slate-400 py-16 border-t border-slate-800">
           <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-4 gap-12">
-              <div className="col-span-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+              <div className="sm:col-span-2">
                 <div className="flex items-center space-x-2 mb-6 text-white">
                   <div className="bg-brand-600 p-1.5 rounded">
                     <Layers size={20} />
                   </div>
                   <span className="text-xl font-extrabold">RTO Buddy</span>
                 </div>
-                <p className="mb-6 max-w-sm">
+                <p className="mb-6 max-w-sm text-sm md:text-base">
                   The #1 Document Management Solution for Automobile Dealers in India. Trusted, Fast, and Compliant.
                 </p>
                 <div className="flex space-x-4">
@@ -1844,8 +1844,8 @@ const App = () => {
                 </div>
               </div>
               <div>
-                <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Company</h4>
-                <ul className="space-y-3">
+                <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-xs md:text-sm">Company</h4>
+                <ul className="space-y-3 text-sm md:text-base">
                   <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('about'); }} className="hover:text-brand-400 transition-colors">About Us</a></li>
                   <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('contact'); }} className="hover:text-brand-400 transition-colors">Contact</a></li>
                   <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('privacy'); }} className="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
@@ -1853,8 +1853,8 @@ const App = () => {
                 </ul>
               </div>
               <div>
-                <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Contact</h4>
-                <ul className="space-y-3">
+                <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-xs md:text-sm">Contact</h4>
+                <ul className="space-y-3 text-sm md:text-base">
                   <li>info@rtobuddy.in</li>
                   <li>+91 9403890720</li>
                   <li>Basti, Uttar Pradesh, India</li>

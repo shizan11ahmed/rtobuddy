@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { SpeedInsights } from '@vercel/speed-insights/react';
 import { 
   Menu, 
+  MousePointer2,
   X, 
   CheckCircle, 
   Shield, 
@@ -40,7 +40,13 @@ import {
   FlaskConical,
   Rocket,
   Instagram,
-  Linkedin
+  Linkedin,
+  LayoutDashboard,
+  UserCircle,
+  HelpCircle,
+  Scissors,
+  Settings2,
+  BarChartHorizontal
 } from 'lucide-react';
 
 // --- Assets & Helpers ---
@@ -137,7 +143,7 @@ const VykeLogo = () => (
 const LoadingScreen = () => {
   return (
     <div className="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center transition-opacity duration-500">
-      <AnimatedLogo size="large" variant="stack" />
+      <img src="https://chutney.pythonanywhere.com/static/full_logo.png" alt="RTO Buddy" className="h-16 w-auto animate-pulse" referrerPolicy="no-referrer" />
       <div className="mt-8 w-48 h-1 bg-slate-100 rounded-full overflow-hidden">
         <div className="h-full bg-brand-600 animate-[loadingBar_2s_ease-in-out_infinite] w-full origin-left scale-x-0"></div>
       </div>
@@ -182,6 +188,33 @@ const BrandList = [
   { name: 'Hyundai', url: 'https://www.hyundai.com/content/dam/hyundai/template_en/en/images/common/og-image/hyu_logo_og_image.jpg', bg: 'bg-white' }
 ];
 
+const BreakingNewsTicker = ({ onNavigate }: { onNavigate: (page: string, section?: string) => void }) => {
+  return (
+    <div 
+      onClick={() => onNavigate('home', 'videos')}
+      className="fixed top-0 left-0 w-full z-[60] bg-amber-400 text-slate-900 py-2 overflow-hidden border-b border-amber-500/30 cursor-pointer hover:bg-amber-300 transition-colors group"
+    >
+      <div className="flex whitespace-nowrap animate-marquee items-center">
+        {[1, 2, 3, 4].map((i) => (
+          <div key={i} className="flex items-center space-x-8 px-4">
+            <span className="flex items-center font-bold text-[10px] md:text-xs uppercase tracking-[0.2em]">
+              <span className="w-2 h-2 bg-slate-900 rounded-full mr-2 animate-pulse"></span>
+              🚨 BREAKING: RTO Buddy 2.1 is now LIVE!
+            </span>
+            <span className="text-slate-800 font-bold text-[10px] md:text-xs uppercase tracking-widest">
+              Zero Reverts, Zero Fines.
+            </span>
+            <span className="bg-slate-900 text-white px-2 py-0.5 rounded text-[9px] font-bold uppercase group-hover:scale-105 transition-transform">
+              Watch Demo →
+            </span>
+            <span className="text-slate-900/40">•</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Header = ({ currentPage, onNavigate }: { currentPage: string, onNavigate: (page: string, section?: string) => void }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -210,12 +243,12 @@ const Header = ({ currentPage, onNavigate }: { currentPage: string, onNavigate: 
   };
 
   return (
-    <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-slate-100 py-3 shadow-sm' : 'bg-transparent py-5'}`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-slate-100 py-3 shadow-sm' : 'bg-transparent py-5'} top-8 md:top-10`}>
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo */}
           <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('home', 'hero'); }} className="flex items-center space-x-2 group cursor-pointer select-none">
-            <AnimatedLogo size="normal" variant="stack" className="h-12 w-auto" />
+            <img src="https://chutney.pythonanywhere.com/static/full_logo.png" alt="RTO Buddy" className="h-10 w-auto" referrerPolicy="no-referrer" />
           </a>
 
           {/* Desktop Nav */}
@@ -285,152 +318,301 @@ const WhatsAppButton = () => (
   </a>
 );
 
-const InteractiveErrorCard = () => {
-  const [isFixed, setIsFixed] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  const handleFix = () => {
-    if (isFixed) {
-      setIsFixed(false);
-    } else {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setIsFixed(true);
-        setIsAnimating(false);
-      }, 800);
-    }
-  };
+const PresetShowcase = () => {
+  const presetFeatures = [
+    { label: "Endless Possibilities", desc: "Create any document combination.", icon: <Layers size={18} />, color: "text-brand-600", bg: "bg-brand-50" },
+    { label: "Future-Proof", desc: "Adapt instantly to new RTO rules.", icon: <Shield size={18} />, color: "text-purple-600", bg: "bg-purple-50" },
+    { label: "Dealer Specific", desc: "Tailor to your exact workflow.", icon: <Settings2 size={18} />, color: "text-emerald-600", bg: "bg-emerald-50" },
+    { label: "1-Click Apply", desc: "Save presets for instant use.", icon: <CheckCircle size={18} />, color: "text-blue-600", bg: "bg-blue-50" },
+  ];
 
   return (
-    <div className="w-full max-w-[480px] mx-auto perspective-1000">
-      <div 
-        className={`relative w-full bg-white rounded-2xl shadow-2xl transition-all duration-500 cursor-pointer border-2 overflow-hidden group ${isFixed ? 'border-emerald-500 shadow-emerald-100' : 'border-red-100 shadow-red-100 hover:border-red-200'}`}
-        onClick={handleFix}
-      >
-        <div className="bg-slate-50 px-4 py-3 border-b border-slate-100 flex items-center justify-between">
-          <div className="flex space-x-1.5">
-            <div className="w-2.5 h-2.5 rounded-full bg-red-400"></div>
-            <div className="w-2.5 h-2.5 rounded-full bg-amber-400"></div>
-            <div className="w-2.5 h-2.5 rounded-full bg-green-400"></div>
-          </div>
-          <div className="bg-white border border-slate-200 rounded px-3 py-0.5 text-[10px] font-medium text-slate-400 flex items-center">
-            <Shield size={10} className="mr-1" />
-            Vaahan Portal Status
+    <section className="py-20 bg-slate-50">
+      <div className="container mx-auto max-w-7xl px-4">
+        <div className="max-w-6xl mx-auto bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+          <div className="p-8 md:p-12 lg:p-16">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <div className="inline-flex items-center space-x-2 bg-brand-100 text-brand-700 rounded-full px-3 py-1 mb-4">
+                <Settings2 size={14} />
+                <span className="text-xs font-bold uppercase tracking-wider">Ultimate Flexibility</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">Smart RTO Presets</h2>
+              <p className="text-lg text-slate-500">
+                RTO rules change. Your workflow shouldn't break. Build custom presets with endless possibilities to match any regional requirement, ensuring your dealership is always future-proof.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              {presetFeatures.map((feature, i) => (
+                <div key={i} className="p-6 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white hover:shadow-lg transition-all group text-center md:text-left">
+                  <div className={`w-12 h-12 mx-auto md:mx-0 ${feature.bg} ${feature.color} rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform shadow-sm`}>
+                    {feature.icon}
+                  </div>
+                  <h3 className="text-base font-bold text-slate-900 mb-2">{feature.label}</h3>
+                  <p className="text-sm text-slate-500">{feature.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-slate-900 rounded-3xl p-1 shadow-2xl">
+              <div className="bg-[#0B1120] rounded-[22px] p-6 md:p-10 relative overflow-hidden">
+                {/* Decorative background elements */}
+                <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
+                  <Settings2 size={200} />
+                </div>
+                <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-brand-500/10 blur-3xl rounded-full pointer-events-none"></div>
+
+                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-4">Build Your Own Rules</h3>
+                    <p className="text-slate-400 mb-8 leading-relaxed">
+                      Don't get stuck with rigid software. Our intuitive rule builder lets you define exactly which pages go into which forms, what to name them, and how to compress them.
+                    </p>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-4 text-sm font-medium text-slate-300 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                        <CheckCircle size={16} className="text-emerald-400" />
+                        <span>Combine multiple pages into one PDF</span>
+                      </div>
+                      <div className="flex items-center gap-4 text-sm font-medium text-slate-300 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                        <CheckCircle size={16} className="text-emerald-400" />
+                        <span>Extract specific pages (e.g., Page 4 & 7)</span>
+                      </div>
+                      <div className="flex items-center gap-4 text-sm font-medium text-slate-300 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
+                        <CheckCircle size={16} className="text-emerald-400" />
+                        <span>Set custom compression targets per file</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Interactive-looking UI Mockup */}
+                  <div className="bg-slate-800 border border-slate-700 rounded-xl p-5 shadow-2xl">
+                    <div className="flex items-center justify-between mb-4 pb-4 border-b border-slate-700">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></div>
+                        <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">Active Preset: MH-01 Custom</span>
+                      </div>
+                      <button className="text-[10px] bg-brand-600 hover:bg-brand-500 text-white px-3 py-1.5 rounded transition-colors font-bold uppercase tracking-wider">Save Changes</button>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      {/* Rule 1 */}
+                      <div className="bg-slate-900 border border-slate-700/50 rounded-lg p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group hover:border-brand-500/50 transition-colors cursor-pointer">
+                        <div className="flex items-center gap-3">
+                          <div className="cursor-grab text-slate-600 group-hover:text-slate-400"><Menu size={14} /></div>
+                          <span className="text-sm font-bold text-slate-200">Form_20.pdf</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-slate-400 bg-slate-800 px-2 py-1 rounded border border-slate-700">Pages: 1, 2, 5</span>
+                          <span className="text-xs text-brand-400 bg-brand-500/10 px-2 py-1 rounded border border-brand-500/20">&lt; 300KB</span>
+                        </div>
+                      </div>
+                      {/* Rule 2 */}
+                      <div className="bg-slate-900 border border-slate-700/50 rounded-lg p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 group hover:border-brand-500/50 transition-colors cursor-pointer">
+                        <div className="flex items-center gap-3">
+                          <div className="cursor-grab text-slate-600 group-hover:text-slate-400"><Menu size={14} /></div>
+                          <span className="text-sm font-bold text-slate-200">Address_Proof.pdf</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-slate-400 bg-slate-800 px-2 py-1 rounded border border-slate-700">Pages: 4</span>
+                          <span className="text-xs text-brand-400 bg-brand-500/10 px-2 py-1 rounded border border-brand-500/20">High Res</span>
+                        </div>
+                      </div>
+                      {/* Add New Rule */}
+                      <div className="border-2 border-dashed border-slate-700 rounded-lg p-3 flex items-center justify-center gap-2 text-slate-500 hover:text-brand-400 hover:border-brand-500/50 hover:bg-brand-500/5 transition-all cursor-pointer">
+                        <span className="text-lg leading-none">+</span>
+                        <span className="text-sm font-bold">Add Document Rule</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
+      </div>
+    </section>
+  );
+};
 
-        <div className="p-6 sm:p-8 min-h-[400px] flex flex-col items-center justify-center relative bg-slate-50/30">
-          {!isFixed ? (
-            <div className={`flex flex-col items-center text-center w-full animate-fade-in-up ${isAnimating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'} transition-all duration-300`}>
-              <div className="w-20 h-20 rounded-full bg-red-50 flex items-center justify-center mb-6 relative">
-                <div className="absolute inset-0 rounded-full bg-red-100 animate-ping opacity-20"></div>
-                <X className="text-red-500 w-10 h-10" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Upload Failed</h3>
-              <p className="text-slate-600 font-bold text-sm mb-6 max-w-[260px]">
-                The document you uploaded was rejected by the portal.
-              </p>
-              <div className="w-full bg-red-50 border border-red-100 rounded-xl p-4 mb-6 text-left relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-red-400"></div>
-                <div className="flex items-start space-x-3">
-                  <AlertTriangle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-                  <div>
-                    <p className="text-sm font-bold text-red-700">Error: File Size Exceeded</p>
-                    <div className="mt-2 grid grid-cols-2 gap-x-8 gap-y-1 text-xs">
-                      <div>
-                        <span className="text-red-400 uppercase tracking-wider font-semibold text-[10px]">Current Size</span>
-                        <p className="font-mono font-bold text-red-600 text-sm">2.4 MB</p>
-                      </div>
-                      <div>
-                        <span className="text-red-400 uppercase tracking-wider font-semibold text-[10px]">Max Allowed</span>
-                        <p className="font-mono font-bold text-red-600 text-sm">400 KB</p>
-                      </div>
-                    </div>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      <div className="inline-flex items-center px-2 py-1 rounded bg-red-100 text-red-600 text-[10px] font-bold uppercase tracking-wide">
-                        Status: Reverted
-                      </div>
-                      <div className="inline-flex items-center px-2 py-1 rounded bg-orange-100 text-orange-700 text-[10px] font-bold uppercase tracking-wide">
-                        Penalty Charged
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button className="w-full bg-brand-600 text-white py-3 px-4 rounded-lg font-semibold shadow-lg shadow-brand-500/20 hover:bg-brand-700 transition-colors flex items-center justify-center space-x-2">
-                <Zap size={18} />
-                <span>Fix with RTO Buddy</span>
-              </button>
-            </div>
-          ) : (
-            <div className="flex flex-col items-center text-center w-full animate-fade-in-up">
-              <div className="w-20 h-20 rounded-full bg-emerald-50 flex items-center justify-center mb-6 relative">
-                <div className="absolute inset-0 rounded-full bg-emerald-100 animate-ping opacity-20"></div>
-                <CheckCircle className="text-emerald-500 w-10 h-10" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-2">Upload Successful!</h3>
-              <p className="text-slate-500 text-sm mb-6">
-                Document optimized and compliant.
-              </p>
-              <div className="w-full bg-emerald-50 border border-emerald-100 rounded-xl p-4 mb-6 text-left relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center border-b border-emerald-100 pb-2">
-                    <div className="flex items-center space-x-2">
-                      <FileText size={16} className="text-emerald-600" />
-                      <span className="text-sm font-medium text-emerald-900">Form_20_Optimized.pdf</span>
-                    </div>
-                    <BadgeCheck size={16} className="text-emerald-500" />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">New Size</span>
-                      <p className="text-sm font-mono font-bold text-emerald-700">298 KB <span className="text-[10px] text-emerald-400 font-normal">(-88%)</span></p>
-                    </div>
-                    <div>
-                      <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Clarity</span>
-                      <p className="text-sm font-bold text-emerald-700">High Res</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="w-full">
-                <button className="w-full bg-slate-900 text-white py-3 px-4 rounded-lg font-semibold shadow-lg text-sm hover:bg-slate-800 transition-colors">
-                  Process Next
-                </button>
-              </div>
+const DashboardSpotlight = () => {
+  const [phase, setPhase] = useState<'idle' | 'grab' | 'drag' | 'process' | 'done'>('idle');
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let timeout: ReturnType<typeof setTimeout>;
+    if (phase === 'idle') {
+      timeout = setTimeout(() => setPhase('grab'), 1500);
+    } else if (phase === 'grab') {
+      timeout = setTimeout(() => setPhase('drag'), 600);
+    } else if (phase === 'drag') {
+      timeout = setTimeout(() => setPhase('process'), 800);
+    } else if (phase === 'process') {
+      let p = 0;
+      const interval = setInterval(() => {
+        p += 5;
+        setProgress(p);
+        if (p >= 100) {
+          clearInterval(interval);
+          setPhase('done');
+        }
+      }, 100);
+      return () => clearInterval(interval);
+    } else if (phase === 'done') {
+      timeout = setTimeout(() => {
+        setPhase('idle');
+        setProgress(0);
+      }, 5000);
+    }
+    return () => clearTimeout(timeout);
+  }, [phase]);
+
+  return (
+    <div className="relative w-full max-w-4xl mx-auto mt-12 lg:mt-0 group">
+      {/* Floating Trust Badges */}
+      <div className="absolute -top-6 -left-6 z-20 bg-white p-3 rounded-2xl shadow-xl border border-slate-100 animate-float hidden md:block">
+        <div className="flex items-center space-x-2">
+          <div className="w-8 h-8 bg-emerald-100 rounded-lg flex items-center justify-center text-emerald-600">
+            <BadgeCheck size={20} />
+          </div>
+          <div>
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Compliance</p>
+            <p className="text-xs font-bold text-slate-900">Vaahan Optimized</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute -bottom-6 -right-6 z-20 bg-white p-3 rounded-2xl shadow-xl border border-slate-100 animate-float animation-delay-2000 hidden md:block">
+        <div className="flex items-center space-x-2">
+          <div className="w-8 h-8 bg-brand-100 rounded-lg flex items-center justify-center text-brand-600">
+            <Zap size={20} />
+          </div>
+          <div>
+            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Speed</p>
+            <p className="text-xs font-bold text-slate-900">4s Processing</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Dashboard Frame */}
+      <div className="relative bg-slate-900 rounded-2xl shadow-2xl overflow-hidden border border-slate-800 ring-1 ring-white/10">
+        {/* Window Controls */}
+        <div className="bg-slate-800/50 px-4 py-3 border-b border-slate-700/50 flex items-center justify-between relative z-10">
+          <div className="flex space-x-2">
+            <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/40"></div>
+            <div className="w-3 h-3 rounded-full bg-amber-500/20 border border-amber-500/40"></div>
+            <div className="w-3 h-3 rounded-full bg-emerald-500/20 border border-emerald-500/40"></div>
+          </div>
+          <div className="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em]">RTO Buddy • AI Automation</div>
+          <div className="w-12"></div>
+        </div>
+
+        {/* Dashboard Content */}
+        <div className="relative min-h-[400px] lg:min-h-[450px] w-full bg-slate-900 overflow-hidden flex flex-col items-center justify-center p-4 sm:p-6 md:p-12">
+          
+          {/* Animated File */}
+          {(phase === 'idle' || phase === 'grab' || phase === 'drag') && (
+            <div 
+              className={`absolute z-40 flex flex-col items-center justify-center bg-white p-3 md:p-4 rounded-xl shadow-2xl border border-slate-200 transition-all duration-700 ease-in-out
+                ${phase === 'idle' ? 'left-[60%] top-[65%] md:left-[75%] md:top-[70%] scale-100 rotate-12' : ''}
+                ${phase === 'grab' ? 'left-[60%] top-[65%] md:left-[75%] md:top-[70%] scale-95 rotate-6' : ''}
+                ${phase === 'drag' ? 'left-[50%] top-[50%] -translate-x-1/2 -translate-y-1/2 scale-90 rotate-0 opacity-50' : ''}
+              `}
+            >
+              <FileText className="text-red-500 w-8 h-8 md:w-10 md:h-10 mb-1" />
+              <span className="text-[8px] md:text-[10px] font-bold text-slate-700 whitespace-nowrap">Raw_Scan.pdf</span>
             </div>
           )}
-        </div>
 
-        <div className="bg-slate-50 py-4 px-6 flex flex-col sm:flex-row items-center justify-between border-t border-slate-100 gap-3 sm:gap-0">
-           <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest whitespace-nowrap mr-2">Works with scans from</span>
-           <div className="flex items-center space-x-4 w-full justify-center sm:justify-end">
-              <div className="flex items-center space-x-1.5 group opacity-100 filter-none" title="Adobe Scan">
-                 <AdobeScanLogo />
-                 <span className="text-xs font-bold text-slate-700 group-hover:text-brand-600 transition-colors">Adobe Scan</span>
-              </div>
-              <div className="h-4 w-px bg-slate-300"></div>
-              <div className="flex items-center space-x-1.5 group opacity-100 filter-none" title="CamScanner">
-                 <CamScannerLogo />
-                 <span className="text-xs font-bold text-slate-700 group-hover:text-emerald-600 transition-colors">CamScanner</span>
-              </div>
-           </div>
+          {/* Animated Cursor */}
+          {(phase === 'idle' || phase === 'grab' || phase === 'drag') && (
+            <div 
+              className={`absolute z-50 text-white drop-shadow-lg transition-all duration-700 ease-in-out
+                ${phase === 'idle' ? 'left-[70%] top-[85%] md:left-[85%] md:top-[85%] scale-100' : ''}
+                ${phase === 'grab' ? 'left-[65%] top-[72%] md:left-[78%] md:top-[75%] scale-90' : ''}
+                ${phase === 'drag' ? 'left-[52%] top-[55%] md:left-[52%] md:top-[55%] -translate-x-1/2 -translate-y-1/2 scale-90' : ''}
+              `}
+            >
+              <MousePointer2 className="w-8 h-8 md:w-10 md:h-10 fill-slate-900 stroke-white stroke-2" />
+            </div>
+          )}
+
+          {(phase === 'idle' || phase === 'grab' || phase === 'drag') && (
+             <div 
+               className={`w-full max-w-xl border-2 border-dashed rounded-2xl p-8 md:p-12 flex flex-col items-center justify-center text-center transition-all duration-500
+                 ${phase === 'drag' ? 'border-brand-500 bg-brand-500/10 scale-105' : 'border-slate-700 bg-slate-800/30'}
+               `}
+             >
+                <div className={`w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-colors duration-500 ${phase === 'drag' ? 'bg-brand-500/20' : 'bg-slate-800'}`}>
+                   <Upload className={`w-8 h-8 transition-colors duration-500 ${phase === 'drag' ? 'text-brand-400' : 'text-slate-500'}`} />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">Drop Raw Dealership Scan Here</h3>
+                <p className="text-slate-400 mb-6 text-sm">1 PDF • 15 Pages • 10.4 MB</p>
+                <div className={`px-6 py-2.5 rounded-lg font-medium transition-colors ${phase === 'drag' ? 'bg-brand-500 text-white' : 'bg-slate-700 text-slate-300'}`}>
+                   Simulate Processing
+                </div>
+             </div>
+          )}
+
+          {phase === 'process' && (
+             <div className="w-full max-w-md text-center animate-fade-in-up">
+                <div className="w-20 h-20 bg-brand-900/50 rounded-full flex items-center justify-center mx-auto mb-6 relative">
+                   <div className="absolute inset-0 border-4 border-brand-500/30 rounded-full border-t-brand-500 animate-spin"></div>
+                   <RefreshCw className="text-brand-400 w-8 h-8 animate-pulse" />
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-2">AI is processing...</h3>
+                <p className="text-brand-300 mb-8 font-medium">
+                   {progress < 30 ? 'Analyzing 15 pages...' : progress < 60 ? 'Splitting into RTO forms...' : 'Compressing to <400KB...'}
+                </p>
+                <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                   <div className="h-full bg-brand-500 transition-all duration-100" style={{ width: `${progress}%` }}></div>
+                </div>
+             </div>
+          )}
+
+          {phase === 'done' && (
+             <div className="w-full flex flex-col animate-fade-in-up">
+                <div className="flex items-center justify-between mb-6">
+                   <div>
+                      <h3 className="text-xl md:text-2xl font-bold text-white flex items-center gap-2">
+                         <CheckCircle className="text-emerald-500" /> Processing Complete
+                      </h3>
+                      <p className="text-slate-400 mt-1 text-sm">15 pages split into 5 compliant documents in 4.2s</p>
+                   </div>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 w-full content-start">
+                   {[
+                     { name: 'Form_20.pdf', size: '280 KB', icon: <FileText className="text-blue-400"/> },
+                     { name: 'Form_21.pdf', size: '150 KB', icon: <FileText className="text-blue-400"/> },
+                     { name: 'Form_22.pdf', size: '190 KB', icon: <FileText className="text-blue-400"/> },
+                     { name: 'Affidavit.pdf', size: '310 KB', icon: <FileText className="text-purple-400"/> },
+                     { name: 'Photos_Front_Chassis.pdf', size: '380 KB', icon: <ImageIcon className="text-emerald-400"/> },
+                   ].map((file, i) => (
+                      <div key={i} className="bg-slate-800/80 border border-slate-700 rounded-xl p-4 flex items-start gap-3 hover:border-slate-600 transition-colors group/file cursor-default animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
+                         <div className="mt-1 bg-slate-900 p-2 rounded-lg group-hover/file:scale-110 transition-transform shrink-0">{file.icon}</div>
+                         <div className="min-w-0 flex-1">
+                            <p className="text-sm font-bold text-slate-200 truncate pr-2">{file.name}</p>
+                            <div className="flex items-center gap-2 mt-1.5">
+                               <span className="text-xs text-emerald-400 font-mono bg-emerald-400/10 px-1.5 py-0.5 rounded shrink-0">{file.size}</span>
+                               <span className="text-[9px] text-slate-400 uppercase tracking-wider font-semibold shrink-0">Compliant</span>
+                            </div>
+                         </div>
+                      </div>
+                   ))}
+                </div>
+             </div>
+          )}
         </div>
       </div>
 
-      <div className="mt-8 text-center relative z-10">
-         <p 
-           className="inline-flex items-center text-slate-600 font-bold text-sm animate-pulse-slow cursor-pointer hover:text-brand-600 transition-colors bg-white/80 px-5 py-2 rounded-full backdrop-blur-sm border border-slate-200 shadow-sm"
-           onClick={handleFix}
-         >
-           <Maximize size={16} className="mr-2" />
-           {isFixed ? "Click to reset simulation" : "Click card above to simulate fix"}
-         </p>
-      </div>
+      {/* Decorative Glow */}
+      <div className="absolute -inset-4 bg-brand-500/20 blur-3xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
     </div>
   );
 };
+
+
 
 const BrandLogos = () => {
   return (
@@ -466,77 +648,201 @@ const TimeSavingsCalculator = () => {
   const autoTotalHours = Math.round((annualFiles * autoTimePerFile) / 60);
   const savedHours = manualTotalHours - autoTotalHours;
   const savedDays = Math.round(savedHours / 8);
+  
+  // Penalty logic: Assume 15% of manual files are reverted, each incurring a ₹300/week penalty
+  const estimatedReverts = Math.round(annualFiles * 0.15);
+  const penaltySaved = estimatedReverts * 300;
 
   return (
     <section id="calculator" className="py-12 bg-white">
-      <div className="container mx-auto px-4 max-w-3xl">
-        <div className="bg-[#0B1120] rounded-2xl p-5 md:p-6 text-white shadow-2xl ring-1 ring-slate-800 flex flex-col md:flex-row gap-6 items-center relative overflow-hidden">
-          <div className="flex-1 relative z-10 w-full">
-            <div className="inline-flex items-center space-x-2 bg-brand-900/40 border border-brand-500/30 rounded-full px-2.5 py-0.5 mb-3">
-              <Calculator size={12} className="text-brand-400" />
-              <span className="text-[9px] font-bold text-brand-300 uppercase tracking-widest">ROI Calculator</span>
-            </div>
-            <h2 className="text-xl md:text-2xl font-bold mb-2">Calculate your time savings.</h2>
-            <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-              Manual RTO work kills productivity. Move the slider to see how much time RTO Buddy can give back.
-            </p>
-            <div className="mb-6">
-              <div className="flex justify-between items-end mb-3">
-                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Monthly Vehicle Sales</label>
-                <span className="text-3xl font-bold text-white tracking-tight">{monthlySales}</span>
+      <div className="container mx-auto px-4 max-w-4xl">
+        <div className="bg-[#0B1120] rounded-2xl p-6 md:p-10 text-white shadow-2xl ring-1 ring-slate-800">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+            {/* Left side */}
+            <div className="w-full">
+              <div className="inline-flex items-center space-x-2 bg-brand-900/40 border border-brand-500/30 rounded-full px-2.5 py-0.5 mb-4">
+                <Calculator size={12} className="text-brand-400" />
+                <span className="text-[9px] font-bold text-brand-300 uppercase tracking-widest">ROI Calculator</span>
               </div>
-              <input 
-                type="range" 
-                min="10" 
-                max="500" 
-                step="10" 
-                value={monthlySales} 
-                onChange={(e) => setMonthlySales(parseInt(e.target.value))}
-                className="w-full h-2 bg-slate-700 rounded-full appearance-none cursor-pointer accent-white hover:accent-brand-200 transition-all"
-              />
-              <div className="flex justify-between text-[9px] text-slate-500 mt-2 font-mono uppercase tracking-wider">
-                <span>10</span>
-                <span>250</span>
-                <span>500+</span>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Calculate your savings.</h2>
+              <p className="text-slate-400 text-sm md:text-base mb-8 leading-relaxed">
+                Manual RTO work kills productivity and incurs penalties. Move the slider to see how much time and money RTO Buddy can save you.
+              </p>
+              <div className="mb-6">
+                <div className="flex justify-between items-end mb-4">
+                  <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">Monthly Vehicle Sales</label>
+                  <span className="text-4xl font-bold text-white tracking-tight">{monthlySales}</span>
+                </div>
+                <input 
+                  type="range" 
+                  min="10" 
+                  max="500" 
+                  step="10" 
+                  value={monthlySales} 
+                  onChange={(e) => setMonthlySales(parseInt(e.target.value))}
+                  className="w-full h-2.5 bg-slate-700 rounded-full appearance-none cursor-pointer accent-white hover:accent-brand-200 transition-all"
+                />
+                <div className="flex justify-between text-[10px] text-slate-500 mt-3 font-mono uppercase tracking-wider">
+                  <span>10</span>
+                  <span>250</span>
+                  <span>500+</span>
+                </div>
+              </div>
+              <div className="flex items-center text-xs text-slate-400 gap-2">
+                 <RefreshCw size={12} className="text-slate-500" />
+                 <span>Calculated based on <strong className="text-slate-300">{annualFiles.toLocaleString()} files/year</strong></span>
               </div>
             </div>
-            <div className="flex items-center text-xs text-slate-400 gap-2">
-               <RefreshCw size={12} className="text-slate-500" />
-               <span>Calculated based on <strong className="text-slate-300">{annualFiles.toLocaleString()} files/year</strong></span>
-            </div>
-          </div>
-          <div className="flex-1 w-full md:max-w-[16rem] lg:max-w-[18rem]">
-            <div className="bg-[#121a2b] border border-slate-800 rounded-xl p-5 shadow-xl relative overflow-hidden">
-               <div className="grid grid-cols-2 gap-3 pb-4 mb-4 border-b border-slate-800/80">
-                  <div>
-                     <p className="text-[9px] text-slate-500 uppercase font-bold tracking-widest mb-1">Manual Process</p>
-                     <p className="text-xl font-bold text-red-400">{manualTotalHours} <span className="text-[10px] font-medium text-slate-500">hrs/yr</span></p>
-                     <p className="text-[9px] text-slate-600 mt-0.5">~22 mins/file</p>
-                  </div>
-                  <div>
-                     <p className="text-[9px] text-slate-500 uppercase font-bold tracking-widest mb-1">RTO Buddy</p>
-                     <p className="text-xl font-bold text-emerald-400">{autoTotalHours} <span className="text-[10px] font-medium text-slate-500">hrs/yr</span></p>
-                     <p className="text-[9px] text-slate-600 mt-0.5">~2 mins/file</p>
-                  </div>
-               </div>
-               <div className="text-center">
-                  <p className="text-slate-300 font-medium mb-1 text-xs">Total Time Saved Annually</p>
-                  <div className="flex items-baseline justify-center gap-1.5 mb-4">
-                     <span className="text-4xl font-extrabold text-brand-400 tracking-tight">{savedHours}</span>
-                     <span className="text-lg font-bold text-brand-600">hrs</span>
-                  </div>
-                  <div className="inline-flex items-center bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-full text-[10px] md:text-xs font-semibold animate-pulse-slow">
-                     <CheckCircle size={12} className="mr-1.5" />
-                     Equal to {savedDays} work days saved!
-                  </div>
-               </div>
+
+            {/* Right side */}
+            <div className="w-full max-w-md mx-auto lg:max-w-none">
+              <div className="bg-[#121a2b] border border-slate-800 rounded-2xl p-6 shadow-xl relative overflow-hidden">
+                 <div className="grid grid-cols-2 gap-4 pb-5 mb-5 border-b border-slate-800/80">
+                    <div>
+                       <p className="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-1">Manual Process</p>
+                       <p className="text-2xl font-bold text-red-400">{manualTotalHours} <span className="text-xs font-medium text-slate-500">hrs/yr</span></p>
+                       <p className="text-[10px] text-slate-600 mt-1">~22 mins/file</p>
+                    </div>
+                    <div>
+                       <p className="text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-1">RTO Buddy</p>
+                       <p className="text-2xl font-bold text-emerald-400">{autoTotalHours} <span className="text-xs font-medium text-slate-500">hrs/yr</span></p>
+                       <p className="text-[10px] text-slate-600 mt-1">~2 mins/file</p>
+                    </div>
+                 </div>
+                 <div className="text-center mb-5">
+                    <p className="text-slate-300 font-medium mb-2 text-sm">Total Time Saved Annually</p>
+                    <div className="flex items-baseline justify-center gap-2 mb-3">
+                       <span className="text-5xl font-extrabold text-brand-400 tracking-tight">{savedHours}</span>
+                       <span className="text-xl font-bold text-brand-600">hrs</span>
+                    </div>
+                    <div className="inline-flex items-center bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-full text-xs font-semibold animate-pulse-slow">
+                       <CheckCircle size={14} className="mr-1.5" />
+                       Equal to {savedDays} work days saved!
+                    </div>
+                 </div>
+                 <div className="text-center pt-5 border-t border-slate-800/80">
+                    <p className="text-slate-300 font-medium mb-2 text-sm">Estimated Penalty Saved</p>
+                    <div className="flex items-baseline justify-center gap-1.5 mb-1">
+                       <span className="text-3xl font-extrabold text-emerald-400 tracking-tight">₹{penaltySaved.toLocaleString()}</span>
+                       <span className="text-base font-bold text-emerald-600">/yr</span>
+                    </div>
+                    <p className="text-[10px] text-slate-500 mt-1">Assuming 15% revert rate at ₹300/week penalty</p>
+                 </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
+
+const ProductTourGallery = () => {
+  return (
+    <section className="py-24 bg-[#0B1120] border-t border-slate-800 overflow-hidden">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">Inside RTO Buddy 2.1</h2>
+          <p className="text-lg text-slate-400 leading-relaxed">
+            Take a closer look at the powerful new features and refined interface designed to accelerate your workflow.
+          </p>
+        </div>
+
+        <div className="space-y-24 md:space-y-32">
+          {/* Feature 1: Homescreen */}
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <div className="w-full lg:w-5/12 order-2 lg:order-1">
+              <div className="inline-flex items-center space-x-2 bg-brand-500/10 text-brand-400 px-3 py-1 rounded-full text-xs font-semibold mb-6">
+                <LayoutDashboard size={14} />
+                <span>Core Interface</span>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">Intuitive Homescreen</h3>
+              <p className="text-lg text-slate-400 mb-8 leading-relaxed">
+                A clean, modern interface designed for speed and clarity. Everything you need is just one click away, ensuring your team spends less time navigating and more time processing.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3 text-slate-300">
+                  <CheckCircle className="text-brand-500 shrink-0 mt-1" size={18} />
+                  <span>Quick access to recent uploads and status</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-300">
+                  <CheckCircle className="text-brand-500 shrink-0 mt-1" size={18} />
+                  <span>Real-time processing metrics at a glance</span>
+                </li>
+              </ul>
+            </div>
+            <div className="w-full lg:w-7/12 order-1 lg:order-2 relative group">
+              <div className="absolute -inset-4 bg-brand-500/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 bg-slate-900">
+                <img src="https://chutney.pythonanywhere.com/static/homescreen_2.1.jpeg" alt="Homescreen" className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+              </div>
+            </div>
+          </div>
+
+          {/* Feature 2: Presets */}
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <div className="w-full lg:w-7/12 relative group">
+              <div className="absolute -inset-4 bg-purple-500/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 bg-slate-900">
+                <img src="https://chutney.pythonanywhere.com/static/preset_2.1.jpeg" alt="Presets" className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+              </div>
+            </div>
+            <div className="w-full lg:w-5/12">
+              <div className="inline-flex items-center space-x-2 bg-purple-500/10 text-purple-400 px-3 py-1 rounded-full text-xs font-semibold mb-6">
+                <Zap size={14} />
+                <span>Automation</span>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">Lightning-Fast Presets</h3>
+              <p className="text-lg text-slate-400 mb-8 leading-relaxed">
+                Select and apply document configurations instantly from the dropdown. Switch between different RTO rulesets without missing a beat.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3 text-slate-300">
+                  <CheckCircle className="text-purple-500 shrink-0 mt-1" size={18} />
+                  <span>Apply complex rules with a single click</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-300">
+                  <CheckCircle className="text-purple-500 shrink-0 mt-1" size={18} />
+                  <span>Eliminate manual configuration errors</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Feature 3: Profile */}
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            <div className="w-full lg:w-5/12 order-2 lg:order-1">
+              <div className="inline-flex items-center space-x-2 bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full text-xs font-semibold mb-6">
+                <UserCircle size={14} />
+                <span>Management</span>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">Profile & Support Hub</h3>
+              <p className="text-lg text-slate-400 mb-8 leading-relaxed">
+                Manage your dealership details, track your usage, and access dedicated support directly from your personalized dashboard.
+              </p>
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3 text-slate-300">
+                  <CheckCircle className="text-emerald-500 shrink-0 mt-1" size={18} />
+                  <span>Centralized account management</span>
+                </li>
+                <li className="flex items-start gap-3 text-slate-300">
+                  <CheckCircle className="text-emerald-500 shrink-0 mt-1" size={18} />
+                  <span>Direct line to priority customer support</span>
+                </li>
+              </ul>
+            </div>
+            <div className="w-full lg:w-7/12 order-1 lg:order-2 relative group">
+              <div className="absolute -inset-4 bg-emerald-500/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 bg-slate-900">
+                <img src="https://chutney.pythonanywhere.com/static/profile_2.1.jpeg" alt="Profile" className="w-full h-auto object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const WorkflowSection = () => {
   const steps = [
@@ -564,7 +870,7 @@ const WorkflowSection = () => {
 
   return (
     <section id="workflow" className="py-20 bg-slate-50 border-y border-slate-200">
-       <div className="container mx-auto px-4">
+       <div className="container mx-auto max-w-7xl px-4">
           <div className="text-center mb-12">
              <h2 className="text-3xl font-bold text-slate-900">Simple 4-Step Workflow</h2>
              <p className="text-slate-600 mt-2">No complex training needed.</p>
@@ -612,7 +918,7 @@ const VideoShowcase = () => {
         <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-purple-600 blur-[100px]"></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto max-w-7xl px-4 relative z-10">
         <div className="text-center mb-16">
            <div className="inline-flex items-center space-x-2 bg-brand-500/20 border border-brand-500/30 text-brand-300 rounded-full px-3 py-1 mb-6">
               <Play size={12} fill="currentColor" />
@@ -624,9 +930,9 @@ const VideoShowcase = () => {
            </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 max-w-7xl mx-auto">
+        <div className="max-w-4xl mx-auto">
             {/* Main YouTube Video (Horizontal) */}
-            <div className="lg:col-span-8 space-y-4">
+            <div className="space-y-4">
                <div className="relative aspect-video bg-slate-800 rounded-3xl overflow-hidden shadow-2xl border border-slate-700 group ring-1 ring-slate-800/50">
                   {playingVideo !== 'main' ? (
                     <div 
@@ -634,9 +940,10 @@ const VideoShowcase = () => {
                       onClick={() => setPlayingVideo('main')}
                     >
                       <img 
-                        src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop" 
+                        src="https://chutney.pythonanywhere.com/static/homescreen_2.1.jpeg" 
                         alt="Walkthrough Thumbnail" 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        referrerPolicy="no-referrer"
                       />
                       <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors flex flex-col items-center justify-center">
                          <div className="w-20 h-20 bg-brand-600 rounded-full flex items-center justify-center shadow-lg shadow-brand-500/50 mb-4 animate-pulse-slow group-hover:scale-110 transition-transform">
@@ -646,68 +953,17 @@ const VideoShowcase = () => {
                       </div>
                     </div>
                   ) : (
-                    <iframe 
-                      width="100%" 
-                      height="100%" 
-                      src="https://www.youtube.com/embed/uZNl3o6Kgbk?si=4UmFoXlyfHEJJK-Y&autoplay=1" 
-                      title="RTO Buddy Walkthrough" 
-                      frameBorder="0" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                      referrerPolicy="strict-origin-when-cross-origin" 
-                      allowFullScreen
-                      className="absolute inset-0 w-full h-full"
-                    ></iframe>
+                    <video 
+                      src="https://chutney.pythonanywhere.com/static/tutorial.mp4" 
+                      controls
+                      autoPlay
+                      className="absolute inset-0 w-full h-full bg-black"
+                    />
                   )}
                </div>
-               <div className="pl-2">
+               <div className="pl-2 text-center">
                   <h3 className="text-2xl font-bold text-white tracking-tight">Comprehensive Dashboard Demo</h3>
                   <p className="text-slate-400 mt-2 leading-relaxed">A detailed tour of the RTO Buddy interface. See how we process files in bulk and organize everything into compliant folders automatically.</p>
-               </div>
-            </div>
-
-            {/* Second YouTube Video (Portrait / Pitch) */}
-            <div className="lg:col-span-4 space-y-4">
-               <div className="relative aspect-[9/16] bg-slate-800 rounded-3xl overflow-hidden shadow-2xl border border-slate-700 group ring-1 ring-slate-800/50 lg:h-full lg:aspect-auto min-h-[500px]">
-                  {playingVideo !== 'pitch' ? (
-                    <div 
-                      className="absolute inset-0 cursor-pointer group"
-                      onClick={() => setPlayingVideo('pitch')}
-                    >
-                      <img 
-                        src="https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=800&auto=format&fit=crop" 
-                        className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300" 
-                        alt="Product Pitch Thumbnail" 
-                      />
-                      <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-black/80 via-black/20 to-transparent">
-                         <div className="w-16 h-16 bg-brand-600 rounded-full flex items-center justify-center shadow-lg shadow-brand-500/50 mb-4 group-hover:scale-110 transition-transform">
-                            <Play size={24} className="text-white ml-1" fill="currentColor" />
-                         </div>
-                         <div className="text-center px-6">
-                            <h4 className="font-bold text-xl leading-tight text-white mb-2">Product Pitch</h4>
-                            <div className="flex items-center justify-center space-x-2 text-xs text-brand-300 font-bold tracking-widest uppercase">
-                               <span className="bg-red-600 px-2 py-0.5 rounded text-white text-[10px]">Shorts</span>
-                               <span>• why dealers switch</span>
-                            </div>
-                         </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <iframe 
-                      width="100%" 
-                      height="100%" 
-                      src="https://www.youtube.com/embed/RXEKRFgIBEU?si=vf6_c-3ymv_I5c_h&autoplay=1" 
-                      title="RTO Buddy Product Pitch" 
-                      frameBorder="0" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                      referrerPolicy="strict-origin-when-cross-origin" 
-                      allowFullScreen
-                      className="absolute inset-0 w-full h-full"
-                    ></iframe>
-                  )}
-               </div>
-               <div className="lg:hidden pl-2 pb-4">
-                   <h3 className="text-xl font-bold text-white">The Dealer's Advantage</h3>
-                   <p className="text-slate-400 mt-2 text-sm leading-relaxed">Quickly understand the value proposition for high-volume automobile dealerships.</p>
                </div>
             </div>
         </div>
@@ -746,7 +1002,7 @@ const TestimonialsSection = () => {
 
   return (
     <section id="testimonials" className="py-20 bg-brand-50/50 overflow-hidden">
-      <div className="container mx-auto px-4 mb-10 text-center">
+      <div className="container mx-auto max-w-7xl px-4 mb-10 text-center">
         <h2 className="text-3xl font-bold text-slate-900 mb-4">Dealers Love RTO Buddy</h2>
         <p className="text-lg text-slate-600">Don't just take our word for it.</p>
       </div>
@@ -1134,12 +1390,18 @@ const AboutPage = ({ onBack }: { onBack: () => void }) => {
       title: "Public Release",
       desc: "RTO Buddy v2.0 goes live. Battle-tested, reliable, and ready for any dealership in India.",
       icon: <Rocket size={20} />
+    },
+    {
+      year: "Current",
+      title: "Version 2.1 Update",
+      desc: "Our most powerful update yet. Introducing advanced analytics, precision splicing, and lightning-fast presets.",
+      icon: <Zap size={20} className="text-brand-500" />
     }
   ];
 
   return (
     <div className="pt-32 pb-20 bg-slate-50 min-h-screen">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <button onClick={onBack} className="group flex items-center text-sm font-semibold text-slate-500 hover:text-brand-600 mb-8 transition-colors">
           <div className="bg-white border border-slate-200 p-2 rounded-full mr-3 shadow-sm group-hover:shadow-md transition-all">
             <ArrowLeft size={16} />
@@ -1435,65 +1697,66 @@ const App = () => {
   return (
     <>
       {loading && <LoadingScreen />}
-      <SpeedInsights />
+      <BreakingNewsTicker onNavigate={handleNavigate} />
       <div className={`min-h-screen bg-slate-50 selection:bg-brand-100 selection:text-brand-900 relative ${loading ? 'opacity-0' : 'opacity-100 transition-opacity duration-700'}`}>
         <Header currentPage={currentPage} onNavigate={handleNavigate} />
         <main>
           {currentPage === 'home' ? (
             <>
-              <section id="hero" className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+              <section id="hero" className="relative pt-40 pb-20 lg:pt-56 lg:pb-32 overflow-hidden">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full z-0 pointer-events-none">
                    <div className="absolute top-20 left-10 w-72 h-72 bg-brand-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
                    <div className="absolute top-20 right-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
                    <div className="absolute -bottom-8 left-1/3 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
                 </div>
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
                   <div className="grid lg:grid-cols-2 gap-16 items-center">
                     <div className="max-w-2xl">
                       <div className="inline-flex items-center space-x-2 bg-white border border-slate-200 rounded-full px-3 py-1 mb-6 shadow-sm">
-                        <span className="flex h-2 w-2 rounded-full bg-brand-500"></span>
-                        <span className="text-xs font-semibold text-slate-600 uppercase tracking-wide">v2.0 Now Live for All Dealers</span>
+                        <span className="flex h-2 w-2 rounded-full bg-brand-500 animate-pulse"></span>
+                        <span className="text-xs font-semibold text-slate-600 uppercase tracking-wide">v2.1 Now Live: Zero Reverts, Zero Fines</span>
                       </div>
-                      <h1 className="text-4xl lg:text-6xl font-extrabold text-slate-900 leading-[1.15] tracking-tight mb-6">
-                        Seamless RTO <br />
-                        <span className="text-brand-600">Document Management</span>
+                      <h1 className="text-4xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] tracking-tight mb-6">
+                        The Future of <br />
+                        <span className="text-brand-600">RTO Compliance.</span>
                       </h1>
-                      <p className="text-lg text-slate-600 mb-8 leading-relaxed font-medium">
-                        Stop struggling with Vaahan portal rejections. RTO Buddy auto-resizes, splits, and formats your documents in seconds. Zero errors, zero penalties.
+                      <p className="text-xl text-slate-600 mb-10 leading-relaxed font-medium">
+                        Process RTO-ready documents in just 4 seconds with our most powerful update yet. Trusted by India's top automobile dealers.
                       </p>
-                      <div className="flex flex-col sm:flex-row items-center gap-4">
-                        <button onClick={() => handleNavigate('contact', 'top')} className="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-xl font-bold shadow-xl shadow-brand-500/20 transition-all hover:-translate-y-1 flex items-center justify-center">
-                          Start Free Trial <ArrowRight className="ml-2" size={20} />
+                      <div className="flex flex-col sm:flex-row items-center gap-4 mb-12">
+                        <button onClick={() => handleNavigate('contact', 'top')} className="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white px-10 py-5 rounded-2xl font-bold shadow-2xl shadow-brand-500/30 transition-all hover:-translate-y-1 flex items-center justify-center text-lg">
+                          Get Started Now <ArrowRight className="ml-2" size={22} />
                         </button>
-                        <button onClick={() => handleNavigate('home', 'calculator')} className="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-8 py-4 rounded-xl font-bold transition-all flex items-center justify-center">
-                          <Calculator className="mr-2 text-slate-500" size={16} /> Calculate Savings
+                        <button onClick={() => handleNavigate('home', 'videos')} className="w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 px-10 py-5 rounded-2xl font-bold transition-all flex items-center justify-center text-lg">
+                          <Play className="mr-2 text-brand-600" size={18} fill="currentColor" /> Watch Demo
                         </button>
                       </div>
-                      <div className="mt-10 grid grid-cols-3 gap-6 border-t border-slate-200/60 pt-8">
+                      <div className="grid grid-cols-3 gap-8 border-t border-slate-200/60 pt-10">
                         <div>
                           <h3 className="text-3xl font-bold text-slate-900">200K+</h3>
-                          <p className="text-sm text-slate-500 font-medium mt-1">Documents Processed</p>
+                          <p className="text-sm text-slate-500 font-bold uppercase tracking-wider mt-1">Processed</p>
                         </div>
                         <div>
                           <h3 className="text-3xl font-bold text-slate-900">0%</h3>
-                          <p className="text-sm text-slate-500 font-medium mt-1">Rejection Rate</p>
+                          <p className="text-sm text-slate-500 font-bold uppercase tracking-wider mt-1">Rejections</p>
                         </div>
                         <div>
-                          <h3 className="text-3xl font-bold text-slate-900">75%</h3>
-                          <p className="text-sm text-slate-500 font-medium mt-1">Time Saved</p>
+                          <h3 className="text-3xl font-bold text-slate-900">4s</h3>
+                          <p className="text-sm text-slate-500 font-bold uppercase tracking-wider mt-1">Per File</p>
                         </div>
                       </div>
                     </div>
                     <div className="relative">
-                      <InteractiveErrorCard />
+                      <DashboardSpotlight />
                     </div>
                   </div>
                 </div>
               </section>
               <BrandLogos />
+              <PresetShowcase />
               <TimeSavingsCalculator />
               <section id="features" className="py-24 bg-white relative">
-                <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                   <div className="text-center max-w-3xl mx-auto mb-12 md:mb-20">
                     <h2 className="text-3xl font-bold text-slate-900 mb-4">Built for Every Dealership Type</h2>
                     <p className="text-lg text-slate-600">
@@ -1502,12 +1765,12 @@ const App = () => {
                   </div>
                   <div className="flex overflow-x-auto pb-8 gap-4 snap-x snap-mandatory -mx-4 px-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-8 md:overflow-visible md:pb-0 md:mx-0 md:px-0 scrollbar-hide">
                     {[
-                      { icon: <Maximize size={32} className="text-brand-600" />, title: "Auto-Fixes Size (400KB)", desc: "Automatically compresses files to meet the RTO's strict 400KB limit without losing readability." },
-                      { icon: <FolderPlus size={32} className="text-brand-600" />, title: "Smart Folder Creation", desc: "Just enter a customer name. RTO Buddy creates a desktop folder with all files named correctly." },
-                      { icon: <Clock size={32} className="text-brand-600" />, title: "Saves 75% Staff Time", desc: "Turn a 20-minute manual task into a 3-minute automatic process. Free up your staff." },
-                      { icon: <Shield size={32} className="text-brand-600" />, title: "Zero Rejections", desc: "Our algorithms ensure every document is legible and formatted exactly how Vaahan wants it." },
-                      { icon: <ImageIcon size={32} className="text-brand-600" />, title: "Photo to PDF", desc: "Instantly convert vehicle photos (Front, Side, Chassis) into compliant PDFs." },
-                      { icon: <Smartphone size={32} className="text-brand-600" />, title: "App Compatible", desc: "Works seamlessly with scans from Adobe Scan, CamScanner, or any high-speed office scanner." }
+                      { icon: <Settings2 size={32} className="text-brand-600" />, title: "Lightning-Fast Presets", desc: "Instantly access your most-used document configurations with our new, intuitive drop-down preset menu." },
+                      { icon: <ImageIcon size={32} className="text-brand-600" />, title: "Advanced Photo Management", desc: "Total control over vehicle images. Add up to 6 photos, customize tiles, and edit names directly in-app." },
+                      { icon: <Scissors size={32} className="text-brand-600" />, title: "Precision Doc Splicing", desc: "Easily add new documents to presets by defining exact start and end pages, cutting out unnecessary clutter." },
+                      { icon: <LayoutDashboard size={32} className="text-brand-600" />, title: "All-New Analytics", desc: "Track efficiency in real-time: total files, pages scanned, time saved, and 7-day activity breakdown." },
+                      { icon: <UserCircle size={32} className="text-brand-600" />, title: "Profile & Support Hub", desc: "Manage dealership data seamlessly with the new profile section and direct customer support access." },
+                      { icon: <Maximize size={32} className="text-brand-600" />, title: "Auto-Fixes Size (400KB)", desc: "Automatically compresses files to meet the RTO's strict 400KB limit without losing readability." }
                     ].map((feature, i) => (
                       <div key={i} className="snap-center shrink-0 w-[85vw] sm:w-80 md:w-auto p-8 rounded-2xl bg-white/50 backdrop-blur-sm border border-slate-100 shadow-lg shadow-slate-200/50 hover:border-brand-200 hover:shadow-xl hover:shadow-brand-500/5 transition-all duration-300 group h-full">
                         <div className="w-14 h-14 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -1522,6 +1785,7 @@ const App = () => {
                   </div>
                 </div>
               </section>
+              <ProductTourGallery />
               <WorkflowSection />
               <VideoShowcase />
               <TestimonialsSection />
@@ -1558,7 +1822,7 @@ const App = () => {
           <WhatsAppButton />
         </main>
         <footer className="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-4 gap-12">
               <div className="col-span-2">
                 <div className="flex items-center space-x-2 mb-6 text-white">

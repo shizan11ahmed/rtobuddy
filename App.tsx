@@ -30,6 +30,8 @@ import {
   Users,
   Award,
   ChevronRight,
+  ChevronDown,
+  ChevronUp,
   ScanLine,
   FileCheck,
   Mail,
@@ -46,6 +48,7 @@ import {
   HelpCircle,
   Scissors,
   Settings2,
+  Plus,
   BarChartHorizontal
 } from 'lucide-react';
 
@@ -342,84 +345,80 @@ const PresetShowcase = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12 md:mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-12 md:mb-16">
               {presetFeatures.map((feature, i) => (
-                <div key={i} className="p-4 md:p-6 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white hover:shadow-lg transition-all group text-center md:text-left">
-                  <div className={`w-10 h-10 md:w-12 md:h-12 mx-auto md:mx-0 ${feature.bg} ${feature.color} rounded-xl flex items-center justify-center mb-3 md:mb-5 group-hover:scale-110 transition-transform shadow-sm`}>
-                    {React.cloneElement(feature.icon as React.ReactElement, { size: 16 })}
+                <div key={i} className="p-4 md:p-6 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white hover:shadow-xl transition-all group flex items-center md:flex-col md:text-left text-left gap-3 md:gap-0">
+                  <div className={`w-10 h-10 md:w-12 md:h-12 ${feature.bg} ${feature.color} rounded-xl flex items-center justify-center mb-0 md:mb-5 group-hover:scale-110 transition-transform shadow-sm shrink-0`}>
+                    {React.cloneElement(feature.icon as React.ReactElement, { size: 18 })}
                   </div>
-                  <h3 className="text-xs md:text-base font-bold text-slate-900 mb-1 md:text-base">{feature.label}</h3>
-                  <p className="text-[10px] md:text-sm text-slate-500 leading-tight">{feature.desc}</p>
+                  <div className="min-w-0">
+                    <h3 className="text-sm md:text-base font-bold text-slate-900 mb-0.5 md:mb-1 truncate md:whitespace-normal">{feature.label}</h3>
+                    <p className="text-[11px] md:text-sm text-slate-500 leading-tight md:leading-normal">{feature.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
 
             <div className="bg-slate-900 rounded-2xl md:rounded-3xl p-0.5 md:p-1 shadow-2xl">
-              <div className="bg-[#0B1120] rounded-[14px] md:rounded-[22px] p-5 md:p-10 relative overflow-hidden">
+              <div className="bg-[#0B1120] rounded-[14px] md:rounded-[22px] p-4 md:p-10 relative overflow-hidden">
                 {/* Decorative background elements */}
-                <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
+                <div className="absolute top-0 right-0 p-8 opacity-5 pointer-events-none hidden md:block">
                   <Settings2 size={200} />
                 </div>
                 <div className="absolute -left-20 -bottom-20 w-64 h-64 bg-brand-500/10 blur-3xl rounded-full pointer-events-none"></div>
 
-                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
                   <div>
-                    <h3 className="text-2xl font-bold text-white mb-4">Build Your Own Rules</h3>
-                    <p className="text-slate-400 mb-8 leading-relaxed">
-                      Don't get stuck with rigid software. Our intuitive rule builder lets you define exactly which pages go into which forms, what to name them, and how to compress them.
+                    <h3 className="text-xl md:text-3xl font-bold text-white mb-3 md:mb-4">Build Your Own Rules</h3>
+                    <p className="text-xs md:text-lg text-slate-400 mb-6 md:mb-8 leading-relaxed">
+                      Don't get stuck with rigid software. Our intuitive rule builder lets you define exactly which pages go into which forms.
                     </p>
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-4 text-sm font-medium text-slate-300 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
-                        <CheckCircle size={16} className="text-emerald-400" />
+                    <div className="space-y-2 md:space-y-4">
+                      <div className="flex items-center gap-3 text-[11px] md:text-base font-medium text-slate-300 bg-slate-800/50 p-2.5 md:p-4 rounded-xl border border-slate-700/50">
+                        <CheckCircle size={14} className="text-emerald-400 shrink-0" />
                         <span>Combine multiple pages into one PDF</span>
                       </div>
-                      <div className="flex items-center gap-4 text-sm font-medium text-slate-300 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
-                        <CheckCircle size={16} className="text-emerald-400" />
+                      <div className="flex items-center gap-3 text-[11px] md:text-base font-medium text-slate-300 bg-slate-800/50 p-2.5 md:p-4 rounded-xl border border-slate-700/50">
+                        <CheckCircle size={14} className="text-emerald-400 shrink-0" />
                         <span>Extract specific pages (e.g., Page 4 & 7)</span>
-                      </div>
-                      <div className="flex items-center gap-4 text-sm font-medium text-slate-300 bg-slate-800/50 p-3 rounded-lg border border-slate-700/50">
-                        <CheckCircle size={16} className="text-emerald-400" />
-                        <span>Set custom compression targets per file</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-slate-800 border border-slate-700 rounded-xl p-4 md:p-5 shadow-2xl self-start lg:self-auto w-full max-w-md mx-auto lg:max-w-none">
+                  <div className="bg-slate-800/50 backdrop-blur-sm border border-slate-700 rounded-xl md:rounded-2xl p-3 md:p-6 shadow-2xl w-full max-w-full lg:max-w-none">
                     <div className="flex items-center justify-between mb-3 md:mb-4 pb-3 md:pb-4 border-b border-slate-700">
                       <div className="flex items-center gap-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"></div>
-                        <span className="text-[10px] font-bold text-slate-300 uppercase tracking-wider">Active Preset: MH-01 Custom</span>
+                        <span className="text-[9px] md:text-xs font-bold text-slate-300 uppercase tracking-widest">Preset: MH-01</span>
                       </div>
-                      <button className="text-[8px] md:text-[10px] bg-brand-600 hover:bg-brand-500 text-white px-2 md:px-3 py-1 md:py-1.5 rounded transition-colors font-bold uppercase tracking-wider">Save</button>
+                      <button className="text-[9px] bg-brand-600 text-white px-2 py-1 rounded-md font-bold uppercase tracking-wider">Save</button>
                     </div>
                     
                     <div className="space-y-2 md:space-y-3">
                       {/* Rule 1 */}
-                      <div className="bg-slate-900 border border-slate-700/50 rounded-lg p-2.5 md:p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 md:gap-3 group hover:border-brand-500/50 transition-colors cursor-pointer">
-                        <div className="flex items-center gap-2 md:gap-3">
-                          <div className="cursor-grab text-slate-600 group-hover:text-slate-400"><Menu size={12} /></div>
-                          <span className="text-xs md:text-sm font-bold text-slate-200">Form_20.pdf</span>
+                      <div className="bg-slate-900/80 border border-slate-700/50 rounded-lg md:rounded-xl p-2 md:p-3 flex items-center justify-between gap-2 group">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <Menu size={12} className="text-slate-600 shrink-0" />
+                          <span className="text-[10px] md:text-sm font-bold text-slate-200 truncate">Form_20.pdf</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[9px] md:text-xs text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700 whitespace-nowrap">Pages: 1, 2, 5</span>
-                          <span className="text-[9px] md:text-xs text-brand-400 bg-brand-500/10 px-1.5 py-0.5 rounded border border-brand-500/20 whitespace-nowrap">&lt; 300KB</span>
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <span className="text-[8px] md:text-xs text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">P: 1, 2, 5</span>
+                          <span className="text-[8px] md:text-xs text-brand-400 bg-brand-500/10 px-1.5 py-0.5 rounded border border-brand-500/20">300KB</span>
                         </div>
                       </div>
                       {/* Rule 2 */}
-                      <div className="bg-slate-900 border border-slate-700/50 rounded-lg p-2.5 md:p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 md:gap-3 group hover:border-brand-500/50 transition-colors cursor-pointer">
-                        <div className="flex items-center gap-2 md:gap-3">
-                          <div className="cursor-grab text-slate-600 group-hover:text-slate-400"><Menu size={12} /></div>
-                          <span className="text-xs md:text-sm font-bold text-slate-200">Address_Proof.pdf</span>
+                      <div className="bg-slate-900/80 border border-slate-700/50 rounded-lg md:rounded-xl p-2 md:p-3 flex items-center justify-between gap-2 group">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <Menu size={12} className="text-slate-600 shrink-0" />
+                          <span className="text-[10px] md:text-sm font-bold text-slate-200 truncate">Address.pdf</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <span className="text-[9px] md:text-xs text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700 whitespace-nowrap">Pages: 4</span>
-                          <span className="text-[9px] md:text-xs text-brand-400 bg-brand-500/10 px-1.5 py-0.5 rounded border border-brand-500/20 whitespace-nowrap">High Res</span>
+                        <div className="flex items-center gap-1.5 shrink-0">
+                          <span className="text-[8px] md:text-xs text-slate-400 bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700">P: 4</span>
+                          <span className="text-[8px] md:text-xs text-brand-400 bg-brand-500/10 px-1.5 py-0.5 rounded border border-brand-500/20">HD</span>
                         </div>
                       </div>
-                      {/* Add New Rule */}
-                      <div className="border-2 border-dashed border-slate-700 rounded-lg p-2 md:p-3 flex items-center justify-center gap-2 text-slate-500 hover:text-brand-400 hover:border-brand-500/50 hover:bg-brand-500/5 transition-all cursor-pointer">
-                        <span className="text-base md:text-lg leading-none">+</span>
-                        <span className="text-xs md:text-sm font-bold">Add Rule</span>
+                      <div className="border border-dashed border-slate-700 rounded-lg md:rounded-xl p-2 flex items-center justify-center gap-2 text-slate-500 text-[10px] md:text-sm font-bold">
+                        <Plus size={14} /> Add Rule
                       </div>
                     </div>
                   </div>
@@ -653,79 +652,96 @@ const TimeSavingsCalculator = () => {
   const penaltySaved = estimatedReverts * 300;
 
   return (
-    <section id="calculator" className="py-12 bg-white">
-      <div className="container mx-auto px-4 max-w-4xl">
-        <div className="bg-[#0B1120] rounded-2xl p-5 md:p-10 text-white shadow-2xl ring-1 ring-slate-800">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-            {/* Left side */}
-            <div className="w-full">
-              <div className="inline-flex items-center space-x-2 bg-brand-900/40 border border-brand-500/30 rounded-full px-2.5 py-0.5 mb-4">
-                <Calculator size={10} className="text-brand-400" />
-                <span className="text-[8px] md:text-[9px] font-bold text-brand-300 uppercase tracking-widest">ROI Calculator</span>
+    <section id="calculator" className="py-16 bg-white">
+      <div className="container mx-auto px-4 max-w-5xl">
+        <div className="bg-[#0B1120] rounded-[2rem] md:rounded-[3rem] p-5 md:p-12 text-white shadow-2xl ring-1 ring-slate-800 relative overflow-hidden">
+          {/* Background Glow */}
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-brand-500/10 blur-[100px] rounded-full pointer-events-none"></div>
+          
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-20 items-start">
+            {/* Left side: Inputs */}
+            <div className="w-full lg:w-1/2">
+              <div className="inline-flex items-center space-x-2 bg-brand-500/10 border border-brand-500/20 rounded-full px-3 py-1 mb-6">
+                <Calculator size={14} className="text-brand-400" />
+                <span className="text-[10px] font-bold text-brand-300 uppercase tracking-widest">ROI Calculator</span>
               </div>
-              <h2 className="text-xl md:text-3xl lg:text-4xl font-bold mb-3 md:mb-4">Calculate your savings.</h2>
-              <p className="text-slate-400 text-xs md:text-base mb-6 md:mb-8 leading-relaxed">
-                Manual RTO work kills productivity and incurs penalties. Move the slider to see how much time and money RTO Buddy can save you.
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6 tracking-tight">Calculate your savings.</h2>
+              <p className="text-slate-300 text-sm md:text-lg mb-6 md:mb-10 leading-relaxed">
+                Manual RTO work kills productivity. Move the slider to see how much time and money RTO Buddy can save you.
               </p>
-              <div className="mb-6">
-                <div className="flex justify-between items-end mb-3 md:mb-4">
-                  <label className="text-[10px] md:text-xs font-bold text-slate-400 uppercase tracking-widest">Monthly Vehicle Sales</label>
-                  <span className="text-3xl md:text-4xl font-bold text-white tracking-tight">{monthlySales}</span>
+              
+              <div className="bg-slate-800/40 rounded-[1.5rem] p-5 md:p-6 border border-slate-700/50">
+                <div className="flex justify-between items-end mb-6">
+                  <label className="text-xs font-bold text-slate-300 uppercase tracking-widest">Monthly Sales</label>
+                  <span className="text-4xl md:text-6xl font-bold text-white tracking-tight">{monthlySales}</span>
                 </div>
-                <input 
-                  type="range" 
-                  min="10" 
-                  max="500" 
-                  step="10" 
-                  value={monthlySales} 
-                  onChange={(e) => setMonthlySales(parseInt(e.target.value))}
-                  className="w-full h-1.5 md:h-2.5 bg-slate-700 rounded-full appearance-none cursor-pointer accent-white hover:accent-brand-200 transition-all"
-                />
-                <div className="flex justify-between text-[8px] md:text-[10px] text-slate-500 mt-2 md:mt-3 font-mono uppercase tracking-wider">
-                  <span>10</span>
-                  <span>250</span>
-                  <span>500+</span>
+                <div className="relative h-10 flex items-center">
+                  <input 
+                    type="range" 
+                    min="10" 
+                    max="500" 
+                    step="10" 
+                    value={monthlySales} 
+                    onChange={(e) => setMonthlySales(parseInt(e.target.value))}
+                    className="w-full h-2 bg-slate-700 rounded-full appearance-none cursor-pointer accent-white hover:accent-brand-400 transition-all"
+                  />
                 </div>
-              </div>
-              <div className="flex items-center text-[10px] md:text-xs text-slate-400 gap-2">
-                 <RefreshCw size={10} className="text-slate-500" />
-                 <span>Based on <strong className="text-slate-300">{annualFiles.toLocaleString()} files/year</strong></span>
+                <div className="flex justify-between text-[10px] text-slate-400 mt-2 font-mono">
+                  <span>10 UNITS</span>
+                  <span>250 UNITS</span>
+                  <span>500+ UNITS</span>
+                </div>
+
+                {/* Mini Stats Grid */}
+                <div className="grid grid-cols-2 gap-3 mt-6 pt-5 border-t border-slate-700/50">
+                  <div>
+                    <p className="text-[10px] text-slate-400 uppercase font-bold mb-1">Annual Files</p>
+                    <p className="text-lg md:text-xl font-bold text-white">{annualFiles.toLocaleString()}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-slate-400 uppercase font-bold mb-1">Time per file</p>
+                    <p className="text-lg md:text-xl font-bold text-white">22m <span className="text-xs text-slate-500 font-normal">vs</span> 2m</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Right side */}
-            <div className="w-full max-w-md mx-auto lg:max-w-none">
-              <div className="bg-[#121a2b] border border-slate-800 rounded-2xl p-4 md:p-6 shadow-xl relative overflow-hidden">
-                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 pb-4 md:pb-5 mb-4 md:mb-5 border-b border-slate-800/80">
-                    <div className="bg-slate-800/30 p-2.5 md:p-3 rounded-xl border border-slate-700/50">
-                       <p className="text-[8px] md:text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-1">Manual Process</p>
-                       <p className="text-xl md:text-2xl font-bold text-red-400">{manualTotalHours} <span className="text-[10px] md:text-xs font-medium text-slate-500">hrs/yr</span></p>
-                       <p className="text-[8px] md:text-[10px] text-slate-600 mt-0.5 md:mt-1">~22 mins/file</p>
+            {/* Right side: Results */}
+            <div className="w-full lg:w-1/2">
+              <div className="bg-slate-900/50 backdrop-blur-md border border-slate-800 rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-10 shadow-2xl ring-1 ring-white/5 flex flex-col gap-4">
+                 
+                 {/* Primary Result */}
+                 <div className="bg-brand-500/5 border border-brand-500/20 rounded-2xl p-6 md:p-8 text-center order-1">
+                    <p className="text-slate-300 font-medium mb-2 text-sm">Total Time Saved Annually</p>
+                    <div className="flex items-baseline justify-center gap-2 mb-3">
+                       <span className="text-5xl md:text-7xl font-extrabold text-brand-400 tracking-tighter">{savedHours}</span>
+                       <span className="text-lg md:text-xl font-bold text-brand-600">HOURS</span>
                     </div>
-                    <div className="bg-brand-500/5 p-2.5 md:p-3 rounded-xl border border-brand-500/20">
-                       <p className="text-[8px] md:text-[10px] text-slate-500 uppercase font-bold tracking-widest mb-1">RTO Buddy</p>
-                       <p className="text-xl md:text-2xl font-bold text-emerald-400">{autoTotalHours} <span className="text-[10px] md:text-xs font-medium text-slate-500">hrs/yr</span></p>
-                       <p className="text-[8px] md:text-[10px] text-slate-600 mt-0.5 md:mt-1">~2 mins/file</p>
-                    </div>
-                 </div>
-                 <div className="text-center mb-4 md:mb-5">
-                    <p className="text-slate-300 font-medium mb-1 md:mb-2 text-xs md:text-sm">Total Time Saved Annually</p>
-                    <div className="flex items-baseline justify-center gap-1.5 md:gap-2 mb-2 md:mb-3">
-                       <span className="text-4xl md:text-5xl font-extrabold text-brand-400 tracking-tight">{savedHours}</span>
-                       <span className="text-lg md:text-xl font-bold text-brand-600">hrs</span>
-                    </div>
-                    <div className="inline-flex items-center bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 px-2.5 py-1 rounded-full text-[10px] md:text-xs font-semibold animate-pulse-slow">
-                       <CheckCircle size={12} className="mr-1" />
-                       {savedDays} work days saved!
+                    <div className="inline-flex items-center bg-emerald-500/10 text-emerald-400 px-4 md:px-5 py-1 md:py-1.5 rounded-full text-[10px] md:text-xs font-bold border border-emerald-500/20">
+                       {savedDays} FULL WORK DAYS SAVED
                     </div>
                  </div>
-                 <div className="text-center pt-4 md:pt-5 border-t border-slate-800/80">
-                    <p className="text-slate-300 font-medium mb-1 md:mb-2 text-xs md:text-sm">Estimated Penalty Saved</p>
-                    <div className="flex items-baseline justify-center gap-1 mb-0.5 md:mb-1">
+
+                 {/* Comparison Grid */}
+                 <div className="grid grid-cols-2 gap-3 md:gap-4 order-2">
+                    <div className="bg-red-500/5 p-4 md:p-6 rounded-2xl border border-red-500/10 text-left">
+                       <p className="text-[10px] text-red-400 uppercase font-bold tracking-widest mb-2">Manual Process</p>
+                       <p className="text-2xl md:text-3xl font-bold text-white">{manualTotalHours} <span className="text-xs md:text-sm font-medium text-slate-400">hrs/yr</span></p>
+                    </div>
+                    <div className="bg-emerald-500/5 p-4 md:p-6 rounded-2xl border border-emerald-500/10 text-left">
+                       <p className="text-[10px] text-emerald-400 uppercase font-bold tracking-widest mb-2">RTO Buddy</p>
+                       <p className="text-2xl md:text-3xl font-bold text-white">{autoTotalHours} <span className="text-xs md:text-sm font-medium text-slate-400">hrs/yr</span></p>
+                    </div>
+                 </div>
+
+                 {/* Penalty Saved */}
+                 <div className="bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5 md:p-6 text-center order-3">
+                    <p className="text-slate-300 font-medium mb-2 text-sm">Estimated Penalty Saved</p>
+                    <div className="flex items-baseline justify-center gap-1">
                        <span className="text-2xl md:text-3xl font-extrabold text-emerald-400 tracking-tight">₹{penaltySaved.toLocaleString()}</span>
-                       <span className="text-sm md:text-base font-bold text-emerald-600">/yr</span>
+                       <span className="text-xs md:text-sm font-bold text-emerald-600">/ YEAR</span>
                     </div>
-                    <p className="text-[8px] md:text-[10px] text-slate-500 mt-0.5 md:mt-1">Assuming 15% revert rate</p>
+                    <p className="text-[10px] text-slate-400 mt-2">Based on 15% revert rate & ₹300 penalty/week</p>
                  </div>
               </div>
             </div>

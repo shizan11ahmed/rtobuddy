@@ -43,6 +43,8 @@ import {
   Rocket,
   Instagram,
   Linkedin,
+  Facebook,
+  Twitter,
   LayoutDashboard,
   UserCircle,
   HelpCircle,
@@ -1430,7 +1432,7 @@ const AboutPage = ({ onBack }: { onBack: () => void }) => {
                 <span className="text-xs font-bold uppercase tracking-wider">Our Journey</span>
              </div>
              <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
-               From v1.0 to v2.0: <br /><span className="text-brand-600">A Journey of Perfection</span>
+               From v1.0 to v2.1: <br /><span className="text-brand-600">A Journey of Perfection</span>
              </h1>
              <p className="text-slate-600 text-sm md:text-base leading-relaxed max-w-lg mx-auto">
                RTO Buddy didn't just appear overnight. It is the result of two years of relentless testing, feedback, and refinement in the real world.
@@ -1444,7 +1446,7 @@ const AboutPage = ({ onBack }: { onBack: () => void }) => {
                   <div className="inline-flex items-center gap-3 text-sm md:text-base font-mono text-brand-200 mb-2">
                      <span>v1.0 (Beta)</span>
                      <ArrowRight size={16} />
-                     <span className="font-bold text-white">v2.0 (Live)</span>
+                     <span className="font-bold text-white">v2.1 (Live)</span>
                   </div>
                   <h2 className="text-2xl md:text-3xl font-bold text-white">Market Accessible & Battle Tested</h2>
                </div>
@@ -1856,6 +1858,12 @@ const App = () => {
                   </a>
                   <a href="https://www.instagram.com/rtobuddy.in/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors cursor-pointer">
                     <Instagram size={20} />
+                  </a>
+                  <a href="https://x.com/rtobuddyindia" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors cursor-pointer">
+                    <Twitter size={20} />
+                  </a>
+                  <a href="https://www.facebook.com/profile.php?id=61584664454194" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-slate-800 rounded-full flex items-center justify-center hover:bg-brand-600 hover:text-white transition-colors cursor-pointer">
+                    <Facebook size={20} />
                   </a>
                 </div>
               </div>

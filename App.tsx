@@ -1102,6 +1102,21 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
 
       if (result.success) {
         setSubmitted(true);
+        
+        // Send lead event to Meta Conversions API via our serverless function
+        try {
+          await fetch("/api/lead", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              phone: formData.get("phone")
+            })
+          });
+        } catch (capiError) {
+          console.error("Failed to send CAPI event:", capiError);
+        }
       } else {
         alert("Something went wrong. Please try again.");
       }

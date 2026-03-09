@@ -1111,7 +1111,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              phone: formData.get("phone")
+              phone: formData.get("phone")?.toString() || ""
             })
           });
         } catch (capiError) {

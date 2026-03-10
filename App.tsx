@@ -51,7 +51,12 @@ import {
   Scissors,
   Settings2,
   Plus,
-  BarChartHorizontal
+  BarChartHorizontal,
+  XCircle,
+  Globe,
+  CheckCircle2,
+  ShieldCheck,
+  Lock
 } from 'lucide-react';
 
 // --- Assets & Helpers ---
@@ -1293,6 +1298,252 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
   );
 };
 
+// Blog & Resources Page Component
+const BlogPage = ({ onBack }: { onBack: () => void }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  return (
+    <div className="pt-32 pb-20 bg-slate-50 min-h-screen">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+        <button 
+          onClick={onBack} 
+          className="group flex items-center text-sm font-semibold text-slate-500 hover:text-brand-600 mb-8 transition-colors"
+        >
+          <div className="bg-white border border-slate-200 p-2 rounded-full mr-3 shadow-sm group-hover:shadow-md transition-all">
+            <ArrowLeft size={16} />
+          </div>
+          Back to Home
+        </button>
+
+        <article className="bg-white rounded-3xl shadow-xl border border-slate-100 p-8 md:p-12 prose prose-slate max-w-none">
+          <div className="mb-8">
+            <span className="inline-block py-1 px-3 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold tracking-wide uppercase mb-4">
+              Dealership Operations
+            </span>
+            <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 leading-tight">
+              Stop the ₹300 Weekly Fine: How RTO Buddy Processes 12+ Vaahan Documents in 4 Seconds
+            </h1>
+            <div className="flex items-center text-slate-500 text-sm font-medium">
+              <span>By Vyke Retail</span>
+              <span className="mx-2">•</span>
+              <span>5 min read</span>
+            </div>
+          </div>
+
+          <div className="bg-slate-900 rounded-3xl p-6 md:p-8 mb-10 shadow-2xl text-white relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-500 rounded-full blur-[100px] opacity-20 -mr-20 -mt-20"></div>
+            <div className="relative z-10">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                <h3 className="text-xl md:text-2xl font-bold flex items-center gap-3">
+                  <div className="bg-brand-500/20 p-2 rounded-lg">
+                    <Calculator className="text-brand-400 w-6 h-6" />
+                  </div>
+                  ROI & Time Savings Snapshot
+                </h3>
+                <span className="bg-brand-500/20 text-brand-300 text-xs font-bold px-3 py-1.5 rounded-full border border-brand-500/30 self-start sm:self-auto uppercase tracking-wider">
+                  RTO Buddy Impact
+                </span>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                <div className="bg-slate-800/80 backdrop-blur-sm p-5 md:p-6 rounded-2xl border border-slate-700/50">
+                  <div className="text-slate-400 text-sm font-medium mb-2">Time Per File</div>
+                  <div className="flex items-end gap-3">
+                    <span className="text-3xl font-bold text-red-400/60 line-through">10m</span>
+                    <span className="text-4xl md:text-5xl font-extrabold text-emerald-400">4s</span>
+                  </div>
+                </div>
+                
+                <div className="bg-slate-800/80 backdrop-blur-sm p-5 md:p-6 rounded-2xl border border-slate-700/50">
+                  <div className="text-slate-400 text-sm font-medium mb-2">Weekly Penalties</div>
+                  <div className="flex items-end gap-3">
+                    <span className="text-3xl font-bold text-red-400/60 line-through">₹300</span>
+                    <span className="text-4xl md:text-5xl font-extrabold text-emerald-400">₹0</span>
+                  </div>
+                </div>
+                
+                <div className="bg-gradient-to-br from-brand-600 to-brand-800 p-5 md:p-6 rounded-2xl border border-brand-500/50 shadow-inner relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-[50px] opacity-10"></div>
+                  <div className="relative z-10">
+                    <div className="text-brand-100 text-sm font-medium mb-2">Monthly Savings (100 files)</div>
+                    <div className="text-4xl md:text-5xl font-extrabold text-white mb-1">₹30,000+</div>
+                    <div className="text-brand-200 text-xs font-medium flex items-center gap-1">
+                      <Clock size={12} /> Plus 16 hours of labor saved
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-8 text-slate-600 leading-relaxed">
+            <p className="text-lg font-medium text-slate-800">
+              In the world of 2-wheeler and 4-wheeler dealerships—from Hero MotoCorp and Honda to Maruti Suzuki and Mahindra—time isn't just money. Time is a <strong>₹300 weekly penalty per file</strong>.
+            </p>
+
+            <p>
+              If your Vaahan Dashboard is full of "Pending" or "Reverted" status icons, you aren't just facing an administrative delay; you are facing a massive leak in your profit margins. <strong>RTO Buddy by Vyke Retail</strong> is the only offline tool designed to stop the RTO Revert cycle and clear your backlog instantly.
+            </p>
+
+            <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4">The "12-File" Nightmare: Why Your RTO Files Get Reverted</h2>
+            
+            <p>
+              The Vaahan Portal is notorious for strict upload requirements. A single registration requires a massive stack of documentation that must be perfectly formatted, compressed, and sequenced:
+            </p>
+
+            <ul className="list-disc pl-6 space-y-2 mb-6">
+              <li><strong>Form 20:</strong> 3 Pages (Application for Registration)</li>
+              <li><strong>Form 21:</strong> 1 Page (Sale Certificate)</li>
+              <li><strong>Form 22:</strong> 1 Page (Roadworthiness)</li>
+              <li><strong>The Rest:</strong> Insurance, Address Proof, Invoice, ID Proofs... (Total 8-9 PDF Files)</li>
+              <li><strong>The Photos:</strong> 3-4 High-res photos of the vehicle, chassis pencil print, and owner.</li>
+            </ul>
+
+            <div className="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-xl my-8">
+              <h3 className="text-red-800 font-bold mb-2">The Problem</h3>
+              <p className="text-red-700 m-0">
+                Using generic "Online PDF Converters" or "Image Resizers" takes minutes per file, leaks your customer data, and often produces blurry PDFs that the RTO inspector reverts immediately. Every revert adds another week of the <strong>₹300 Vaahan Penalty</strong>.
+              </p>
+            </div>
+
+            <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4">The RTO Buddy Advantage: From 12 Files to 1 PDF in 4 Seconds</h2>
+            
+            <p>
+              RTO Buddy isn't just a "helper"—it's a high-speed document engine. While your competitors are struggling with "Online PDF Compressors," RTO Buddy users are clearing their dashboards.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6 my-8">
+              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                <div className="text-3xl mb-3">⚡</div>
+                <h3 className="font-bold text-slate-900 mb-2">4-Second "Image to PDF" Magic</h3>
+                <p className="text-sm">Don't waste time clicking "Upload" and "Download" on slow websites. RTO Buddy takes your 8-9 documents and 4 vehicle photos and converts/merges them into the exact format required by the Vaahan Dashboard in just 4 seconds.</p>
+              </div>
+              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                <div className="text-3xl mb-3">📉</div>
+                <h3 className="font-bold text-slate-900 mb-2">Smart PDF Compression (No Blur)</h3>
+                <p className="text-sm">RTO inspectors revert files they can't read. RTO Buddy uses proprietary offline compression to shrink your file size while keeping the text and chassis numbers crystal clear.</p>
+              </div>
+              <div className="bg-slate-50 p-6 rounded-2xl border border-slate-100 md:col-span-2">
+                <div className="text-3xl mb-3">🛑</div>
+                <h3 className="font-bold text-slate-900 mb-2">Total Protection from "RTO Blocked" Status</h3>
+                <p className="text-sm">An RTO Block usually happens because of <strong>Vaahan Pendency</strong>—files sitting in your dashboard too long without action. By speeding up your document prep, RTO Buddy ensures your files move from "Draft" to "Approved" before the block or the weekly fine hits.</p>
+              </div>
+            </div>
+
+            <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4">Why 2-Wheeler & 4-Wheeler Dealers are Switching to RTO Buddy</h2>
+            
+            <p>
+              Whether you are a TVS, Bajaj, or Royal Enfield dealer moving high volumes, or a Toyota/Hyundai dealer handling premium paperwork, the benefits are the same:
+            </p>
+
+            <ul className="space-y-4 my-6">
+              <li className="flex items-start">
+                <span className="text-brand-500 mr-3 mt-1">✓</span>
+                <div>
+                  <strong className="text-slate-900">Offline Privacy:</strong> No customer Aadhaar or PAN cards are ever uploaded to third-party "Online PDF" sites.
+                </div>
+              </li>
+              <li className="flex items-start">
+                <span className="text-brand-500 mr-3 mt-1">✓</span>
+                <div>
+                  <strong className="text-slate-900">No More "Vaahan Login" Timeouts:</strong> Spend less time on the portal because your files are already 100% correct.
+                </div>
+              </li>
+              <li className="flex items-start">
+                <span className="text-brand-500 mr-3 mt-1">✓</span>
+                <div>
+                  <strong className="text-slate-900">Zero-Revert Workflow:</strong> Follow the built-in logic for Form 20, 21, and 22 to ensure the RTO Inspector sees exactly what they need.
+                </div>
+              </li>
+            </ul>
+
+            <div className="bg-white rounded-3xl p-1 my-12 shadow-xl border border-slate-200 overflow-hidden">
+              <div className="grid md:grid-cols-2">
+                <div className="p-8 md:p-10 bg-red-50/50 border-b md:border-b-0 md:border-r border-slate-100">
+                  <div className="flex items-center gap-3 text-red-600 font-bold text-lg mb-6">
+                    <XCircle size={24} /> Before RTO Buddy
+                  </div>
+                  <ul className="space-y-5">
+                    <li className="flex items-start gap-3 text-slate-600">
+                      <FileText size={20} className="text-slate-400 shrink-0 mt-0.5"/> 
+                      <span><strong>12 separate files</strong> to manually resize and manage</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-slate-600">
+                      <Clock size={20} className="text-slate-400 shrink-0 mt-0.5"/> 
+                      <span><strong>10+ minutes</strong> of manual work per vehicle</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-slate-600">
+                      <AlertTriangle size={20} className="text-slate-400 shrink-0 mt-0.5"/> 
+                      <span>High risk of <strong>Vaahan portal revert</strong> due to blur</span>
+                    </li>
+                    <li className="flex items-start gap-3 text-slate-600">
+                      <Globe size={20} className="text-slate-400 shrink-0 mt-0.5"/> 
+                      <span>Customer data uploaded to <strong>unsecure online sites</strong></span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="p-8 md:p-10 bg-emerald-50/50 relative overflow-hidden">
+                  <div className="absolute -right-10 -bottom-10 opacity-5">
+                    <ShieldCheck size={200} />
+                  </div>
+                  <div className="relative z-10">
+                    <div className="flex items-center gap-3 text-emerald-600 font-bold text-lg mb-6">
+                      <CheckCircle2 size={24} /> With RTO Buddy
+                    </div>
+                    <ul className="space-y-5">
+                      <li className="flex items-start gap-3 text-slate-800">
+                        <FileCheck size={20} className="text-emerald-500 shrink-0 mt-0.5"/> 
+                        <span><strong>1 perfectly merged PDF</strong> ready for upload</span>
+                      </li>
+                      <li className="flex items-start gap-3 text-slate-800">
+                        <Zap size={20} className="text-emerald-500 shrink-0 mt-0.5"/> 
+                        <span><strong>4 seconds</strong> total processing time</span>
+                      </li>
+                      <li className="flex items-start gap-3 text-slate-800">
+                        <ShieldCheck size={20} className="text-emerald-500 shrink-0 mt-0.5"/> 
+                        <span><strong>Zero-revert</strong> smart compression (crystal clear)</span>
+                      </li>
+                      <li className="flex items-start gap-3 text-slate-800">
+                        <Lock size={20} className="text-emerald-500 shrink-0 mt-0.5"/> 
+                        <span><strong>100% offline</strong> data privacy (no internet needed)</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h2 className="text-2xl font-bold text-slate-900 mt-10 mb-4">Conclusion: Is Your Dealership Buddy-Ready?</h2>
+            
+            <p>
+              Don't let the ₹300 weekly fine become your biggest expense. Stop fighting with the Vaahan Dashboard and start dominating it. <strong>RTO Buddy by Vyke Retail</strong> is the ultimate "Speed-Tool" for the modern Indian dealer.
+            </p>
+
+            <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <button onClick={() => {
+                const el = document.getElementById('download');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                else onBack();
+              }} className="bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-xl text-center">
+                Download RTO Buddy – Clear Your Pendency Today
+              </button>
+              <button onClick={() => {
+                const el = document.getElementById('contact');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                else onBack();
+              }} className="bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-xl text-center">
+                Talk to Vyke Retail for OEM Bulk Licensing
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  );
+};
+
 // Privacy Policy Page Component
 const PrivacyPolicyPage = ({ onBack }: { onBack: () => void }) => {
   useEffect(() => {
@@ -1735,7 +1986,7 @@ const App = () => {
           }
         }
       }, 10);
-    } else if (page === 'about' || page === 'contact' || page === 'privacy' || page === 'terms') {
+    } else if (page === 'about' || page === 'contact' || page === 'privacy' || page === 'terms' || page === 'blog') {
        window.scrollTo(0, 0);
     }
   };
@@ -1858,6 +2109,8 @@ const App = () => {
             </>
           ) : currentPage === 'about' ? (
             <AboutPage onBack={() => handleNavigate('home', 'hero')} />
+          ) : currentPage === 'blog' ? (
+            <BlogPage onBack={() => handleNavigate('home', 'hero')} />
           ) : currentPage === 'privacy' ? (
             <PrivacyPolicyPage onBack={() => handleNavigate('home', 'hero')} />
           ) : currentPage === 'terms' ? (
@@ -1900,6 +2153,7 @@ const App = () => {
                 <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-xs md:text-sm">Company</h4>
                 <ul className="space-y-3 text-sm md:text-base">
                   <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('about'); }} className="hover:text-brand-400 transition-colors">About Us</a></li>
+                  <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('blog'); }} className="hover:text-brand-400 transition-colors">Blog & Resources</a></li>
                   <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('contact'); }} className="hover:text-brand-400 transition-colors">Contact</a></li>
                   <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('privacy'); }} className="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
                   <li><a href="#" onClick={(e) => { e.preventDefault(); handleNavigate('terms'); }} className="hover:text-brand-400 transition-colors">Terms of Service</a></li>
@@ -1919,6 +2173,19 @@ const App = () => {
               <div className="flex items-center mt-4 md:mt-0">
                 <span className="text-slate-500 mr-1">A product by</span>
                 <VykeLogo />
+              </div>
+            </div>
+
+            {/* SEO Content Section - Visually minimized but accessible for crawlers */}
+            <div className="mt-16 pt-8 border-t border-slate-800/50 text-left">
+              <h2 className="text-slate-600 text-[10px] font-bold uppercase tracking-widest mb-3">RTO Compliance & Dealership Resources</h2>
+              <div className="text-slate-500/60 text-[10px] leading-relaxed space-y-3 max-w-full text-justify">
+                <p>
+                  RTO Buddy is India's leading RTO registration software and dealership management tool designed to automate RTO paperwork, streamline vehicle registration processes, and ensure local RTO compliance for 2W, 3W, and 4W automobile dealers. Navigating new transport rules, Vahan portal updates, and regional RTO guidelines can be challenging. Our software helps dealerships eliminate manual data entry, reduce rejection rates, and instantly format documents like Form 20, Form 21, and Form 22 to meet strict RTO file size limits (under 400KB).
+                </p>
+                <p>
+                  Whether you are looking for a guide on dealership RTO compliance, updates on the latest transport ministry rules, or a reliable tool to speed up vehicle delivery, RTO Buddy provides the ultimate solution. We regularly monitor changes in state-wise RTO regulations to ensure our document splicing and compression presets are always up-to-date, helping your dealership maintain zero fines and zero reverts. Optimize your auto dealership operations today with our smart document management system.
+                </p>
               </div>
             </div>
           </div>

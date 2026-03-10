@@ -1054,6 +1054,19 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<{email?: string; phone?: string}>({});
+  const [leadSource, setLeadSource] = useState("Website");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const utmSource = params.get('utm_source')?.toLowerCase();
+    const fbclid = params.get('fbclid');
+    
+    if (fbclid || utmSource === 'meta' || utmSource === 'facebook' || utmSource === 'instagram' || utmSource === 'ig') {
+      setLeadSource("Meta Ad Campaign");
+    } else if (utmSource) {
+      setLeadSource(utmSource);
+    }
+  }, []);
 
   const validate = (data: FormData) => {
     const newErrors: any = {};
@@ -1209,6 +1222,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
             ) : (
               <form onSubmit={handleSubmit} className="w-full space-y-5">
                 <input type="hidden" name="subject" value="New Lead from RTO Buddy Website" />
+                <input type="hidden" name="Lead Source" value={leadSource} />
                 <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
                 <div>
                   <label className="block text-sm font-bold text-slate-700 mb-2">Full Name</label>

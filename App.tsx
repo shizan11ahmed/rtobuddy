@@ -1121,15 +1121,36 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
       if (result.success) {
         setSubmitted(true);
         
+        // Track Lead event for Google Tag Manager
+        if (typeof window !== 'undefined' && (window as any).dataLayer) {
+          (window as any).dataLayer.push({ event: 'Lead' });
+        }
+
+        // Track Lead event for Facebook Pixel
+        if (typeof window !== 'undefined' && (window as any).fbq) {
+          (window as any).fbq('track', 'Lead');
+        }
+        
         // Send lead event to Meta Conversions API via our serverless function
         try {
+          const getCookie = (name: string) => {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop()?.split(';').shift();
+            return undefined;
+          };
+
           await fetch("/api/lead", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              phone: formData.get("phone")?.toString() || ""
+              name: formData.get("name")?.toString() || "",
+              email: formData.get("email")?.toString() || "",
+              phone: formData.get("phone")?.toString() || "",
+              fbc: getCookie('_fbc'),
+              fbp: getCookie('_fbp')
             })
           });
         } catch (capiError) {

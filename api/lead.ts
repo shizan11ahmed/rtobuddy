@@ -1,6 +1,11 @@
 import crypto from 'crypto';
 import { Request, Response } from 'express';
 
+const hashData = (data: string | undefined) => {
+  if (!data) return undefined;
+  return crypto.createHash('sha256').update(data.trim().toLowerCase()).digest('hex');
+};
+
 export default async function handler(req: Request, res: Response) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -19,22 +24,54 @@ export default async function handler(req: Request, res: Response) {
       }
     }
 
-    const phone = body?.phone;
+    const { name, email, phone, fbc, fbp } = body;
 
     if (!phone) {
       return res.status(400).json({ error: 'Phone number is required' });
     }
 
-    // Clean and hash the phone number using SHA-256
-    // Meta requires the phone number to be hashed in SHA-256, lowercase, and include the country code.
-    let cleanPhone = String(phone).replace(/\D/g, ''); // Remove non-digits
-    
-    // If it's a 10-digit number, assume it's an Indian number and prepend '91'
+    // Process Phone
+    let cleanPhone = String(phone).replace(/\D/g, '');
     if (cleanPhone.length === 10) {
       cleanPhone = '91' + cleanPhone;
     }
+    const hashedPhone = hashData(cleanPhone);
 
-    const hashedPhone = crypto.createHash('sha256').update(cleanPhone).digest('hex');
+    // Process Email
+    const hashedEmail = hashData(email);
+
+    // Process Name
+    let fn, ln;
+    if (name) {
+      const parts = String(name).trim().split(/\s+/);
+      fn = parts[0];
+      ln = parts.length > 1 ? parts.slice(1).join(' ') : undefined;
+    }
+    const hashedFn = hashData(fn);
+    const hashedLn = hashData(ln);
+
+    // Client info
+    const client_ip_address = req.headers['x-forwarded-for'] || req.socket?.remoteAddress;
+    const client_user_agent = req.headers['user-agent'];
+
+    // External ID (Use hashed email, or hash of phone if email is missing)
+    const external_id = hashedEmail || (hashedPhone ? hashData(cleanPhone + 'ext') : undefined);
+
+    const userData: any = {
+      client_ip_address,
+      client_user_agent,
+      fbc,
+      fbp,
+      external_id
+    };
+
+    if (hashedPhone) userData.ph = [hashedPhone];
+    if (hashedEmail) userData.em = [hashedEmail];
+    if (hashedFn) userData.fn = [hashedFn];
+    if (hashedLn) userData.ln = [hashedLn];
+
+    // Clean up undefined values
+    Object.keys(userData).forEach(key => userData[key] === undefined && delete userData[key]);
 
     const metaPayload = {
       data: [
@@ -43,9 +80,7 @@ export default async function handler(req: Request, res: Response) {
           event_time: Math.floor(Date.now() / 1000),
           action_source: 'website',
           event_source_url: 'https://rtobuddy.in',
-          user_data: {
-            ph: [hashedPhone]
-          }
+          user_data: userData
         }
       ]
     };

@@ -1299,7 +1299,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
 };
 
 // Blog & Resources Page Component
-const BlogPage = ({ onBack }: { onBack: () => void }) => {
+const BlogPage = ({ onBack, onNavigateToContact }: { onBack: () => void, onNavigateToContact: () => void }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -1342,12 +1342,12 @@ const BlogPage = ({ onBack }: { onBack: () => void }) => {
                   </div>
                   ROI & Time Savings Snapshot
                 </h3>
-                <span className="bg-brand-500/20 text-brand-300 text-xs font-bold px-3 py-1.5 rounded-full border border-brand-500/30 self-start sm:self-auto uppercase tracking-wider">
+                <span className="bg-brand-500/20 text-brand-300 text-[14px] font-bold px-3 py-1.5 rounded-full border border-brand-500/30 self-start sm:self-auto uppercase tracking-wider">
                   RTO Buddy Impact
                 </span>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 text-[17px] text-center">
                 <div className="bg-slate-800/80 backdrop-blur-sm p-5 md:p-6 rounded-2xl border border-slate-700/50">
                   <div className="text-slate-400 text-sm font-medium mb-2">Time Per File</div>
                   <div className="flex items-end gap-3">
@@ -1368,7 +1368,7 @@ const BlogPage = ({ onBack }: { onBack: () => void }) => {
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-[50px] opacity-10"></div>
                   <div className="relative z-10">
                     <div className="text-brand-100 text-sm font-medium mb-2">Monthly Savings (100 files)</div>
-                    <div className="text-4xl md:text-5xl font-extrabold text-white mb-1">₹30,000+</div>
+                    <div className="text-[36px] text-left leading-[37px] font-extrabold text-white mb-1">₹30,000+</div>
                     <div className="text-brand-200 text-xs font-medium flex items-center gap-1">
                       <Clock size={12} /> Plus 16 hours of labor saved
                     </div>
@@ -1522,18 +1522,10 @@ const BlogPage = ({ onBack }: { onBack: () => void }) => {
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <button onClick={() => {
-                const el = document.getElementById('download');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-                else onBack();
-              }} className="bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-xl text-center">
+              <button onClick={onNavigateToContact} className="bg-brand-600 hover:bg-brand-700 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-xl text-center">
                 Download RTO Buddy – Clear Your Pendency Today
               </button>
-              <button onClick={() => {
-                const el = document.getElementById('contact');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-                else onBack();
-              }} className="bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-xl text-center">
+              <button onClick={onNavigateToContact} className="bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 px-8 rounded-xl transition-all shadow-lg hover:shadow-xl text-center">
                 Talk to Vyke Retail for OEM Bulk Licensing
               </button>
             </div>
@@ -2110,7 +2102,7 @@ const App = () => {
           ) : currentPage === 'about' ? (
             <AboutPage onBack={() => handleNavigate('home', 'hero')} />
           ) : currentPage === 'blog' ? (
-            <BlogPage onBack={() => handleNavigate('home', 'hero')} />
+            <BlogPage onBack={() => handleNavigate('home', 'hero')} onNavigateToContact={() => handleNavigate('contact', 'top')} />
           ) : currentPage === 'privacy' ? (
             <PrivacyPolicyPage onBack={() => handleNavigate('home', 'hero')} />
           ) : currentPage === 'terms' ? (

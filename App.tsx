@@ -1971,13 +1971,10 @@ const TermsPage = ({ onBack }: { onBack: () => void }) => {
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false); // Splash screen removed for instant load
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2500); 
-    return () => clearTimeout(timer);
+    // Removed the 2.5s artificial delay
   }, []);
 
   const handleNavigate = (page: string, section?: string) => {

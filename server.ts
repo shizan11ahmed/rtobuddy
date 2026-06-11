@@ -12,6 +12,7 @@ async function startServer() {
 
   app.use(cors());
   app.use(express.json());
+  app.use(express.static('public'));
 
   // API routes FIRST
   app.post('/api/lead', leadHandler);

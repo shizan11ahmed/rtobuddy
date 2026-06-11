@@ -142,7 +142,7 @@ const AnimatedLogo = ({ size = "normal", className = "", variant = "stack" }: { 
 // Vyke Company Logo Component - Uses external image file
 const VykeLogo = () => (
   <img 
-    src="/vyke_logo.png" 
+    src="https://chutney.pythonanywhere.com/static/vyke_logo.png" 
     alt="Vyke" 
     className="h-7 ml-2 object-contain opacity-90 hover:opacity-100 transition-opacity" 
     referrerPolicy="no-referrer"
@@ -153,7 +153,7 @@ const VykeLogo = () => (
 const LoadingScreen = () => {
   return (
     <div className="fixed inset-0 z-[9999] bg-white flex flex-col items-center justify-center transition-opacity duration-500">
-      <img src="/full_logo.png" alt="RTO Buddy" className="h-16 w-auto animate-pulse" referrerPolicy="no-referrer" />
+      <img src="https://chutney.pythonanywhere.com/static/full_logo.png" alt="RTO Buddy" className="h-16 w-auto animate-pulse" referrerPolicy="no-referrer" />
       <div className="mt-8 w-48 h-1 bg-slate-100 rounded-full overflow-hidden">
         <div className="h-full bg-brand-600 animate-[loadingBar_2s_ease-in-out_infinite] w-full origin-left scale-x-0"></div>
       </div>
@@ -258,7 +258,7 @@ const Header = ({ currentPage, onNavigate }: { currentPage: string, onNavigate: 
         <div className="flex justify-between items-center">
           {/* Logo */}
           <a href="#" onClick={(e) => { e.preventDefault(); onNavigate('home', 'hero'); }} className="flex items-center space-x-2 group cursor-pointer select-none">
-            <img src="/full_logo.png" alt="RTO Buddy" className="h-10 w-auto" referrerPolicy="no-referrer" />
+            <img src="https://chutney.pythonanywhere.com/static/full_logo.png" alt="RTO Buddy" className="h-10 w-auto" referrerPolicy="no-referrer" />
           </a>
 
           {/* Desktop Nav */}
@@ -796,7 +796,7 @@ const ProductTourGallery = () => {
             <div className="w-full lg:w-7/12 order-1 lg:order-2 relative group">
               <div className="absolute -inset-4 bg-brand-500/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 bg-slate-900 aspect-[16/10] lg:aspect-auto">
-                <img src="/homescreen_2.1.jpeg" alt="Homescreen" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+                <img src="https://chutney.pythonanywhere.com/static/homescreen_2.1.jpeg" alt="Homescreen" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
               </div>
             </div>
           </div>
@@ -806,7 +806,7 @@ const ProductTourGallery = () => {
             <div className="w-full lg:w-7/12 relative group">
               <div className="absolute -inset-4 bg-purple-500/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 bg-slate-900 aspect-[16/10] lg:aspect-auto">
-                <img src="/preset_2.1.jpeg" alt="Presets" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+                <img src="https://chutney.pythonanywhere.com/static/preset_2.1.jpeg" alt="Presets" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
               </div>
             </div>
             <div className="w-full lg:w-5/12">
@@ -856,7 +856,7 @@ const ProductTourGallery = () => {
             <div className="w-full lg:w-7/12 order-1 lg:order-2 relative group">
               <div className="absolute -inset-4 bg-emerald-500/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50 bg-slate-900 aspect-[16/10] lg:aspect-auto">
-                <img src="/profile_2.1.jpeg" alt="Profile" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
+                <img src="https://chutney.pythonanywhere.com/static/profile_2.1.jpeg" alt="Profile" className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-700" />
               </div>
             </div>
           </div>
@@ -962,7 +962,7 @@ const VideoShowcase = () => {
                       onClick={() => setPlayingVideo('main')}
                     >
                       <img 
-                        src="/homescreen_2.1.jpeg" 
+                        src="https://chutney.pythonanywhere.com/static/homescreen_2.1.jpeg" 
                         alt="Walkthrough Thumbnail" 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         referrerPolicy="no-referrer"
@@ -976,7 +976,7 @@ const VideoShowcase = () => {
                     </div>
                   ) : (
                     <video 
-                      src="/tutorial.mp4" 
+                      src="https://chutney.pythonanywhere.com/static/tutorial.mp4" 
                       controls
                       autoPlay
                       className="absolute inset-0 w-full h-full bg-black"

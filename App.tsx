@@ -313,7 +313,7 @@ const Header = ({ currentPage, onNavigate }: { currentPage: string, onNavigate: 
 
 const WhatsAppButton = () => (
   <a
-    href="https://wa.me/919403890720?text=Hi%20RTO%20Buddy,%20I'm%20interested%20in%20optimizing%20my%20dealership%20documentation."
+    href="https://wa.me/916306003470?text=Hi%20RTO%20Buddy,%20I'm%20interested%20in%20optimizing%20my%20dealership%20documentation."
     target="_blank"
     rel="noopener noreferrer"
     className="fixed bottom-6 right-6 z-[100] bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-xl shadow-green-500/30 transition-all hover:scale-110 hover:-translate-y-1 group flex items-center justify-center"
@@ -1209,7 +1209,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                     </div>
                     <div>
                       <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Call Us</p>
-                      <p className="font-medium text-sm md:text-base">+91 9403890720</p>
+                      <p className="font-medium text-sm md:text-base">+91 6306003470</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-4">
@@ -1289,7 +1289,7 @@ const ContactPage = ({ onBack }: { onBack: () => void }) => {
                         name="phone" 
                         required 
                         className={`w-full px-5 py-3.5 rounded-xl border ${errors.phone ? 'border-red-500' : 'border-slate-300'} bg-white text-slate-900 text-base placeholder-slate-400 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition-all font-medium`} 
-                        placeholder="+91 9403890720" 
+                        placeholder="+91 6306003470" 
                         onInput={(e) => {
                             const target = e.target as HTMLInputElement;
                             target.value = target.value.replace(/[^0-9+]/g, '');
@@ -1662,7 +1662,7 @@ const PrivacyPolicyPage = ({ onBack }: { onBack: () => void }) => {
                     </div>
                      <div className="flex items-start space-x-3 text-slate-700 mb-3">
                         <Phone size={18} className="mt-1 text-brand-500" />
-                        <span>+91 9403890720</span>
+                        <span>+91 6306003470</span>
                     </div>
                      <div className="flex items-start space-x-3 text-slate-700">
                         <MapPin size={18} className="mt-1 text-brand-500" />
@@ -1949,7 +1949,7 @@ const TermsPage = ({ onBack }: { onBack: () => void }) => {
                   </div>
                   <div className="flex items-start space-x-3 text-slate-700 mt-2">
                     <Phone size={18} className="mt-1 text-brand-500" />
-                    <span>+91 9403890720</span>
+                    <span>+91 6306003470</span>
                   </div>
                 </div>
                 <div>
@@ -2173,7 +2173,7 @@ const App = () => {
                 <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-xs md:text-sm">Contact</h4>
                 <ul className="space-y-3 text-sm md:text-base">
                   <li>info@rtobuddy.in</li>
-                  <li>+91 9403890720</li>
+                  <li>+91 6306003470</li>
                   <li>Basti, Uttar Pradesh, India</li>
                 </ul>
               </div>
